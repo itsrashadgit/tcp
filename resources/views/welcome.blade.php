@@ -1,29 +1,25 @@
 @include('components/header-home')
 
     <!-- Content Main -->
-    <section class="position-relative py-5">
-        <div class="container position-relative zindex-5 py-2 py-md-4 py-lg-5">
+    <section class="position-relative py-1">
+        <div class="container position-relative zindex-5 py-1 py-md-2 py-lg-2">
             <div class="row justify-content-center text-center pt-xl-2 pb-4 mb-1 mb-lg-3">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                <div class="col-lg-2 col-md-2">
                     <img src="https://via.placeholder.com/250x250?text=Intro+Video+Professionals">
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                <div class="col-lg-8 col-md-8">
                     <h1 class="mb-4">The Construction Platform</h1>
-                    <i class="bx bx-current-location text-muted mb-0"></i><span> All of United State</span>
-                    <div class="search-bar-container">
-                        <form data-testid="search-bar-v2" class="search-form--mexm-">
-                            <input name="query" type="search" autocomplete="off" aria-label="Search input" class="form-control" placeholder="What are you looking for?">
-                            <div class="search-button-container gtm-home-search-click">
-                                <button class="btn btn-default gtm-home-search-click" type="submit">
-                                    <div class="icon icon-extra-small" style="fill: rgb(103, 53, 0);">
-                                        <svg width="17" height="17" viewBox="0 0 17 17" class="svg-wrapper--8ky9e"><path d="M7.615 15.23a7.615 7.615 0 1 1 6.1-3.054l2.966 2.967a1.088 1.088 0 0 1-1.539 1.538l-2.966-2.966a7.582 7.582 0 0 1-4.56 1.516zm5.44-7.615a5.44 5.44 0 1 1-10.88 0 5.44 5.44 0 0 1 10.88 0z" fill-rule="evenodd"></path></svg>
-                                    </div>
-                                </button>
+                    <p class="text-muted mb-0"><button class="btn btn-default" type="button" data-toggle="modal" data-target="#stateModel"><i class="bx bx-map fs-8 me-2"></i><span>All of United State</span></button></p>
+                    <form data-testid="search-bar-v2" class="form-inline">
+                        <div class="input-group">
+                            <input name="query" type="search" autocomplete="off" aria-label="Search Input" class="form-control" placeholder="What are you looking for?">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="bx bx-search fs-3"></i></span>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                <div class="col-lg-2 col-md-2">
                     <img src="https://via.placeholder.com/250x250?text=Intro+Video+Students">
                 </div>
             </div>
@@ -33,7 +29,7 @@
                 </div>
                 <div class="col-lg-8 col-md-8">
                     <div class="usa-map">
-                        <img class="img-fluid rounded" src="{{ asset('public/img/united-states-map.png') }}" width="100%" alt="united-state-map" title="United State Map">
+                        <!-- <img class="img-fluid rounded" src="{{ asset('public/img/united-states-map.png') }}" width="100%" alt="united-state-map" title="United State Map"> -->
                         <img class="img-fluid rounded" src="{{ asset('public/img/united-states-map-transparent.png') }}" width="100%" alt="united-state-map" title="United State Map">
                     </div>
                 </div>
@@ -50,5 +46,35 @@
     </section>
 </main>
 
-@include('components/footer-home')
-    
+<!-- State Modal -->
+<div class="modal fade" id="stateModel" tabindex="-1" role="dialog" aria-labelledby="stateModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="stateModelLabel">All of United States</h4>
+                <button class="btn btn-default" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="bx bx-x fs-2"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?php
+                $states = DB::select('select * from states');
+                //return view('stud_view',['states'=>$states]);
+                ?>
+                @foreach ($states as $state)
+                <ul class="list-group" data-testid="state-list">
+                    <li class="list-group-item list-group-item-action state-id-{{ $state->id }}" value="{{ $state->code }}" >
+                        <a class="btn btn-default" href="{{ $state->name }}">{{ $state->name }}</a>
+                    </li>
+                </ul>
+                @endforeach
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+@include('components/footer-home') 

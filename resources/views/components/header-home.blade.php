@@ -26,8 +26,7 @@
     <link rel="stylesheet" media="screen" href="{{ asset('public/vendor/swiper/swiper-bundle.min.css') }}"/>
 
     <!-- Main Theme Styles + Bootstrap -->
-    <link rel="stylesheet" media="screen" href="{{ asset('public/css/theme.min.css') }}">
-
+    <link rel="stylesheet" media="screen" href="{{ asset('public/assets/css/theme.min.css') }}">
     <!-- Styles -->
     <!-- <link rel="stylesheet" href="{{ asset('public/css/app.css') }}"> -->
 
@@ -159,35 +158,5 @@
         <div class="page-spinner"></div><span>Loading...</span>
       </div>
     </div>
-    <!-- Page wrapper for sticky footer -->
-    <!-- Wraps everything except footer to push footer to the bottom of the page if there is little content -->
+    <!-- Page Main wrapper -->
     <main class="page-wrapper">
-
-
-      <!-- Navbar -->
-      <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page -->
-      <!-- <header class="header navbar navbar-expand-lg bg-light navbar-sticky">
-        <div class="container px-3">
-          <div class="row">
-            <div class="col-md-3" style="border: 1px dotted blue;">
-              <h1>Intro Video Professionals</h1>
-            </div>
-            <div class="col-md-6 card bg-white border-primary shadow-sm px-4 px-lg-0">
-              <div class="site-title text-center">
-                <h1>The Construction Platform</h1>
-                <a href="{{ url('login')}}" class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex" rel="noopener">
-                  <i class="bx bx-user-circle fs-5 lh-1 me-1"></i>
-                  &nbsp;Login
-                </a>
-              </div>
-            </div>
-            <div class="col-md-3" style="border: 1px dotted blue;">
-              <h1>Intro Video Students</h1>
-            </div>
-          </div>
-
-          <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </header> -->

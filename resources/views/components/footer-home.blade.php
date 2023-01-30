@@ -1,7 +1,7 @@
 <!-- Footer -->
     <footer class="footer dark-mode bg-dark border-top border-light pt-4 pb-3 pb-lg-4">
       <div class="container">
-        <p class="nav d-block fs-xs text-center text-md-start pb-2 pb-lg-0 mb-0">
+        <p class="d-block fs-md text-center text-md-start">
           <span class="text-light opacity-50">&copy; {{ date('Y') }} <a href="{{ url('') }}">{{ config('app.subtitle') }}</a> | All rights reserved</span>
       	</p>
       </div>
@@ -16,12 +16,15 @@
 
 
     <!-- Vendor Scripts -->
-    <script src="{{ asset('public/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script src="{{ asset('public/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js') }}"></script>
-    <script src="{{ asset('public/vendor/jarallax/dist/jarallax.min.js') }}"></script>
+
+    <!-- <script src="{{ asset('public/vendor/jarallax/dist/jarallax.min.js') }}"></script>
     <script src="{{ asset('public/vendor/@lottiefiles/lottie-player/dist/lottie-player.js') }}"></script>
     <script src="{{ asset('public/vendor/swiper/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('public/vendor/cleave.js/dist/cleave.min.js') }}"></script>
+    <script src="{{ asset('public/vendor/cleave.js/dist/cleave.min.js') }}"></script> -->
 
     <!-- Main Theme Script -->
     <script src="{{ asset('public/js/theme.min.js') }}"></script>
