@@ -1,0 +1,377 @@
+[v-cloak]
+{
+    display: none;
+}
+
+.ck-editor__editable,
+textarea {
+    min-height: 150px;
+}
+
+.datatable {
+    width: 100% !important;
+}
+
+table.dataTable tbody td.select-checkbox::before,
+table.dataTable tbody td.select-checkbox::after,
+table.dataTable tbody th.select-checkbox::before,
+table.dataTable tbody th.select-checkbox::after {
+    top: 50%;
+}
+
+.dataTables_length,
+.dataTables_filter,
+.dt-buttons {
+    margin-bottom: 0.333em;
+    margin-top: .2rem;
+}
+
+.dataTables_filter {
+    margin-right: .2rem;
+}
+
+.dt-buttons .btn {
+    margin-left: 0.333em;
+    border-radius: 0;
+}
+
+.table.datatable {
+    box-sizing: border-box;
+    border-collapse: collapse;
+}
+
+table.dataTable thead th {
+    border-bottom: 2px solid #c8ced3;
+}
+
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+    border-bottom: 1px solid #c8ced3;
+}
+
+.select2 {
+    max-width: 100%;
+    width: 100% !important;
+}
+
+.select2-selection__rendered {
+    padding-bottom: 5px !important;
+}
+
+.has-error .invalid-feedback {
+    display: block !important;
+}
+
+.btn-info,
+.badge-info {
+    color: white;
+}
+
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc {
+    background-image: none;
+}
+
+.sidebar .nav-item {
+    cursor: pointer;
+}
+
+.btn-default {
+    color: #23282c;
+    background-color: #f0f3f5;
+    border-color: #f0f3f5;
+}
+
+.btn-default.focus,
+.btn-default:focus {
+    box-shadow: 0 0 0 .2rem rgba(209, 213, 215, .5);
+}
+
+.btn-default:hover {
+    color: #23282c;
+    background-color: #d9e1e6;
+    border-color: #d1dbe1;
+}
+
+.btn-group-xs > .btn,
+.btn-xs {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+.searchable-title {
+    font-weight: bold;
+}
+.searchable-fields {
+    padding-left:5px;
+}
+.searchable-link {
+    padding:0 5px 0 5px;
+}
+.searchable-link:hover   {
+    cursor: pointer;
+    background: #eaeaea;
+}
+.select2-results__option {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.form-group .required::after {
+    content: " *";
+    color: red;
+}
+
+.form-check.is-invalid ~ .invalid-feedback {
+    display: block;
+}
+
+.c-sidebar-brand .c-sidebar-brand-full:hover {
+    color: inherit;
+}
+
+.custom-select.form-control-sm {
+    padding: 0.25rem 1.5rem;
+}
+
+
+.toasted-container.top-right {
+    top: 5% !important;
+    right: 1% !important;
+}
+
+.c-sidebar-nav-link a{
+    font-size: 13px;
+}
+
+
+.c-sidebar-nav-icon {
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-sidebar-nav-dropdown-toggle, .c-sidebar-nav-link {
+    padding: .7rem 1rem;
+}
+
+.product-tabs{
+    background: #fff;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.card{
+    border: none;
+}
+
+.upload-button {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 2px dashed #bbb;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.upload-button i{
+    font-size: 2rem;
+    color: #ddd
+}
+
+.upload-button p{
+    color: #888;
+}
+
+.product-image-loader {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	min-height: 150px;
+	max-height: 150px;
+}
+
+.product-image-loader>div {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.7);
+}
+
+.product-image-loader>div i{
+    font-size: 2rem;
+}
+
+.product-image{
+    position: relative;
+}
+
+.product-image-actions{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+
+
+.document-box{
+    margin: 20px;
+    background: #eee;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.document-box div{
+    padding: 15px;
+}
+
+
+.document-box a{
+    display: block;
+    padding: 5px;
+    background: #ddd;
+    font-size: 14px;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+
+.campaign-send .tox-tinymce{
+    height: 700px !important;
+}
+
+
+.user-circle{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 2px;
+    font-size: 10px;
+}
+
+.user-circle-red{
+    color: red;
+}
+
+.user-circle-green{
+    color: green;
+}
+
+.chat-active{
+    background-color: #fafafa;
+}
+
+.chat-history li{
+    list-style: none;
+}
+
+.chat-message{
+    color: #1e1e2d;
+    word-break: break-word;
+    font-weight: 500;
+    word-spacing: 1px;
+    padding: 10px 12px;
+}
+
+.chatmsg-left .chat-message{
+    border-radius: 0 15px 15px 15px;
+    background-color: #f8f5ff!important;
+}
+
+
+.chatmsg-right .chat-message{
+    border-radius: 15px 0 15px 15px;
+    background-color: #f1faff!important;
+}
+
+.chat-list, .chat-history{
+    height: 300px;
+    overflow-y: auto;
+}
+
+.chat-history{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.last-message img {
+	width: 18px;
+}
+
+.chat-message.sent-image {
+    width: 200px;
+}
+
+
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+	color: #768192;
+	background-color: #fff;
+	border-color: #c4c9d0 #c4c9d0 #ebedef;
+}
+
+
+.media-selected{
+    outline: 2px solid green !important;
+}
+
+.media-selected::before {
+	content: '\f00c';
+	font-family: 'Font Awesome 5 Free';
+	font-weight: 900;
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	right: 25px;
+	color: #fff;
+	background: green;
+	border-radius: 50%;
+	width: 22px;
+	height: 22px;
+	align-items: center;
+}
+
+
+
+
+
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #d8dbe0 !important;
+    border-radius: 4px;
+}
+
+.select2-container .select2-selection--single {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 35px !important;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #444;
+    line-height: 33px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 33px !important;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 20px;
+}
+

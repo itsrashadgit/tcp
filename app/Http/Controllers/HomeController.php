@@ -6,34 +6,23 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function index()
     {
-        return view('admin.dashboard');
-    }
-
-    function allvenue()
-    {
-        return view('allvenue');
-    }
-
-    function singlevenue()
-    {
-        return view('singlevenue');
-    }
-    function houranalysis()
-    {
-        return view('houranalysis');
-    }
-    function currentdayanalysis()
-    {
-        return view('currentdayanalysis');
-    }
-    function dayraw()
-    {
-        return view('day_raw_analysis');
-    }
-    function maptrafficdata()
-    {
-        return view('map_traffic');
+        return view('home');
     }
 }
