@@ -16,6 +16,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'shorttitle' => 'TCP',
     'subtitle' => 'The Construction Platform',
 
     /*

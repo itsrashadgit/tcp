@@ -120,7 +120,7 @@
                 @foreach ($states as $state)
                 <ul class="list-group" data-testid="state-list">
                     <li class="list-group-item list-group-item-action state-id-{{ $state->id }}" value="{{ $state->code }}" >
-                        <a class="btn btn-default" href="{{ $state->name }}">{{ $state->name }}</a>
+                        <a class="btn btn-default" href="{{ strtolower($state->code) }}">{{ $state->name }}</a>
                     </li>
                 </ul>
                 @endforeach
