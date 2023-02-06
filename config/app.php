@@ -187,7 +187,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        SalimHosen\Core\Providers\CoreServiceProvider::class,
         /*
          * Application Service Providers...
          */
