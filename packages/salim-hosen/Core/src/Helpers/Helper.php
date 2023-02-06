@@ -11,8 +11,6 @@ if (!function_exists('uploadImage')) {
     {
         $request ??= request();
 
-        $save_path = env('THEME', 'basic') . '/' . $save_path; // modify the save page with project name prefix
-
         if ($request->hasFile($arribute_name)) {
 
             $image = $request->file($arribute_name);

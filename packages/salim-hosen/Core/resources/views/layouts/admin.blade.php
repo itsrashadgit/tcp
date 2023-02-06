@@ -105,8 +105,10 @@
                             <a href="" class="text-white">
                                 {{-- <img src="{{ asset(config('settings.logo') ?? env("THEME").'/images/logo-white.png') }}" style="height: 60px;" alt=""
                                      class="img-fluid"> --}}
+                                     <h4 class="text-white">TCP</h4>
                             </a>
                         </h2>
+                        <hr>
                     </div>
                     <div class="hr-line"></div>
                     <ul class="nav flex-column px-2">
@@ -184,6 +186,8 @@
                                 </ul>
                             </li>
                         @endcan
+
+                        @includeIf("menu")
 
 
                         @canany(['manage_setting'])

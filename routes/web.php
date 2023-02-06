@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\StateController;
+use App\Http\Controllers\PublicPageController;
+use App\Models\City;
+use App\Models\State;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +19,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function(){
-    return redirect()->route("admin.login");
-});
+Route::get('/', [PublicPageController::class, 'index']);
 
 Route::get('/login', function(){
     return redirect()->route("admin.login");
+});
+
+
+Route::get("/state/{slug}", [PublicPageController::class, 'stateCounties'])->name("state.counties");
+
+
+
+Route::group(['middleware' => ['auth'], "as" => "admin."], function() {
+
+
+    Route::resource('states', StateController::class);
+    Route::resource('cities', CityController::class);
+
 });
