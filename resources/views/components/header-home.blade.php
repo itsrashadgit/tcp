@@ -88,27 +88,27 @@
           <!-- Right Side Of Navbar -->
           <ul class="navbar-nav ms-auto text-center">
             <li class="nav-item">
-              <a class="nav-link d-flex flex-column" data-toggle="collapse" href="{{ url('/') }}"><i class="bx bx-home fs-3"></i>{{__('Home')}}</a>
+              <a class="nav-link d-flex flex-column" href="{{ url('/') }}"><i class="bx bx-home fs-3"></i>{{__('Home')}}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex flex-column" data-toggle="collapse" href="{{ url('/') }}"><i class="bx bx-planet fs-3"></i>{{__('NFLP')}}</a>
+              <a class="nav-link d-flex flex-column" href="{{ url('/') }}"><i class="bx bx-planet fs-3"></i>{{__('NFLP')}}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex flex-column" data-toggle="collapse" href="{{ url('/') }}"><i class="bx bx-paint fs-3"></i>{{__('MBLP')}}</a>
+              <a class="nav-link d-flex flex-column" href="{{ url('/') }}"><i class="bx bx-paint fs-3"></i>{{__('MBLP')}}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex flex-column" data-toggle="collapse" class="nav-link" href="{{ url('/') }}"><i class="bx bx-cog fs-3"></i>{{__('Settings')}}</a>
+              <a class="nav-link d-flex flex-column" class="nav-link" href="{{ url('/') }}"><i class="bx bx-cog fs-3"></i>{{__('Settings')}}</a>
             </li>
             <!-- Authentication Links -->
             @guest
             @if (Route::has('login'))
             <li class="nav-item">
-              <a class="nav-link d-flex flex-column" data-toggle="collapse" class="nav-link" href="{{ route('login') }}"><i class="bx bx-log-in fs-3"></i>{{ __('Login') }}</a>
+              <a class="nav-link d-flex flex-column" href="{{ route('login') }}"><i class="bx bx-log-in fs-3"></i>{{ __('Login') }}</a>
             </li>
             @endif
             @if (Route::has('register'))
             <li class="nav-item">
-              <a class="nav-link d-flex flex-column" data-toggle="collapse" href="{{ route('register') }}"><i class="bx bx-registered fs-3"></i>{{ __('Register') }}</a>
+              <a class="nav-link d-flex flex-column" href="{{ route('register') }}"><i class="bx bx-registered fs-3"></i>{{ __('Register') }}</a>
             </li>
             @endif
             @else
@@ -127,12 +127,6 @@
             </li>
             @endguest
           </ul>
-          <!-- <form class="navbar-form form-inline">
-            <div class="input-group search-box">
-              <input type="text" id="search" class="form-control" placeholder="Search here...">
-              <span class="input-group-addon"><i class="bx bx-search fs-3">&#xE8B6;</i></span>
-            </div>
-          </form> -->
           <div class="form-group has-search">
             <input type="text" class="form-control" placeholder="Search Profiles">
           </div>
