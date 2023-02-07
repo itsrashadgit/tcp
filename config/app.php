@@ -188,6 +188,7 @@ return [
          * Package Service Providers...
          */
         SalimHosen\Core\Providers\CoreServiceProvider::class,
+        SalimHosen\Website\Providers\WebsiteServiceProvider::class,
         /*
          * Application Service Providers...
          */

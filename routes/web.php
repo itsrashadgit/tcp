@@ -21,9 +21,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PublicPageController::class, 'index']);
 
+
+Route::get('register', function(){
+
+    return view("auth.register");
+
+})->name("register")->middleware("guest");
+
 Route::get('/login', function(){
-    return redirect()->route("admin.login");
-});
+    return view("auth.login");
+})->name("login")->middleware("guest");
 
 
 Route::get("/state/{slug}", [PublicPageController::class, 'stateCounties'])->name("state.counties");
@@ -37,3 +44,4 @@ Route::group(['middleware' => ['auth'], "as" => "admin."], function() {
     Route::resource('cities', CityController::class);
 
 });
+
