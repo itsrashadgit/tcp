@@ -188,6 +188,7 @@
                         @endcan
 
                         @includeIf("menu")
+                        @includeIf("website::menu")
 
 
                         @canany(['manage_setting'])

@@ -62,112 +62,119 @@
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-WKV3GT5');
     </script> -->
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
   </head>
 
 
   <!-- Body -->
   <body>
 
-    <!-- Google Tag Manager (noscript)-->
+<div id="app">
+        <!-- Google Tag Manager (noscript)-->
     <!-- <noscript>
       <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WKV3GT5" height="0" width="0" style="display: none; visibility: hidden;"></iframe>
     </noscript> -->
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-      <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-          {{ config('app.shorttitle', 'TCP') }}
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Left Side Of Navbar -->
-          <ul class="navbar-nav me-auto">
+        <div class="container">
+          <a class="navbar-brand" href="{{ url('/') }}">
+            {{ config('app.shorttitle', 'TCP') }}
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left Side Of Navbar -->
+            <ul class="navbar-nav me-auto">
 
-          </ul>
-          <!-- Right Side Of Navbar -->
-          <ul class="navbar-nav ms-auto text-center">
-            <li class="nav-item">
-              <a class="nav-link d-flex flex-column" data-toggle="collapse" href="{{ url('/') }}"><i class="bx bx-home fs-3"></i>{{__('Home')}}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link d-flex flex-column" data-toggle="collapse" href="{{ url('/') }}"><i class="bx bx-planet fs-3"></i>{{__('NFLP')}}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link d-flex flex-column" data-toggle="collapse" href="{{ url('/') }}"><i class="bx bx-paint fs-3"></i>{{__('MBLP')}}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link d-flex flex-column" data-toggle="collapse" class="nav-link" href="{{ url('/') }}"><i class="bx bx-cog fs-3"></i>{{__('Settings')}}</a>
-            </li>
-            <!-- Authentication Links -->
-            @guest
-            @if (Route::has('login'))
-            <li class="nav-item">
-              <a class="nav-link d-flex flex-column" data-toggle="collapse" class="nav-link" href="{{ route('login') }}"><i class="bx bx-log-in fs-3"></i>{{ __('Login') }}</a>
-            </li>
-            @endif
-            @if (Route::has('register'))
-            <li class="nav-item">
-              <a class="nav-link d-flex flex-column" data-toggle="collapse" href="{{ route('register') }}"><i class="bx bx-registered fs-3"></i>{{ __('Register') }}</a>
-            </li>
-            @endif
-            @else
-            <li class="nav-item dropdown">
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }}
-              </a>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                  {{ __('Logout') }}
+            </ul>
+            <!-- Right Side Of Navbar -->
+            <ul class="navbar-nav ms-auto text-center">
+              <li class="nav-item">
+                <a class="nav-link d-flex flex-column" data-toggle="collapse" href="{{ url('/') }}"><i class="bx bx-home fs-3"></i>{{__('Home')}}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link d-flex flex-column" data-toggle="collapse" href="{{ url('/') }}"><i class="bx bx-planet fs-3"></i>{{__('NFLP')}}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link d-flex flex-column" data-toggle="collapse" href="{{ url('/') }}"><i class="bx bx-paint fs-3"></i>{{__('MBLP')}}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link d-flex flex-column" data-toggle="collapse" class="nav-link" href="{{ url('/') }}"><i class="bx bx-cog fs-3"></i>{{__('Settings')}}</a>
+              </li>
+              <!-- Authentication Links -->
+              @guest
+              @if (Route::has('login'))
+              <li class="nav-item">
+                <a class="nav-link d-flex flex-column" data-toggle="collapse" class="nav-link" href="{{ route('login') }}"><i class="bx bx-log-in fs-3"></i>{{ __('Login') }}</a>
+              </li>
+              @endif
+              @if (Route::has('register'))
+              <li class="nav-item">
+                <a class="nav-link d-flex flex-column" data-toggle="collapse" href="{{ route('register') }}"><i class="bx bx-registered fs-3"></i>{{ __('Register') }}</a>
+              </li>
+              @endif
+              @else
+              <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                  {{ Auth::user()->name }}
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                  @csrf
-                </form>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                  </a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                  </form>
+                </div>
+              </li>
+              @endguest
+            </ul>
+            <!-- <form class="navbar-form form-inline">
+              <div class="input-group search-box">
+                <input type="text" id="search" class="form-control" placeholder="Search here...">
+                <span class="input-group-addon"><i class="bx bx-search fs-3">&#xE8B6;</i></span>
               </div>
-            </li>
-            @endguest
-          </ul>
-          <!-- <form class="navbar-form form-inline">
-            <div class="input-group search-box">
-              <input type="text" id="search" class="form-control" placeholder="Search here...">
-              <span class="input-group-addon"><i class="bx bx-search fs-3">&#xE8B6;</i></span>
+            </form> -->
+            <div class="form-group has-search">
+              <input type="text" class="form-control" placeholder="Search Profiles">
             </div>
-          </form> -->
-          <div class="form-group has-search">
-            <input type="text" class="form-control" placeholder="Search Profiles">
           </div>
         </div>
+      </nav>
+
+      <!-- Page loading spinner -->
+      <div class="page-loading active">
+        <div class="page-loading-inner">
+          <div class="page-spinner"></div><span>Loading...</span>
+        </div>
       </div>
-    </nav>
+      <!-- Page Main wrapper -->
+      <main class="page-wrapper">
 
-    <!-- Page loading spinner -->
-    <div class="page-loading active">
-      <div class="page-loading-inner">
-        <div class="page-spinner"></div><span>Loading...</span>
+          @yield("content")
+
+      </main>
+  <!-- Footer -->
+  <footer class="footer dark-mode bg-dark border-top border-light pt-4 pb-3 pb-lg-4">
+      <div class="container">
+        <p class="d-block fs-md text-center text-md-start">
+          <span class="text-light opacity-50">&copy; {{ date('Y') }} <a href="{{ url('') }}">{{ config('app.subtitle') }}</a> | All rights reserved</span>
+          </p>
       </div>
-    </div>
-    <!-- Page Main wrapper -->
-    <main class="page-wrapper">
-
-        @yield("content")
-
-    </main>
-<!-- Footer -->
-<footer class="footer dark-mode bg-dark border-top border-light pt-4 pb-3 pb-lg-4">
-    <div class="container">
-      <p class="d-block fs-md text-center text-md-start">
-        <span class="text-light opacity-50">&copy; {{ date('Y') }} <a href="{{ url('') }}">{{ config('app.subtitle') }}</a> | All rights reserved</span>
-        </p>
-    </div>
-  </footer>
+    </footer>
 
 
-  <!-- Back to top button -->
-  <a href="#top" class="btn-scroll-top" data-scroll>
-    <span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span>
-    <i class="btn-scroll-top-icon bx bx-chevron-up"></i>
-  </a>
+    <!-- Back to top button -->
+    <a href="#top" class="btn-scroll-top" data-scroll>
+      <span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span>
+      <i class="btn-scroll-top-icon bx bx-chevron-up"></i>
+    </a>
 
+</div>
 
   <!-- Vendor Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" crossorigin="anonymous"></script>
@@ -182,5 +189,62 @@
 
   <!-- Main Theme Script -->
   <script src="{{ asset('js/theme.min.js') }}"></script>
+
+
+  {{-- ---------------------------------- VUE SCRIPTS --------------------------------------- --}}
+  <script>
+    let vdata = {
+        cartCount: 0
+    };
+    let vcreated = {};
+    let vmounted = {};
+    let vmethods = {};
+    let vdestroyed = {};
+</script>
+
+@stack("body_scripts")
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script type="text/javascript">
+    const app = new Vue({
+        el: '#app',
+        data: vdata,
+        created() {
+            Object.keys(vcreated).forEach(method => {
+                vcreated[method]();
+            });
+            this.fetchCartCount();
+        },
+        mounted() {
+            Object.keys(vmounted).forEach(method => {
+                vmounted[method]();
+            });
+        },
+        destroyed(){
+            Object.keys(vdestroyed).forEach(method => {
+                vdestroyed[method]();
+            });
+        },
+        methods: {
+            ...vmethods,
+            async fetchCartCount(){
+                try{
+
+                    const temporary_id = "{{ session("unique_id") }}";
+                    const response = await axios.get(`/api/v1/cart-count?temporary_id=${temporary_id}`);
+                    this.cartCount = response.data.data;
+
+                }catch(err){
+                    console.log(err);
+                }
+            }
+        },
+    });
+</script>
+{{-- ---------------------------------- End of VUE SCRIPTS --------------------------------------- --}}
+
 </body>
 </html>

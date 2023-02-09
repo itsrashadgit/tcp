@@ -31,7 +31,8 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "SalimHosen\\Core\\": "packages/salim-hosen/Core/src/"
+            "SalimHosen\\Core\\": "packages/salim-hosen/Core/src/",
+            "SalimHosen\\Website\\": "packages/salim-hosen/Website/src/"
         }
     },
     "autoload-dev": {
