@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->foreignId("state_id")->constrained()->onDelete("cascade");
-            $table->string("city", 50);
+            // $table->string("city", 50);
             $table->string("county", 50);
-            $table->string("shape", 50);
-            $table->string("coords");
+            $table->string("shape", 50)->nullable();
+            $table->string("coords")->nullable();
             $table->double("latitude", 15, 2);
             $table->double("longitude", 15, 2);
             $table->string("slug");

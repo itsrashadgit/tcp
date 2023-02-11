@@ -19,30 +19,26 @@
                         @csrf
 
                         <div class="mb-3">
-                            <label class="required" for="country">{{ __('Country') }}</label>
-                            <select name="country" id="country" class="form-select form-round" :class="{ 'is-invalid': errors.country }" v-model="form.country">
-                                <option value="">{{ __("Select Country") }}</option>
-                                @foreach (\SalimHosen\Core\Models\Country::all() as $country)
-                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                            <label class="required" for="state">{{ __('State') }}</label>
+                            <select name="state" id="state" class="form-select form-round" :class="{ 'is-invalid': errors.state }" v-model="form.state">
+                                <option value="">{{ __("Select State") }}</option>
+                                @foreach (\App\Models\State::all() as $state)
+                                    <option value="{{ $state->id }}">{{ $state->name }}</option>
                                 @endforeach
                             </select>
-                            <div class="invalid-feedback">@{{ errors.country }}</div>
+                            <div class="invalid-feedback">@{{ errors.state }}</div>
                         </div>
 
                         <div class="mb-3">
                             <label for="trade_role" class="required">{{ __('Are you') }}</label>
                             <div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" id="buyer" value="buyer" v-model="form.role">
-                                    <label class="form-check-label" for="buyer">{{ __("Buyer") }}</label>
+                                    <input class="form-check-input" type="radio" name="role" id="customer" value="customer" v-model="form.role">
+                                    <label class="form-check-label" for="customer">{{ __("Customer") }}</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" id="supplier" value="supplier" v-model="form.role">
-                                    <label class="form-check-label" for="supplier">{{ __("Supplier") }}</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" id="both" value="both" v-model="form.role">
-                                    <label class="form-check-label" for="both">{{ __("Both") }}</label>
+                                    <input class="form-check-input" type="radio" name="role" id="vendor" value="vendor" v-model="form.role">
+                                    <label class="form-check-label" for="vendor">{{ __("Vendor") }}</label>
                                 </div>
                             </div>
                         </div>
@@ -85,31 +81,6 @@
                             <div class="invalid-feedback">@{{ errors.password_confirmation }}</div>
                         </div>
 
-                        <div class="mb-3 mb-3">
-                            <label class="required" for="business_type">{{ __("Business Type") }}</label>
-                            <select name="business_type" class="form-select form-round" id="business_type" :class="{ 'is-invalid': errors.business_type }" v-model="form.business_type">
-                                <option value="">{{ __("Select Business Type") }}</option>
-                                <option value="Factory">{{ __("Factory") }}</option>
-                                <option value="Wholesaler">{{ __("Wholesaler") }}</option>
-                                <option value="Trading Company">{{ __("Trading Company") }}</option>
-                            </select>
-                            <div v-cloak class="invalid-feedback">@{{ errors.business_type }}</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="required" for="commercial_registration_number">{{ __('Commercial Registration Number') }}</label>
-                            <input class="form-control form-round" type="text" name="commercial_registration_number" id="commercial_registration_number"
-                                :class="{ 'is-invalid': errors.commercial_registration_number }" v-model="form.commercial_registration_number">
-                            <div class="invalid-feedback">@{{ errors.commercial_registration_number }}</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="required" for="tax_number">{{ __('Tax Number') }}</label>
-                            <input class="form-control form-round" type="text" name="tax_number" id="tax_number"
-                                :class="{ 'is-invalid': errors.tax_number }" v-model="form.tax_number">
-                            <div class="invalid-feedback">@{{ errors.tax_number }}</div>
-                        </div>
-
                         <div class="text text-success mb-3" v-if="response">@{{ response }}</div>
 
                         <div class="mb-3 d-flex justify-content-between align-items-center">
@@ -135,16 +106,13 @@
         vdata = {
             ...vdata,
             form: {
-                country: '',
-                role: "buyer",
+                state: '',
+                role: "customer",
                 name: '',
                 email: '',
                 phone: '',
                 password: '',
                 password_confirmation: '',
-                business_type: '',
-                tax_number: '',
-                commercial_registration_number: ''
             },
             errors: {},
             registering: false,

@@ -29,7 +29,7 @@
     <link rel="stylesheet" media="screen" href="{{ asset('assets/css/theme.min.css') }}">
     <!-- Styles -->
     <!-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> -->
-
+    @stack("head_tags")
     <!-- Theme mode -->
     <script>
       let mode = window.localStorage.getItem('mode'),
@@ -94,43 +94,43 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto text-center">
               <li class="nav-item">
-                <a class="nav-link d-flex flex-column" data-toggle="collapse" href="{{ url('/') }}"><i class="bx bx-home fs-3"></i>{{__('Home')}}</a>
+                <a class="nav-link d-flex flex-column" href="{{ url('/') }}"><i class="bx bx-home fs-3"></i>{{__('Home')}}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link d-flex flex-column" data-toggle="collapse" href="{{ url('/') }}"><i class="bx bx-planet fs-3"></i>{{__('NFLP')}}</a>
+                <a class="nav-link d-flex flex-column" href="{{ route('feeds') }}"><i class="bx bx-planet fs-3"></i>{{__('NFLP')}}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link d-flex flex-column" data-toggle="collapse" href="{{ url('/') }}"><i class="bx bx-paint fs-3"></i>{{__('MBLP')}}</a>
+                <a class="nav-link d-flex flex-column" href="{{ route('feeds') }}"><i class="bx bx-paint fs-3"></i>{{__('MBLP')}}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link d-flex flex-column" data-toggle="collapse" class="nav-link" href="{{ url('/') }}"><i class="bx bx-cog fs-3"></i>{{__('Settings')}}</a>
+                <a class="nav-link d-flex flex-column" class="nav-link" href="{{ url('/') }}"><i class="bx bx-cog fs-3"></i>{{__('Settings')}}</a>
               </li>
               <!-- Authentication Links -->
               @guest
-              @if (Route::has('login'))
-              <li class="nav-item">
-                <a class="nav-link d-flex flex-column" data-toggle="collapse" class="nav-link" href="{{ route('login') }}"><i class="bx bx-log-in fs-3"></i>{{ __('Login') }}</a>
-              </li>
-              @endif
-              @if (Route::has('register'))
-              <li class="nav-item">
-                <a class="nav-link d-flex flex-column" data-toggle="collapse" href="{{ route('register') }}"><i class="bx bx-registered fs-3"></i>{{ __('Register') }}</a>
-              </li>
-              @endif
+                @if (Route::has('login'))
+                    <li class="nav-item">
+                        <a class="nav-link d-flex flex-column" class="nav-link" href="{{ route('login') }}"><i class="bx bx-log-in fs-3"></i>{{ __('Login') }}</a>
+                    </li>
+                @endif
+                @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link d-flex flex-column" href="{{ route('register') }}"><i class="bx bx-registered fs-3"></i>{{ __('Register') }}</a>
+                    </li>
+                @endif
               @else
-              <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                  {{ Auth::user()->name }}
-                </a>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                  </a>
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                  </form>
-                </div>
-              </li>
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link d-flex flex-column" href="{{ route("home.customer") }}" >
+                        <i class="bx bx-log-in fs-3"></i> {{ Auth::user()->name }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                    </div>
+                </li>
               @endguest
             </ul>
             <!-- <form class="navbar-form form-inline">

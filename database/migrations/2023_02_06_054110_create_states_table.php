@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('states', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("country_id")->constrained()->onDelete("cascade");
             $table->string("code", 50);
             $table->string("name", 50);
             $table->string("image")->nullable();
