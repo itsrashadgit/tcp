@@ -26,9 +26,25 @@ class User extends Authenticatable
         'email',
         'phone',
         'password',
-        'business_type',
-        'tax_number',
-        'commercial_registration_number'
+        'address',
+        'state_id',
+        'zip_code',
+        'business_description',
+        'company_mission',
+        'company_vision',
+        'products',
+        'services',
+        'trade',
+        'profession_title',
+        'years_of_experience',
+        'education',
+        'institution',
+        'work_history',
+        'license',
+        'certificates',
+        'achivements',
+        'ability_skills',
+        'about_you'
     ];
 
     /**

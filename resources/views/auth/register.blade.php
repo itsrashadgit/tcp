@@ -19,7 +19,7 @@
                         @csrf
 
                         <div class="mb-3">
-                            <label for="trade_role" class="required">{{ __('I am') }}</label>
+                            <label for="trade_role" class="required">{{ __('I am a') }}</label>
                             <div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="role" id="vendor" value="vendor" v-model="form.role">
@@ -30,6 +30,20 @@
                                     <label class="form-check-label" for="tradesmen">{{ __("Tradesmen") }}</label>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="mb-3" v-if="form.role != 'vendor'">
+                            <label class="required" for="trade">{{ __('Trade') }}</label>
+                            <input class="form-control form-round" type="text" name="trade" id="trade"
+                                :class="{ 'is-invalid': errors.trade }" v-model="form.trade">
+                            <div class="invalid-feedback">@{{ errors.trade }}</div>
+                        </div>
+
+                        <div class="mb-3" v-if="form.role != 'vendor'">
+                            <label class="required" for="profession_title">{{ __('Profession Title') }}</label>
+                            <input class="form-control form-round" type="text" name="profession_title" id="profession_title"
+                                :class="{ 'is-invalid': errors.profession_title }" v-model="form.profession_title">
+                            <div class="invalid-feedback">@{{ errors.profession_title }}</div>
                         </div>
 
                         <div class="mb-3">
@@ -94,114 +108,104 @@
                             <div class="invalid-feedback">@{{ errors.password_confirmation }}</div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="required" for="address">{{ __('Business Description') }}</label>
-                            <textarea name="address" id="address" cols="30" rows="4" class="form-control" v-model="form.address" :class="{ 'is-invalid': errors.address }"></textarea>
-                            <div class="invalid-feedback">@{{ errors.name }}</div>
-                        </div>
+                        <div v-if="form.role == 'vendor'">
+                            <div class="mb-3">
+                                <label class="required" for="business_description">{{ __('Business Description') }}</label>
+                                <textarea name="business_description" id="business_description" cols="30" rows="4" class="form-control" v-model="form.business_description" :class="{ 'is-invalid': errors.business_description }"></textarea>
+                                <div class="invalid-feedback">@{{ errors.name }}</div>
+                            </div>
 
-                        <div class="mb-3">
-                            <label class="required" for="phone">{{ __('Company Mission') }}</label>
-                            <input class="form-control form-round" type="text" name="phone" id="phone"
-                                :class="{ 'is-invalid': errors.phone }" v-model="form.phone">
-                            <div class="invalid-feedback">@{{ errors.phone }}</div>
-                        </div>
+                            <div class="mb-3">
+                                <label class="required" for="company_mission">{{ __('Company Mission') }}</label>
+                                <input class="form-control form-round" type="text" name="company_mission" id="company_mission"
+                                    :class="{ 'is-invalid': errors.company_mission }" v-model="form.company_mission">
+                                <div class="invalid-feedback">@{{ errors.company_mission }}</div>
+                            </div>
 
-                        <div class="mb-3">
-                            <label class="required" for="phone">{{ __('Company Vision') }}</label>
-                            <input class="form-control form-round" type="text" name="phone" id="phone"
-                                :class="{ 'is-invalid': errors.phone }" v-model="form.phone">
-                            <div class="invalid-feedback">@{{ errors.phone }}</div>
-                        </div>
+                            <div class="mb-3">
+                                <label class="required" for="company_vision">{{ __('Company Vision') }}</label>
+                                <input class="form-control form-round" type="text" name="company_vision" id="company_vision"
+                                    :class="{ 'is-invalid': errors.company_vision }" v-model="form.company_vision">
+                                <div class="invalid-feedback">@{{ errors.company_vision }}</div>
+                            </div>
 
-                        <div class="mb-3">
-                            <label class="required" for="address">{{ __('Products') }}</label>
-                            <textarea name="address" id="address" cols="30" rows="4" class="form-control" v-model="form.address" :class="{ 'is-invalid': errors.address }"></textarea>
-                            <div class="invalid-feedback">@{{ errors.name }}</div>
-                        </div>
+                            <div class="mb-3">
+                                <label class="required" for="products">{{ __('Products') }}</label>
+                                <textarea name="products" id="products" cols="30" rows="4" class="form-control" v-model="form.products" :class="{ 'is-invalid': errors.products }"></textarea>
+                                <div class="invalid-feedback">@{{ errors.products }}</div>
+                            </div>
 
-                        <div class="mb-3">
-                            <label class="required" for="address">{{ __('Services') }}</label>
-                            <textarea name="address" id="address" cols="30" rows="4" class="form-control" v-model="form.address" :class="{ 'is-invalid': errors.address }"></textarea>
-                            <div class="invalid-feedback">@{{ errors.name }}</div>
-                        </div>
-
-
-                        <div class="mb-3">
-                            <label class="required" for="phone">{{ __('Trade') }}</label>
-                            <input class="form-control form-round" type="text" name="phone" id="phone"
-                                :class="{ 'is-invalid': errors.phone }" v-model="form.phone">
-                            <div class="invalid-feedback">@{{ errors.phone }}</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="required" for="phone">{{ __('Profession Title') }}</label>
-                            <input class="form-control form-round" type="text" name="phone" id="phone"
-                                :class="{ 'is-invalid': errors.phone }" v-model="form.phone">
-                            <div class="invalid-feedback">@{{ errors.phone }}</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="required" for="phone">{{ __('Years of Experience') }}</label>
-                            <input class="form-control form-round" type="text" name="phone" id="phone"
-                                :class="{ 'is-invalid': errors.phone }" v-model="form.phone">
-                            <div class="invalid-feedback">@{{ errors.phone }}</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="required" for="phone">{{ __('Education') }}</label>
-                            <input class="form-control form-round" type="text" name="phone" id="phone"
-                                :class="{ 'is-invalid': errors.phone }" v-model="form.phone">
-                            <div class="invalid-feedback">@{{ errors.phone }}</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="required" for="phone">{{ __('Instution') }}</label>
-                            <input class="form-control form-round" type="text" name="phone" id="phone"
-                                :class="{ 'is-invalid': errors.phone }" v-model="form.phone">
-                            <div class="invalid-feedback">@{{ errors.phone }}</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="required" for="phone">{{ __('Work History') }}</label>
-                            <input class="form-control form-round" type="text" name="phone" id="phone"
-                                :class="{ 'is-invalid': errors.phone }" v-model="form.phone">
-                            <div class="invalid-feedback">@{{ errors.phone }}</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="required" for="phone">{{ __('License') }}</label>
-                            <input class="form-control form-round" type="text" name="phone" id="phone"
-                                :class="{ 'is-invalid': errors.phone }" v-model="form.phone">
-                            <div class="invalid-feedback">@{{ errors.phone }}</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="required" for="phone">{{ __('Certificates') }}</label>
-                            <input class="form-control form-round" type="text" name="phone" id="phone"
-                                :class="{ 'is-invalid': errors.phone }" v-model="form.phone">
-                            <div class="invalid-feedback">@{{ errors.phone }}</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="required" for="phone">{{ __('Achivements') }}</label>
-                            <input class="form-control form-round" type="text" name="phone" id="phone"
-                                :class="{ 'is-invalid': errors.phone }" v-model="form.phone">
-                            <div class="invalid-feedback">@{{ errors.phone }}</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="required" for="phone">{{ __('Ability Skills') }}</label>
-                            <input class="form-control form-round" type="text" name="phone" id="phone"
-                                :class="{ 'is-invalid': errors.phone }" v-model="form.phone">
-                            <div class="invalid-feedback">@{{ errors.phone }}</div>
+                            <div class="mb-3">
+                                <label class="required" for="services">{{ __('Services') }}</label>
+                                <textarea name="services" id="services" cols="30" rows="4" class="form-control" v-model="form.services" :class="{ 'is-invalid': errors.services }"></textarea>
+                                <div class="invalid-feedback">@{{ errors.services }}</div>
+                            </div>
                         </div>
 
 
-                        <div class="mb-3">
-                            <label class="required" for="address">{{ __('Tell the Industry about you') }}</label>
-                            <textarea name="address" id="address" cols="30" rows="4" class="form-control" v-model="form.address" :class="{ 'is-invalid': errors.address }"></textarea>
-                            <div class="invalid-feedback">@{{ errors.name }}</div>
+                        <div v-else>
+                            <div class="mb-3">
+                                <label class="required" for="years_of_experience">{{ __('Years of Experience') }}</label>
+                                <input class="form-control form-round" type="text" name="years_of_experience" id="years_of_experience"
+                                    :class="{ 'is-invalid': errors.years_of_experience }" v-model="form.years_of_experience">
+                                <div class="invalid-feedback">@{{ errors.years_of_experience }}</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="required" for="education">{{ __('Education') }}</label>
+                                <input class="form-control form-round" type="text" name="education" id="education"
+                                    :class="{ 'is-invalid': errors.education }" v-model="form.education">
+                                <div class="invalid-feedback">@{{ errors.education }}</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="required" for="institution">{{ __('Institution') }}</label>
+                                <input class="form-control form-round" type="text" name="institution" id="institution"
+                                    :class="{ 'is-invalid': errors.institution }" v-model="form.institution">
+                                <div class="invalid-feedback">@{{ errors.institution }}</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="required" for="work_history">{{ __('Work History') }}</label>
+                                <input class="form-control form-round" type="text" name="work_history" id="work_history"
+                                    :class="{ 'is-invalid': errors.work_history }" v-model="form.work_history">
+                                <div class="invalid-feedback">@{{ errors.work_history }}</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="required" for="license">{{ __('License') }}</label>
+                                <input class="form-control form-round" type="text" name="license" id="license"
+                                    :class="{ 'is-invalid': errors.license }" v-model="form.license">
+                                <div class="invalid-feedback">@{{ errors.license }}</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="required" for="certificates">{{ __('Certificates') }}</label>
+                                <input class="form-control form-round" type="text" name="certificates" id="certificates"
+                                    :class="{ 'is-invalid': errors.certificates }" v-model="form.certificates">
+                                <div class="invalid-feedback">@{{ errors.certificates }}</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="required" for="achievements">{{ __('Achievements') }}</label>
+                                <input class="form-control form-round" type="text" name="achievements" id="achievements"
+                                    :class="{ 'is-invalid': errors.achievements }" v-model="form.achievements">
+                                <div class="invalid-feedback">@{{ errors.achievements }}</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="required" for="ability_skills">{{ __('Ability Skills') }}</label>
+                                <input class="form-control form-round" type="text" name="ability_skills" id="ability_skills"
+                                    :class="{ 'is-invalid': errors.ability_skills }" v-model="form.ability_skills">
+                                <div class="invalid-feedback">@{{ errors.ability_skills }}</div>
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label class="required" for="about_you">{{ __('Tell the Industry about you') }}</label>
+                                <textarea name="about_you" id="about_you" cols="30" rows="4" class="form-control" v-model="form.about_you" :class="{ 'is-invalid': errors.about_you }"></textarea>
+                                <div class="invalid-feedback">@{{ errors.about_you }}</div>
+                            </div>
                         </div>
 
                         <div class="text text-success mb-3" v-if="response">@{{ response }}</div>
@@ -236,6 +240,26 @@
                 phone: '',
                 password: '',
                 password_confirmation: '',
+                address: '',
+                state: '',
+                zip_code: '',
+                business_description: '',
+                company_mission: '',
+                company_vision: '',
+                products: '',
+                services: '',
+
+                trade: '',
+                profession_title: '',
+                years_of_experience: '',
+                education: '',
+                institution: '',
+                work_history: '',
+                license: '',
+                certificates: '',
+                achievements: '',
+                ability_skills: '',
+                about_you: ''
             },
             errors: {},
             registering: false,

@@ -45,12 +45,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            "role" => ["required", Rule::in(["customer", "vendor"]), "max: 255"],
+            "role" => ["required", Rule::in(["tradesmen", "vendor"]), "max: 255"],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'email:rfc,dns', 'max:255', 'unique:users'],
             'phone' => ["required","numeric"],
             'password' => ['required', 'string', 'min:8', 'confirmed', "max: 255"],
             "state" => ["required", "max: 100"],
+            "address" => ["required", "max: 255"],
+            "zip_code" => ["required", "max: 100"],
         ]);
     }
 
@@ -64,6 +66,26 @@ class RegisterController extends Controller
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
+                "phone" => $data['phone'],
+                'address' => $data['address'],
+                'state_id' => $data['state'],
+                'zip_code' => $data['zip_code'],
+                'business_description' => $data['business_description'],
+                'company_mission' => $data['company_mission'],
+                'company_vision' => $data['company_vision'],
+                'products' => $data['products'],
+                'services' => $data['services'],
+                'trade' => $data['trade'],
+                'profession_title' => $data['profession_title'],
+                'years_of_experience' => $data['years_of_experience'],
+                'education' => $data['education'],
+                'institution' => $data['institution'],
+                'work_history' => $data['work_history'],
+                'license' => $data['license'],
+                'certificates' => $data['certificates'],
+                'achievements' => $data['achievements'],
+                'ability_skills' => $data['ability_skills'],
+                'about_you' => $data['about_you'],
             ]);
 
             // assign role

@@ -44,7 +44,7 @@
 
             <map name="usmap">
                 @foreach ($cities as $city)
-                    <area alt="{{ $city->county }}" title="{{ $city->county }}" shape="{{ $city->shape }}" coords="{{ $city->coords }}" href="{{ route('state.counties','dc') }}" />
+                    <area alt="{{ $city->county }}" title="{{ $city->county }}" shape="{{ $city->shape }}" coords="{{ $city->coords }}" href="{{ route('feeds') }}" />
                 @endforeach
             </map>
 

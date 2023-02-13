@@ -66,6 +66,9 @@
         [v-cloak] {
             display: none;
         }
+        img{
+            border: none;
+        }
     </style>
   </head>
 
