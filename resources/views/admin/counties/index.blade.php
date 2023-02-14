@@ -2,16 +2,22 @@
 
 
 @section("meta_tags")
-<title>{{ __("City List") }}</title>
-    <meta name="description" content="City List and Manage City Details">
-    <meta name="keywords" content="City,City">
+<title>{{ __("County List") }}</title>
+    <meta name="description" content="County List and Manage County Details">
+    <meta name="keywords" content="County,County">
 @endsection
 
 @section('content')
 
+<div class="mb-3">
+    <a href="{{ route("admin.counties.create") }}" class="btn btn-primary">
+        Create County
+    </a>
+</div>
+
 <div class="card">
     <div class="card-header border-0">
-        {{ __('City List') }}
+        {{ __('County List') }}
     </div>
 
     <div class="card-body p-0">
@@ -25,9 +31,7 @@
                         <th>
                             {{ __('ID') }}
                         </th>
-                        <th>
-                            {{ __('City') }}
-                        </th>
+
                         <th>
                             {{ __('County') }}
                         </th>
@@ -37,30 +41,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($cities as $key => $city)
-                        <tr data-entry-id="{{ $city->id }}">
+                    @foreach($counties as $key => $county)
+                        <tr data-entry-id="{{ $county->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $city->id ?? '' }}
+                                {{ $county->id ?? '' }}
                             </td>
 
                             <td>
-                                {{ $city->city ?? '' }}
-                            </td>
-                            <td>
-                                {{ $city->county ?? '' }}
+                                {{ $county->name ?? '' }}
                             </td>
 
                             <td>
-                                {{-- <a class="btn btn-sm btn-primary mb-2" href="{{ route('admin.cities.show', $city->id) }}">
+                                {{-- <a class="btn btn-sm btn-primary mb-2" href="{{ route('admin.cities.show', $county->id) }}">
                                     {{ __('View') }}
                                 </a> --}}
-                                <a class="btn btn-sm btn-info mb-2" href="{{ route('admin.cities.edit', $city->id) }}">
+                                <a class="btn btn-sm btn-info mb-2" href="{{ route('admin.counties.edit', $county->id) }}">
                                     {{ __('Edit') }}
                                 </a>
-                                {{-- <x-core-delete-dialog :id="$city->id" :action="route('admin.cities.destroy', $city->id)"></x-core-delete-dialog> --}}
+                                {{-- <x-core-delete-dialog :id="$county->id" :action="route('admin.cities.destroy', $county->id)"></x-core-delete-dialog> --}}
                             </td>
 
                         </tr>
@@ -68,10 +69,11 @@
                 </tbody>
             </table>
 
-            {{ $cities->links() }}
+            {{ $counties->links() }}
         </div>
     </div>
 </div>
 
 @endsection
+
 

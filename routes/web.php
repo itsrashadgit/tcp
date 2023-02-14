@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\CountyController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\HomeController;
@@ -39,19 +39,19 @@ Route::get("/state/{slug}", [PublicPageController::class, 'stateCounties'])->nam
 
 
 // dashboard routes
-Route::get('/home/customer', [HomeController::class, 'index'])->name("home.customer");
+Route::get('/home/tradesmen', [HomeController::class, 'index'])->name("home.tradesmen");
 Route::get('/home/vendor', [HomeController::class, 'supplier'])->name("home.vendor");
 
 
 
-Route::get("feeds", [FeedController::class, 'showFeed'])->name("feeds");
+Route::get("feeds", [FeedController::class, 'showFeed'])->name("feeds")->middleware("auth:sanctum");
 
 
 Route::group(['middleware' => ['auth'], "as" => "admin."], function() {
 
 
     Route::resource('states', StateController::class);
-    Route::resource('cities', CityController::class);
+    Route::resource('counties', CountyController::class);
 
 });
 

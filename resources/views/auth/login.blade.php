@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section("meta_tags")
     <x-website-meta-tags></x-website-meta-tags>
@@ -91,7 +91,7 @@
             form: {
                 email: '',
                 password: '',
-                role: "customer"
+                role: "vendor"
             },
             errors: {},
             loading: false,

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section("meta_tags")
     <x-website-meta-tags></x-website-meta-tags>
@@ -298,7 +298,8 @@
         }
 
         vcreated = {
-            ...vcreated
+            ...vcreated,
+
             // function key: function(){}
         }
 

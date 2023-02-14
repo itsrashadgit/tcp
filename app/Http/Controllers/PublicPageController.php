@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\City;
+use App\Models\County;
 use App\Models\State;
 use Illuminate\Http\Request;
 
@@ -16,9 +16,9 @@ class PublicPageController extends Controller
 
         $state = State::where("code", $slug)->first();
 
-        $cities = City::where("state_id", $state->id)->get();
+        $counties = County::where("state_id", $state->id)->get();
 
-        return view("state-county", compact("state", "cities"));
+        return view("state-county", compact("state", "counties"));
 
     }
 

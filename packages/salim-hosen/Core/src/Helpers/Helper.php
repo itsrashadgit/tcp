@@ -129,7 +129,7 @@ if (!function_exists('getLayout')) {
         } else {
             // $theme = config("settings.theme");
             $theme = env("THEME", "basic");
-            return "$theme::layouts." . getAuthRole();
+            return "layouts." . getAuthRole();
         }
     }
 }

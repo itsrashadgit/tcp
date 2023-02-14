@@ -58,9 +58,9 @@
                                 <img src="{{ asset("uploads/images/$state->image") }}" alt="" width="60">
                             </td>
                             <td>
-                                {{-- <a class="btn btn-sm btn-primary mb-2" href="{{ route('admin.states.show', $state->id) }}">
-                                    {{ __('View') }}
-                                </a> --}}
+                                <a class="btn btn-sm btn-primary mb-2" href="{{ route('admin.counties.index', ["state" => $state->id]) }}">
+                                    {{ __('Counties') }}
+                                </a>
                                 <a class="btn btn-sm btn-info mb-2" href="{{ route('admin.states.edit', $state->id) }}">
                                     {{ __('Edit') }}
                                 </a>

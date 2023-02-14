@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("layouts.master")
 
 
 @section("content")
@@ -43,8 +43,8 @@
             </div>
 
             <map name="usmap">
-                @foreach ($cities as $city)
-                    <area alt="{{ $city->county }}" title="{{ $city->county }}" shape="{{ $city->shape }}" coords="{{ $city->coords }}" href="{{ route('feeds') }}" />
+                @foreach ($counties as $county)
+                    <area alt="{{ $county->name }}" title="{{ $county->name }}" shape="{{ $county->shape }}" coords="{{ $county->coords }}" href="{{ route('feeds') }}" />
                 @endforeach
             </map>
 

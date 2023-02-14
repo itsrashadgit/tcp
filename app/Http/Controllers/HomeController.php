@@ -15,13 +15,10 @@ class HomeController extends Controller
 
     public function index(){
         $recent_orders = [];
-        return view("customer.home",  compact("recent_orders"));
+        return view("tradesmen.home",  compact("recent_orders"));
     }
 
     public function supplier(){
-
-        $company = Auth::user()->companies()->find(session('company')) ?: Auth::user()->companies()->first();
-        if(!$company) return redirect()->route("company-setup.create");
 
         $data['latest_orders'] = [];
         $data['top_selling_products'] = [];

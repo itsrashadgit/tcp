@@ -15,33 +15,37 @@
     </div>
 
     <div class="card-body">
-        <form method="POST" action="{{ route("admin.cities.update", $city->id) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("admin.counties.store") }}" enctype="multipart/form-data">
             @csrf
-            @method("PUT")
 
             <div class="mb-3">
-                <label class="required" for="city">{{ __('City') }}</label>
-                <input class="form-control {{ $errors->has('city') ? 'is-invalid' : '' }}" type="text" name="city" id="city" value="{{ old('city', $city->city) }}" >
-                @if($errors->has('city'))
+                <label class="required" for="state">{{ __('State') }}</label>
+                <select name="state" id="state" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}">
+                    <option value="">Select State</option>
+                    @foreach ($states as $state)
+                        <option value="{{ $state->id }}">{{ $state->name }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('state'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('city') }}
+                        {{ $errors->first('state') }}
                     </div>
                 @endif
             </div>
 
             <div class="mb-3">
-                <label class="required" for="county">{{ __('County') }}</label>
-                <input class="form-control {{ $errors->has('county') ? 'is-invalid' : '' }}" type="text" name="county" id="county" value="{{ old('county', $city->county) }}" >
-                @if($errors->has('county'))
+                <label class="required" for="name">{{ __('County Name') }}</label>
+                <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', '') }}" >
+                @if($errors->has('name'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('county') }}
+                        {{ $errors->first('name') }}
                     </div>
                 @endif
             </div>
 
             <div class="mb-3">
                 <label class="required" for="shape">{{ __('Shape') }}</label>
-                <input class="form-control {{ $errors->has('shape') ? 'is-invalid' : '' }}" type="text" name="shape" id="shape" value="{{ old('shape', $city->shape) }}" >
+                <input class="form-control {{ $errors->has('shape') ? 'is-invalid' : '' }}" type="text" name="shape" id="shape" value="{{ old('shape', '') }}" >
                 @if($errors->has('shape'))
                     <div class="invalid-feedback">
                         {{ $errors->first('shape') }}
@@ -51,7 +55,7 @@
 
             <div class="mb-3">
                 <label class="required" for="coords">{{ __('Coords') }}</label>
-                <input class="form-control {{ $errors->has('coords') ? 'is-invalid' : '' }}" type="text" name="coords" id="coords" value="{{ old('coords', $city->coords) }}" >
+                <input class="form-control {{ $errors->has('coords') ? 'is-invalid' : '' }}" type="text" name="coords" id="coords" value="{{ old('coords', '') }}" >
                 @if($errors->has('coords'))
                     <div class="invalid-feedback">
                         {{ $errors->first('coords') }}

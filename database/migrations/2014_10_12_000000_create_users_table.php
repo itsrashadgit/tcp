@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->text("address");
-            $table->foreignId("state_id");
-            $table->string("zip_code");
-            $table->string("phone");
+            $table->text("address")->nullable();
+            $table->foreignId("state_id")->nullable();
+            $table->string("zip_code")->nullable();
+            // $table->string("phone");
             $table->text("business_description")->nullable();
             $table->text("company_mission")->nullable();
             $table->text("company_vision")->nullable();
