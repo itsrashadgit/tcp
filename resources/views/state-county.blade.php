@@ -5,7 +5,7 @@
     <!-- Content Main -->
     <section class="position-relative py-1">
         <div class="container position-relative zindex-5 py-1 py-md-2 py-lg-2">
-            <div class="row justify-content-center text-center pt-xl-2 pb-4 mb-1 mb-lg-3">
+            <!-- <div class="row justify-content-center text-center pt-xl-2 pb-4 mb-1 mb-lg-3">
                 <div class="col-lg-2 col-md-2">
                     <img src="https://via.placeholder.com/250x250?text=Intro+Video+Professionals">
                 </div>
@@ -24,21 +24,21 @@
                 <div class="col-lg-2 col-md-2">
                     <img src="https://via.placeholder.com/250x250?text=Intro+Video+Students">
                 </div>
-            </div>
+            </div> -->
             <div class="row justify-content-center">
                 <div class="col-lg-2 col-md-2">
-                    <img src="https://via.placeholder.com/250x800?text=Banner+Ads">
+                    <!-- <img src="https://via.placeholder.com/250x800?text=Banner+Ads"> -->
                 </div>
                 <div class="col-lg-8 col-md-8">
                     <div class="usa-map">
-                        <img src="{{ asset("uploads/images/$state->image") }}" border="1" usemap="#usmap" class="img-fluid rounded mx-auto d-block" alt="united-state-map" >
+                        <img src="{{ asset("uploads/images/$state->image") }}" usemap="#usmap" class="img-fluid rounded mx-auto d-block" alt="united-state-map" >
                         <a class="btn btn-default" type="button" data-toggle="modal" data-target="#stateModel">
                             <!-- <img class="img-fluid rounded" src="{{ asset('img/united-states-map-transparent.png') }}" width="100%" alt="united-state-map" title="United State Map"> -->
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-2">
-                    <img src="https://via.placeholder.com/250x800?text=Banner+Ads">
+                    <!-- <img src="https://via.placeholder.com/250x800?text=Banner+Ads"> -->
                 </div>
             </div>
 

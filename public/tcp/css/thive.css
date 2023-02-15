@@ -1549,9 +1549,6 @@ body .builder-item--footer_copyright a:hover {
   color: #999999;
   text-decoration-color: #999999;
 }
-.site-content {
-  background-color: rgba(232, 232, 232, 0.32);
-} /* CSS for desktop */
 #blog-posts .entry-inner {
   padding-top: 0px;
   padding-right: 0px;
