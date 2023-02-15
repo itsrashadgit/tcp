@@ -4813,6 +4813,7 @@ html {
   }
   .nav-menu-desktop.style-plain .nav-menu > li {
     float: left;
+    margin-top: 6%;
   }
   .nav-menu-desktop.style-full-height .nav-menu:after,
   .nav-menu-desktop.style-full-height .nav-menu:before {

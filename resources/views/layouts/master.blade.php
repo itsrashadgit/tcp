@@ -92,15 +92,15 @@
                                                     <li id="menu-item--main-desktop-953"
                                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-953">
                                                         <a href="{{ route('feeds') }}" class="d-flex flex-column">
-                                                            <i class="bx bx-planet fs-3"></i>
-                                                            <span class="link-before">NFLP</span>
+                                                            <i class="bx bx-news fs-3"></i>
+                                                            <span class="link-before">My News Feed</span>
                                                         </a>
                                                     </li>
                                                     <li id="menu-item--main-desktop-953"
                                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-953">
                                                         <a href="{{ route('feeds') }}" class="d-flex flex-column">
-                                                            <i class="bx bx-paint fs-3"></i>
-                                                            <span class="link-before">MBLP</span>
+                                                            <i class="bx bx-message fs-3"></i>
+                                                            <span class="link-before">My Message Board</span>
                                                         </a>
                                                     </li>
 
@@ -109,6 +109,12 @@
                                                         <a href="{{ route('profile') }}" class="d-flex flex-column">
                                                             <i class="bx bx-cog fs-3"></i>
                                                             <span class="link-before">Settings</span>
+                                                        </a>
+                                                    </li>
+
+                                                    <li id="menu-item--main-desktop-953" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-953">
+                                                        <a href="#exchange" class="d-flex flex-column" title="Exchange Calculator & Payment Center">
+                                                            <img src="{{ asset('assets/img/exchange.png') }}" width="30" height="30">
                                                         </a>
                                                     </li>
 
@@ -179,6 +185,8 @@
                                                 </div>
                                             </div>
                                         @else
+                                        <div class=""></div>
+
                                         <div class="item--inner builder-item--signin_signup" data-section="signin_signup" data-item-id="signin_signup">
                                             <div class="header-signin_signup-item item--signin_signup">
                                                 <div class="user-account-segment">
@@ -290,12 +298,12 @@
                                             data-section="social_search_box" data-item-id="social_search_box">
                                             <div class="header-social_search_box-item item--social_search_box">
                                                 <form role="search" class="header-search-form"
-                                                    action="https://theconstructionplatform.com/">
+                                                    action="">
                                                     <div class="search-form-fields">
                                                         <span class="screen-reader-text">Search for:</span>
 
                                                         <input autocomplete="off" type="search" class="search-field"
-                                                            placeholder="Search Profiles" value="" name="s"
+                                                            placeholder="Search" value="" name="s"
                                                             title="Search for:" />
                                                     </div>
                                                     <button type="submit" class="search-submit">
