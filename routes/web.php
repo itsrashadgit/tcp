@@ -56,3 +56,9 @@ Route::group(['middleware' => ['auth'], "as" => "admin."], function() {
 });
 
 
+Route::get("clear", function(){
+
+    \Artisan::call("optimize:clear");
+    dd("done");
+
+});
