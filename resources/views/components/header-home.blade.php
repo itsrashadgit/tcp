@@ -67,7 +67,7 @@
 
   <!-- Body -->
   <body>
-    
+
     <!-- Google Tag Manager (noscript)-->
     <!-- <noscript>
       <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WKV3GT5" height="0" width="0" style="display: none; visibility: hidden;"></iframe>
@@ -83,7 +83,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Left Side Of Navbar -->
           <ul class="navbar-nav me-auto">
-            
+
           </ul>
           <!-- Right Side Of Navbar -->
           <ul class="navbar-nav ms-auto text-center">
@@ -91,10 +91,10 @@
               <a class="nav-link d-flex flex-column" href="{{ url('/') }}"><i class="bx bx-home fs-3"></i>{{__('Home')}}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex flex-column" href="{{ url('/') }}"><i class="bx bx-planet fs-3"></i>{{__('NFLP')}}</a>
+              <a class="nav-link d-flex flex-column" href="{{ url('/') }}"><i class="bx bx-planet fs-3"></i>{{__('My News Feed')}}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex flex-column" href="{{ url('/') }}"><i class="bx bx-paint fs-3"></i>{{__('MBLP')}}</a>
+              <a class="nav-link d-flex flex-column" href="{{ url('/') }}"><i class="bx bx-paint fs-3"></i>{{__('My Message Board')}}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link d-flex flex-column" class="nav-link" href="{{ url('/') }}"><i class="bx bx-cog fs-3"></i>{{__('Settings')}}</a>

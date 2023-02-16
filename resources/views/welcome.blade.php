@@ -10,7 +10,7 @@
                     <img src="https://via.placeholder.com/250x250?text=Intro+Video+Professionals">
                 </div>
                 <div class="col-lg-8 col-md-8">
-                    <h1 class="mb-4">The Construction Platform</h1>
+
                     <p class="text-muted mb-0"><button class="btn btn-default" type="button" data-toggle="modal" data-target="#stateModel"><i class="bx bx-map fs-8 me-2"></i><span>All of United State</span></button></p>
                     <form data-testid="search-bar-v2" class="form-inline">
                         <div class="input-group">
@@ -26,6 +26,7 @@
                 </div>
             </div> -->
             <div class="row justify-content-center">
+                <h1 class="mb-4 text-center">The Construction Platform</h1>
                 <div class="col-lg-2 col-md-2">
                     <!-- <img src="https://via.placeholder.com/250x800?text=Banner+Ads"> -->
                 </div>
