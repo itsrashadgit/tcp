@@ -184,7 +184,13 @@ background:#E0E6E5 */
 
 }
 .usa-map .tx{
-
+    position: absolute;
+    width: 50px;
+    height: 44px;
+    border: 1px solid green;
+    bottom: 37px;
+    left: 110px;
+    z-index: 9;
 }
 .usa-map .ut{
 
