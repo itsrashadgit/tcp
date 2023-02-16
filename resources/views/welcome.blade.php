@@ -1,6 +1,5 @@
 @extends("layouts.master")
 
-
 @section("content")
     <!-- Content Main -->
     <section class="position-relative py-1">
@@ -32,9 +31,12 @@
                 </div>
                 <div class="col-lg-8 col-md-8">
                     <div class="usa-map">
-                        <img src="{{ asset('assets/img/map/usa.gif') }}" usemap="#usmap" class="img-fluid rounded mx-auto d-block" alt="united-state-map" width="100%" >
+                        <img src="{{ asset('assets/img/usa.jpg') }}" usemap="#usmap" class="img-fluid rounded mx-auto d-block" alt="united-state-map" width="100%" >
+                        @foreach ($states as $state)
+                            <a href="{{ route("state.counties", strtolower($state->code)) }}" class="{{ strtolower($state->code) }}"></a>
+                        @endforeach
                     </div>
-                    <map name="usmap">
+                    {{-- <map name="usmap">
                         <area alt="dc" title="District of Columbia" shape="rect" coords="499,187,531,204" href="{{ route('state.counties','dc') }}" />
                         <area alt="md" title="Maryland" shape="rect" coords="510,163,539,183" href="{{ route('state.counties','md') }}" />
                         <area alt="de" title="Delaware" shape="rect" coords="512,145,543,158" href="{{ route('state.counties','de') }}" />
@@ -83,10 +85,10 @@
                         <area alt="ny" title="New York" shape="circle" coords="474,95,16" href="{{ route('state.counties','ny') }}" />
                         <area alt="me" title="Maine" shape="circle" coords="521,55,16" href="{{ route('state.counties','me') }}" />
                         <area alt="nc" title="North Carolina" shape="circle" coords="461,198,14" href="{{ route('state.counties','nc') }}" />
-                        <area alt="wa" title="Washington" shape="circle" coords="70,33,16" href="{{ route('state.counties','wa') }}" />
+                        <area alt="wa" title="Washington" shape="circle" coords="118,59,35" href="{{ route('state.counties','wa') }}" />
                         <area alt="ak" title="Alaska" shape="circle" coords="121,306,16" href="{{ route('state.counties','ak') }}" />
                         <area alt="hi" title="Hawaii" shape="circle" coords="342,344,16" href="{{ route('state.counties','hi') }}" />
-                    </map>
+                    </map> --}}
                 </div>
                 <div class="col-lg-2 col-md-2">
                     <!-- <img src="https://via.placeholder.com/250x800?text=Banner+Ads"> -->

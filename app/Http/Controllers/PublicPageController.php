@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 class PublicPageController extends Controller
 {
     public function index(){
-        return view("welcome");
+
+        $states = State::all();
+        return view("welcome", compact("states"));
     }
 
     public function stateCounties($slug){

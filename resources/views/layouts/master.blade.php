@@ -32,22 +32,8 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link rel="stylesheet" media="screen" href="{{ asset('vendor/boxicons/css/boxicons.min.css') }}" />
-    <style>
-        [v-cloak] {
-            display: none;
-        }
-        img{
-            border: none;
-        }
 
-        @media only screen and (min-width: 768px) {
-            .user-account-segment ul.loggedin-user-links {
-                right: 350px !important;
-            }
-        }
-
-
-    </style>
+    <link rel="stylesheet" href="{{ asset("assets/css/style.css") }}">
 </head>
 
 <body class="home-page directory activity buddypress bp-nouveau home page-template-default page page-id-6 logged-in admin-bar no-customize-support wp-custom-logo pmpro-body-has-access sidebar-content-sidebar main-layout-sidebar-content-sidebar site-full-width menu_sidebar_slide_left v-nav-active elementor-default elementor-kit-29 no-js directorist-content-active directorist-preload">
