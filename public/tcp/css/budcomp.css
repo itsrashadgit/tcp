@@ -1915,7 +1915,7 @@ body #buddypress .ac-reply-content input[name="ac_form_submit"]:hover {
   display: inline-block;
 }
 #buddypress #cover-image-container {
-  height: 20px;
+  /* height: 20px; */
 }
 #buddypress #cover-image-container #item-header-cover-image {
   min-height: 150px;
@@ -8293,7 +8293,7 @@ body.my-account
   box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
 }
 .metafans-dark .whats-new-close svg,
-.metafans-dark .close-popup svg, 
+.metafans-dark .close-popup svg,
 .metafans-dark .close-ac-vi-popup svg{
   background-color: transparent;
 }
