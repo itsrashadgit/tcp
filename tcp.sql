@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2023 at 11:20 AM
+-- Generation Time: Feb 17, 2023 at 06:26 PM
 -- Server version: 10.4.24-MariaDB
--- PHP Version: 8.0.19
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -146,7 +146,7 @@ CREATE TABLE `contacts` (
 --
 
 INSERT INTO `contacts` (`id`, `company_id`, `contact_id`, `user_id`, `contact_type`, `title`, `name`, `gender`, `nationality`, `email`, `phone`, `mobile`, `fax`, `person_in_charge`, `address`, `address_2`, `country_id`, `state_id`, `city`, `zip_code`, `website`, `tags`, `job_position`, `tax_id`, `image`, `notes`, `contact_source`, `batch_id`, `is_default_contact`, `zone_id`, `assign_to`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, NULL, 0, NULL, 'The Construction Platform', NULL, NULL, 'info@tcp.com', '+1053593534', NULL, NULL, NULL, 'New Jersy, USA', NULL, 1, 1, 'New Jersy', '1263', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, '2023-02-14 01:58:32', '2023-02-14 01:58:32'),
+(1, 1, NULL, NULL, 0, NULL, 'The Construction Platform', NULL, NULL, 'support@theconstructionplatform.com', '+1053593534', NULL, NULL, NULL, NULL, NULL, 1, 31, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, '2023-02-14 01:58:32', '2023-02-14 01:58:32'),
 (2, NULL, NULL, 2, 0, NULL, 'salim', NULL, NULL, 'salimhosen19@gmail.com', '01762473884', NULL, NULL, NULL, NULL, NULL, 1, 31, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, '2023-02-14 05:11:07', '2023-02-14 05:11:07');
 
 -- --------------------------------------------------------
@@ -1013,7 +1013,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `address`, `state_id`, `zip_code`, `business_description`, `company_mission`, `company_vision`, `products`, `services`, `trade`, `profession_title`, `years_of_experience`, `education`, `institution`, `work_history`, `license`, `certificates`, `achievements`, `ability_skills`, `about_you`, `remember_token`, `created_at`, `updated_at`, `phone`, `avatar`, `is_active`) VALUES
-(1, 'Admin', 'admin@admin.com', '2023-02-14 01:58:31', '$2y$10$zW9J0vmVF6Kf12f7z9SX0utoinDgXzCV/yht/qMqXodNpXH0ZrXqe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(1, 'Admin', 'itsrashad@gmail.com', '2023-02-14 01:58:31', '$2y$10$f4f2A7KJNEgi2mBmLzLXje2NndGcLMZY4oiXidNNSQSTpf8Vchkw6', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-02-17 10:34:37', '+8801717643014', NULL, 1),
 (2, 'salim', 'salimhosen19@gmail.com', NULL, '$2a$12$ez79e3WAiNaQi8B7gDD/kO.JE3EGkneeG1oh0Q/4hYQjrfIE8OV3S', 'konabari', 31, '1700', 'i am a businessman', 'mission', 'vision', 'apple, mango', 'work.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-02-14 05:11:07', '2023-02-14 05:11:07', '01762473884', NULL, 1);
 
 --
@@ -1307,7 +1307,7 @@ ALTER TABLE `subroles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
