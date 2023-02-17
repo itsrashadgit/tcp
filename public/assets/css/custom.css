@@ -4654,7 +4654,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
 .nav-menu-desktop .menu {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 20px 0 0;
 }
 .nav-menu-desktop .menu li {
   display: inline-block;
@@ -5057,8 +5057,8 @@ ul.wp-block-latest-posts.is-grid.alignwide {
 }
 .header-search-form .search-form-fields input {
   border: 1px solid;
-  border-color: rgba(127, 127, 127, 0.2);
-  border-radius: 2px;
+  border-color: rgba(34,46,53, 0.3);
+  border-radius: 5px;
 }
 .header-search-form .search-field {
   display: block;

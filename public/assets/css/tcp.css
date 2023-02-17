@@ -1747,7 +1747,7 @@ body .tophive-vertical-nav ul li a {
   padding-left: 20px;
 }
 .header-social_search_box-item .header-search-form button.search-submit {
-  padding-top: 7px;
+  padding-top: 0px;
 }
 .header--row .builder-first--social_search_box {
   text-align: right;

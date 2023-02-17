@@ -38,7 +38,7 @@
                                         <div class="item--inner builder-item--logo" data-section="title_tagline" data-item-id="logo">
                                             <div class="site-branding logo-top">
                                                 <a href="{{ route('welcome') }}" class="logo-link" rel="home">
-                                                    <img class="site-img-logo" src="{{ asset(config('settings.logo') ? 'images/' . config('settings.logo') : 'images/logo.png') }}" alt="The Construction Platform" />
+                                                    <img class="site-img-logo" src="{{ asset('assets/img/logo.jpg') }}" alt="the-construction-platform" title="The Construction Platform" />
                                                 </a>
                                             </div>
                                         </div>
@@ -187,12 +187,10 @@
                                             <form role="search" class="header-search-form" action="">
                                                 <div class="search-form-fields">
                                                     <span class="screen-reader-text">Search for:</span>
-                                                    <input autocomplete="off" type="search" class="search-field" placeholder="Search" value="" name="s" title="Search for:" />
+                                                    <input autocomplete="off" type="search" class="search-field" placeholder="Search" value="" name="s" />
                                                 </div>
                                                 <button type="submit" class="search-submit">
-                                                    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21">
-                                                        <path fill="currentColor" fill-rule="evenodd" d="M12.514 14.906a8.264 8.264 0 0 1-4.322 1.21C3.668 16.116 0 12.513 0 8.07 0 3.626 3.668.023 8.192.023c4.525 0 8.193 3.603 8.193 8.047 0 2.033-.769 3.89-2.035 5.307l4.999 5.552-1.775 1.597-5.06-5.62zm-4.322-.843c3.37 0 6.102-2.684 6.102-5.993 0-3.31-2.732-5.994-6.102-5.994S2.09 4.76 2.09 8.07c0 3.31 2.732 5.993 6.102 5.993z"></path>
-                                                    </svg>
+                                                    <img src="{{ asset('assets/img/search.png') }}" width="25" height="25" title="Search">
                                                 </button>
                                             </form>
                                             <div class="search-box-result">
