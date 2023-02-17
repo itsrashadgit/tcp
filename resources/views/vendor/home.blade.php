@@ -31,7 +31,7 @@
                                 <div id="item-meta">
                                     <p class="profile-header-meta-date"><span class="hide-badge">@admin</span> •
                                         <span>Joined : January 27, 2023 </span></p>
-                                    <div class="user-facts">
+                                    <div class="user-facts d-flex">
                                         <p>
                                             <span class="secondary-color followers-count-1">0</span>
                                             <span>Followers</span>

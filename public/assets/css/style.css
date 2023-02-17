@@ -1,4 +1,6 @@
-
+.site-content {
+    background-color: rgba(232,232,232,0.32);
+}
 [v-cloak] {
     display: none;
 }
