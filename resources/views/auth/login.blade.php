@@ -91,7 +91,7 @@
             form: {
                 email: '',
                 password: '',
-                role: "vendor"
+                role: "user"
             },
             errors: {},
             loading: false,

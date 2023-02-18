@@ -39,12 +39,11 @@ Route::get("/state/{slug}", [PublicPageController::class, 'stateCounties'])->nam
 
 
 // dashboard routes
-Route::get('/home/tradesmen', [HomeController::class, 'index'])->name("home.tradesmen");
-Route::get('/home/vendor', [HomeController::class, 'supplier'])->name("home.vendor");
+Route::get('/home/user', [HomeController::class, 'index'])->name("home.user");
 
 
 
-Route::get("feeds", [FeedController::class, 'showFeed'])->name("feeds")->middleware("auth:sanctum");
+Route::get("feeds/{state}/{county}", [FeedController::class, 'showFeed'])->name("feeds")->middleware("auth:sanctum");
 
 
 Route::group(['middleware' => ['auth'], "as" => "admin."], function() {

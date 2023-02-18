@@ -20,7 +20,16 @@
 
                         <div class="mb-3">
                             <label for="trade_role" class="required">{{ __('I am a') }}</label>
-                            <div>
+                            <select name="user_type" id="user_type" class="form-control" v-model="form.user_type">
+                                <option value="tradesmen">Tradesmen</option>
+                                <option value="contractors">Contractors</option>
+                                <option value="architexts/engineers">Architects/Engineers</option>
+                                <option value="trade_organization/associations">Trade Organizations/Associations</option>
+                                <option value="trade_schools/education">Trade Schools/Education</option>
+                                <option value="facility/property_mgmt">Facility/Property Mgmt</option>
+                                <option value="vendors">Vendors</option>
+                            </select>
+                            {{-- <div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="role" id="vendor" value="vendor" v-model="form.role">
                                     <label class="form-check-label" for="vendor">{{ __("Vendor") }}</label>
@@ -29,7 +38,7 @@
                                     <input class="form-check-input" type="radio" name="role" id="tradesmen" value="tradesmen" v-model="form.role">
                                     <label class="form-check-label" for="tradesmen">{{ __("Tradesmen") }}</label>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="mb-3" v-if="form.role != 'vendor'">
@@ -61,11 +70,20 @@
 
                         <div class="mb-3">
                             <label class="required" for="state">{{ __('State') }}</label>
-                            <select name="state" id="state" class="form-select form-round" :class="{ 'is-invalid': errors.state }" v-model="form.state">
+                            <select name="state" id="state" class="form-select form-round" :class="{ 'is-invalid': errors.state }" v-model="form.state" @change="fetchCounties">
                                 <option value="">{{ __("Select State") }}</option>
                                 @foreach (\App\Models\State::all() as $state)
                                     <option value="{{ $state->id }}">{{ $state->name }}</option>
                                 @endforeach
+                            </select>
+                            <div class="invalid-feedback">@{{ errors.state }}</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="required" for="county">{{ __('County') }}</label>
+                            <select name="county" id="county" class="form-select form-round" :class="{ 'is-invalid': errors.county }" v-model="form.county">
+                                <option value="">{{ __("Select County") }}</option>
+                                <option v-for="county in counties" :value="county.id">@{{ county.name }}</option>
                             </select>
                             <div class="invalid-feedback">@{{ errors.state }}</div>
                         </div>
@@ -232,16 +250,18 @@
     <script>
         vdata = {
             ...vdata,
+            counties: [],
             form: {
                 state: '',
-                role: "vendor",
+                county: '',
+                user_type: 'tradesmen',
+                role: "user",
                 name: '',
                 email: '',
                 phone: '',
                 password: '',
                 password_confirmation: '',
                 address: '',
-                state: '',
                 zip_code: '',
                 business_description: '',
                 company_mission: '',
@@ -279,6 +299,29 @@
                     this.response = res.data.message;
                     this.registering = false;
                     toastr.success("Registration Successful!");
+
+                } catch (e) {
+
+                    if (e.response && e.response.status == 422) {
+                        for (const [key, value] of Object.entries(e.response.data.errors)) {
+                            this.errors[key] = value[0];
+                        }
+                    } else {
+                        toastr.error("Something Wen't Wrong!");
+                    }
+
+                    this.registering = false;
+
+                }
+
+            },
+            async fetchCounties(e) {
+
+                try {
+
+                    const state = e.target.value;
+                    const res = await axios.get("{{ route('api.counties') }}?state="+state);
+                    this.counties = res.data.data;
 
                 } catch (e) {
 

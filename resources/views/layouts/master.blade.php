@@ -78,14 +78,14 @@
                                                     </li>
                                                     <li id="menu-item--main-desktop-953"
                                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-953">
-                                                        <a href="{{ route('feeds') }}" class="d-flex flex-column">
+                                                        <a href="" class="d-flex flex-column">
                                                             <i class="bx bx-news fs-3"></i>
                                                             <span class="link-before">My News Feed</span>
                                                         </a>
                                                     </li>
                                                     <li id="menu-item--main-desktop-953"
                                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-953">
-                                                        <a href="{{ route('feeds') }}" class="d-flex flex-column">
+                                                        <a href="" class="d-flex flex-column">
                                                             <i class="bx bx-message fs-3"></i>
                                                             <span class="link-before">My Message Board</span>
                                                         </a>

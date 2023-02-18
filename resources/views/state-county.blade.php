@@ -1,4 +1,5 @@
-@extends("layouts.county")
+@extends("layouts.app")
+
 @section("content")
 
 <!-- Content Main -->
@@ -19,7 +20,10 @@
                 <div class="usamap">
                     <img src="{{ asset('assets/img/states/new-jersey.jpg') }}" usemap="#newjersey" class="mx-auto d-block" alt="united-state-map" style="width: 1200px; max-width: 100%; height: auto;" alt="new-jersey" />
                     <map name="newjersey">
-                        <area target="" alt="sussex" title="Sussex" href="{{ route('feeds') }}" coords="607,192,107" shape="circle">
+                        @foreach ($counties as $county)
+                            <area target="" alt="{{ $county->name }}" title="{{ $county->name }}" href="{{ route("feeds", ["state" => strtolower($county->state->code), 'county' => $county->slug]) }}" coords="607,192,107" shape="circle">
+                        @endforeach
+                        {{-- <area target="" alt="sussex" title="Sussex" href="{{ route('feeds') }}" coords="607,192,107" shape="circle">
                         <area target="" alt="passaic" title="Passaic" href="{{ route('feeds') }}" coords="808,229,60" shape="circle">
                         <area target="" alt="bergen" title="Bergen" href="{{ route('feeds') }}" coords="1011,344,63" shape="circle">
                         <area target="" alt="warren" title="Warren" href="{{ route('feeds') }}" coords="462,379,78" shape="circle">
@@ -39,7 +43,7 @@
                         <area target="" alt="salem" title="Salem" href="{{ route('feeds') }}" coords="182,1429,79" shape="circle">
                         <area target="" alt="atlantic" title="Atlantic" href="{{ route('feeds') }}" coords="599,1522,106" shape="circle">
                         <area target="" alt="cumberland" title="Cumberland" href="{{ route('feeds') }}" coords="337,1628,88" shape="circle">
-                        <area target="" alt="cape-may" title="Cape May" href="{{ route('feeds') }}" coords="483,1693,602,1799" shape="rect">
+                        <area target="" alt="cape-may" title="Cape May" href="{{ route('feeds') }}" coords="483,1693,602,1799" shape="rect"> --}}
                     </map>
                 </div>
             </div>

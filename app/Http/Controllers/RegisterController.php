@@ -16,10 +16,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Foundation\Auth\RedirectsUsers;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use SalimHosen\Core\Models\Contact;
-use SalimHosen\Core\Models\Country;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -45,7 +41,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            "role" => ["required", Rule::in(["tradesmen", "vendor"]), "max: 255"],
+            "role" => ["required", Rule::in(["user"]), "max: 255"],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'email:rfc,dns', 'max:255', 'unique:users'],
             'phone' => ["required","numeric"],
@@ -63,12 +59,14 @@ class RegisterController extends Controller
         try{
 
             $user = User::create([
+                'user_type' => $data['user_type'],
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 "phone" => $data['phone'],
                 'address' => $data['address'] ?? null,
                 'state_id' => $data['state'] ?? null,
+                'county_id' => $data['county'] ?? null,
                 'zip_code' => $data['zip_code'] ?? null,
                 'business_description' => $data['business_description'] ?? null,
                 'company_mission' => $data['company_mission'] ?? null,
@@ -91,17 +89,6 @@ class RegisterController extends Controller
             // assign role
             $role = Role::where("title", $data["role"])->first();
             $user->roles()->sync([$role->id]);
-
-            Contact::create([
-                "user_id" => $user->id,
-                "country_id" => 1,
-                "state_id" => $data['state'],
-                "name" => $user->name,
-                "email" => $user->email,
-                "phone" => $user->phone,
-                "source" => "website",
-                "is_default_contact" => true,
-            ]);
 
 
             DB::commit();
