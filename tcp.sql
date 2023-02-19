@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2023 at 06:26 PM
+-- Generation Time: Feb 19, 2023 at 09:48 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -146,7 +146,7 @@ CREATE TABLE `contacts` (
 --
 
 INSERT INTO `contacts` (`id`, `company_id`, `contact_id`, `user_id`, `contact_type`, `title`, `name`, `gender`, `nationality`, `email`, `phone`, `mobile`, `fax`, `person_in_charge`, `address`, `address_2`, `country_id`, `state_id`, `city`, `zip_code`, `website`, `tags`, `job_position`, `tax_id`, `image`, `notes`, `contact_source`, `batch_id`, `is_default_contact`, `zone_id`, `assign_to`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, NULL, 0, NULL, 'The Construction Platform', NULL, NULL, 'support@theconstructionplatform.com', '+1053593534', NULL, NULL, NULL, NULL, NULL, 1, 31, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, '2023-02-14 01:58:32', '2023-02-14 01:58:32'),
+(1, 1, NULL, NULL, 0, NULL, 'The Construction Platform', NULL, NULL, 'info@tcp.com', '+1053593534', NULL, NULL, NULL, 'New Jersy, USA', NULL, 1, 1, 'New Jersy', '1263', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, '2023-02-14 01:58:32', '2023-02-14 01:58:32'),
 (2, NULL, NULL, 2, 0, NULL, 'salim', NULL, NULL, 'salimhosen19@gmail.com', '01762473884', NULL, NULL, NULL, NULL, NULL, 1, 31, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, '2023-02-14 05:11:07', '2023-02-14 05:11:07');
 
 -- --------------------------------------------------------
@@ -173,27 +173,27 @@ CREATE TABLE `counties` (
 --
 
 INSERT INTO `counties` (`id`, `state_id`, `name`, `shape`, `coords`, `latitude`, `longitude`, `slug`, `created_at`, `updated_at`) VALUES
-(1, 31, 'Sussex', 'circle', '499,187,531,204', NULL, NULL, 'sussex', '2023-02-14 02:40:15', '2023-02-14 02:40:15'),
-(2, 31, 'Passaic', 'circle', '808,229,60', NULL, NULL, 'passaic', '2023-02-17 01:45:49', '2023-02-17 01:45:49'),
-(3, 31, 'Bergen', 'circle', '1011,344,63', NULL, NULL, 'bergen', '2023-02-17 01:46:24', '2023-02-17 01:46:24'),
-(4, 31, 'Warren', 'circle', '462,379,78', NULL, NULL, 'warren', '2023-02-17 01:46:53', '2023-02-17 01:46:53'),
-(5, 31, 'Morris', 'circle', '721,405,97', NULL, NULL, 'morris', '2023-02-17 01:47:18', '2023-02-17 01:47:18'),
-(6, 31, 'Essex', 'circle', '875,476,56', NULL, NULL, 'essex', '2023-02-17 01:47:46', '2023-02-17 01:47:46'),
-(7, 31, 'Hunterdon', 'circle', '465,634,96', NULL, NULL, 'hunterdon', '2023-02-17 01:48:11', '2023-02-17 01:48:11'),
-(8, 31, 'Union', 'rect', '783,542,887,611', NULL, NULL, 'union', '2023-02-17 01:48:37', '2023-02-17 01:48:37'),
-(9, 31, 'Hudson', 'poly', '940,486,932,513,950,506,959,517,957,533,969,554,953,581,985,555,1009,531,1014,494,1026,469,1014,456,984,469,976,494,964,499,958,488', NULL, NULL, 'hudson', '2023-02-17 01:49:07', '2023-02-17 01:49:07'),
-(10, 31, 'Somerset', 'circle', '644,704,71', NULL, NULL, 'somerset', '2023-02-17 01:49:35', '2023-02-17 01:49:35'),
-(11, 31, 'Middlesex', 'circle', '762,797,70', NULL, NULL, 'middlesex', '2023-02-17 01:50:00', '2023-02-17 01:50:00'),
-(12, 31, 'Mercer', 'circle', '612,899,60', NULL, NULL, 'mercer', '2023-02-17 01:50:25', '2023-02-17 01:50:25'),
-(13, 31, 'Monmouth', 'circle', '880,898,78', NULL, NULL, 'monmouth', '2023-02-17 01:50:52', '2023-02-17 01:50:52'),
-(14, 31, 'Ocean', 'circle', '835,1178,82', NULL, NULL, 'ocean', '2023-02-17 01:51:18', '2023-02-17 01:51:18'),
-(15, 31, 'Burlington', 'circle', '606,1181,124', NULL, NULL, 'burlington', '2023-02-17 01:51:42', '2023-02-17 01:51:42'),
-(16, 31, 'Camden', 'rect', '416,1288,535,1329', NULL, NULL, 'camden', '2023-02-17 01:52:16', '2023-02-17 01:52:16'),
-(17, 31, 'Gloucester', 'rect', '209,1280,376,1345', NULL, NULL, 'gloucester', '2023-02-17 01:52:40', '2023-02-17 01:52:40'),
-(18, 31, 'Salem', 'circle', '182,1429,79', NULL, NULL, 'salem', '2023-02-17 01:53:07', '2023-02-17 01:53:07'),
-(19, 31, 'Atlantic', 'circle', '599,1522,106', NULL, NULL, 'atlantic', '2023-02-17 01:53:35', '2023-02-17 01:53:35'),
-(20, 31, 'Cumberland', 'circle', '337,1628,88', NULL, NULL, 'cumberland', '2023-02-17 01:53:59', '2023-02-17 01:53:59'),
-(21, 31, 'Cape May', 'rect', '483,1693,602,1799', NULL, NULL, 'cape-may', '2023-02-17 01:54:25', '2023-02-17 01:54:25');
+(1, 31, 'Sussex', 'circle', '607,192,107', NULL, NULL, 'sussex', '2023-02-13 20:40:15', '2023-02-13 20:40:15'),
+(2, 31, 'Passaic', 'circle', '808,229,60', NULL, NULL, 'passaic', '2023-02-16 19:45:49', '2023-02-16 19:45:49'),
+(3, 31, 'Bergen', 'circle', '1011,344,63', NULL, NULL, 'bergen', '2023-02-16 19:46:24', '2023-02-16 19:46:24'),
+(4, 31, 'Warren', 'circle', '461,396,69', NULL, NULL, 'warren', '2023-02-16 19:46:53', '2023-02-16 19:46:53'),
+(5, 31, 'Morris', 'circle', '721,405,97', NULL, NULL, 'morris', '2023-02-16 19:47:18', '2023-02-16 19:47:18'),
+(6, 31, 'Essex', 'circle', '875,476,56', NULL, NULL, 'essex', '2023-02-16 19:47:46', '2023-02-16 19:47:46'),
+(7, 31, 'Hunterdon', 'circle', '465,634,96', NULL, NULL, 'hunterdon', '2023-02-16 19:48:11', '2023-02-16 19:48:11'),
+(8, 31, 'Union', 'rect', '783,542,887,611', NULL, NULL, 'union', '2023-02-16 19:48:37', '2023-02-16 19:48:37'),
+(9, 31, 'Hudson', 'poly', '940,486,932,513,950,506,959,517,957,533,969,554,953,581,985,555,1009,531,1014,494,1026,469,1014,456,984,469,976,494,964,499,958,488', NULL, NULL, 'hudson', '2023-02-16 19:49:07', '2023-02-16 19:49:07'),
+(10, 31, 'Somerset', 'circle', '644,704,71', NULL, NULL, 'somerset', '2023-02-16 19:49:35', '2023-02-16 19:49:35'),
+(11, 31, 'Middlesex', 'circle', '762,797,70', NULL, NULL, 'middlesex', '2023-02-16 19:50:00', '2023-02-16 19:50:00'),
+(12, 31, 'Mercer', 'circle', '612,899,60', NULL, NULL, 'mercer', '2023-02-16 19:50:25', '2023-02-16 19:50:25'),
+(13, 31, 'Monmouth', 'circle', '880,898,78', NULL, NULL, 'monmouth', '2023-02-16 19:50:52', '2023-02-16 19:50:52'),
+(14, 31, 'Ocean', 'circle', '835,1178,82', NULL, NULL, 'ocean', '2023-02-16 19:51:18', '2023-02-16 19:51:18'),
+(15, 31, 'Burlington', 'circle', '606,1181,124', NULL, NULL, 'burlington', '2023-02-16 19:51:42', '2023-02-16 19:51:42'),
+(16, 31, 'Camden', 'rect', '416,1288,535,1329', NULL, NULL, 'camden', '2023-02-16 19:52:16', '2023-02-16 19:52:16'),
+(17, 31, 'Gloucester', 'rect', '209,1280,376,1345', NULL, NULL, 'gloucester', '2023-02-16 19:52:40', '2023-02-16 19:52:40'),
+(18, 31, 'Salem', 'circle', '182,1429,79', NULL, NULL, 'salem', '2023-02-16 19:53:07', '2023-02-16 19:53:07'),
+(19, 31, 'Atlantic', 'circle', '599,1522,106', NULL, NULL, 'atlantic', '2023-02-16 19:53:35', '2023-02-16 19:53:35'),
+(20, 31, 'Cumberland', 'circle', '337,1628,88', NULL, NULL, 'cumberland', '2023-02-16 19:53:59', '2023-02-16 19:53:59'),
+(21, 31, 'Cape May', 'rect', '483,1693,602,1799', NULL, NULL, 'cape-may', '2023-02-16 19:54:25', '2023-02-16 19:54:25');
 
 -- --------------------------------------------------------
 
@@ -241,6 +241,74 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `feeds`
+--
+
+CREATE TABLE `feeds` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `visibility` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'public',
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `likes` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `feeds`
+--
+
+INSERT INTO `feeds` (`id`, `user_id`, `visibility`, `content`, `likes`, `created_at`, `updated_at`) VALUES
+(1, 3, 'Public', 'This feeling is so good', 0, '2023-02-18 05:43:54', '2023-02-18 05:43:54'),
+(2, 3, 'Public', 'Kind of feeling good', 0, '2023-02-18 05:44:08', '2023-02-18 05:44:08'),
+(3, 1, 'Public', 'Hello Admin', 0, '2023-02-18 20:11:27', '2023-02-18 20:11:27'),
+(4, 1, 'Public', 'I need help of few plumbers.', 0, '2023-02-18 20:13:09', '2023-02-18 20:13:09'),
+(5, 4, 'Public', 'Hello everyone', 0, '2023-02-18 20:42:00', '2023-02-18 20:42:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feed_comments`
+--
+
+CREATE TABLE `feed_comments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `feed_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `feed_comment_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `comment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `feed_comments`
+--
+
+INSERT INTO `feed_comments` (`id`, `feed_id`, `user_id`, `feed_comment_id`, `comment`, `created_at`, `updated_at`) VALUES
+(1, 2, 3, NULL, 'this is comment', '2023-02-18 06:08:45', '2023-02-18 06:08:45'),
+(2, 1, 3, NULL, 'I would like to meet you', '2023-02-18 06:09:41', '2023-02-18 06:09:41'),
+(3, 1, 1, NULL, 'Is it?', '2023-02-18 20:12:14', '2023-02-18 20:12:14'),
+(4, 5, 4, NULL, 'I like it', '2023-02-18 20:42:38', '2023-02-18 20:42:38');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feed_files`
+--
+
+CREATE TABLE `feed_files` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `feed_id` bigint(20) UNSIGNED NOT NULL,
+  `file_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -279,7 +347,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (22, '2022_01_01_000064_create_page_columns_table', 1),
 (23, '2023_02_06_054110_create_countries_table', 1),
 (24, '2023_02_06_054110_create_states_table', 1),
-(25, '2023_02_06_054119_create_counties_table', 1);
+(25, '2023_02_06_054119_create_counties_table', 1),
+(32, '2023_02_18_060630_create_feeds_table', 2),
+(33, '2023_02_18_061409_create_feed_files_table', 2),
+(34, '2023_02_18_070722_create_feed_comments_table', 2);
 
 -- --------------------------------------------------------
 
@@ -809,7 +880,8 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `title`, `role_id`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 0, NULL, NULL),
 (2, 'vendor', 0, NULL, NULL),
-(3, 'tradesmen', 0, NULL, NULL);
+(3, 'tradesmen', 0, NULL, NULL),
+(4, 'user', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -828,7 +900,9 @@ CREATE TABLE `role_user` (
 
 INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
 (1, 1),
-(2, 2);
+(2, 2),
+(3, 4),
+(4, 4);
 
 -- --------------------------------------------------------
 
@@ -978,11 +1052,13 @@ CREATE TABLE `subroles` (
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `state_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `county_id` bigint(20) NOT NULL,
   `zip_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `business_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `company_mission` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1012,9 +1088,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `address`, `state_id`, `zip_code`, `business_description`, `company_mission`, `company_vision`, `products`, `services`, `trade`, `profession_title`, `years_of_experience`, `education`, `institution`, `work_history`, `license`, `certificates`, `achievements`, `ability_skills`, `about_you`, `remember_token`, `created_at`, `updated_at`, `phone`, `avatar`, `is_active`) VALUES
-(1, 'Admin', 'itsrashad@gmail.com', '2023-02-14 01:58:31', '$2y$10$f4f2A7KJNEgi2mBmLzLXje2NndGcLMZY4oiXidNNSQSTpf8Vchkw6', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-02-17 10:34:37', '+8801717643014', NULL, 1),
-(2, 'salim', 'salimhosen19@gmail.com', NULL, '$2a$12$ez79e3WAiNaQi8B7gDD/kO.JE3EGkneeG1oh0Q/4hYQjrfIE8OV3S', 'konabari', 31, '1700', 'i am a businessman', 'mission', 'vision', 'apple, mango', 'work.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-02-14 05:11:07', '2023-02-14 05:11:07', '01762473884', NULL, 1);
+INSERT INTO `users` (`id`, `name`, `user_type`, `email`, `email_verified_at`, `password`, `address`, `state_id`, `county_id`, `zip_code`, `business_description`, `company_mission`, `company_vision`, `products`, `services`, `trade`, `profession_title`, `years_of_experience`, `education`, `institution`, `work_history`, `license`, `certificates`, `achievements`, `ability_skills`, `about_you`, `remember_token`, `created_at`, `updated_at`, `phone`, `avatar`, `is_active`) VALUES
+(1, 'Admin', '', 'itsrashad@gmail.com', '2023-02-14 01:58:31', '$2y$10$zW9J0vmVF6Kf12f7z9SX0utoinDgXzCV/yht/qMqXodNpXH0ZrXqe', NULL, 31, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(2, 'salim', '', 'salimhosen19@gmail.com', NULL, '$2a$12$ez79e3WAiNaQi8B7gDD/kO.JE3EGkneeG1oh0Q/4hYQjrfIE8OV3S', 'konabari', 31, 0, '1700', 'i am a businessman', 'mission', 'vision', 'apple, mango', 'work.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-02-14 05:11:07', '2023-02-14 05:11:07', '01762473884', NULL, 1),
+(3, 'salim', 'tradesmen', 'salim7cse@gmail.com', NULL, '$2y$10$.hdiI1MpJQB8F4ZxmcK/1ePR0rHVnn793OapkMn1Ig89DrjwxByxi', 'konabari', 31, 1, '1700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-02-18 02:16:19', '2023-02-18 02:16:19', '+8801762473884', NULL, 1),
+(4, 'Md Rashadul Islam', 'tradesmen', 'inrashad@gmail.com', NULL, '$2y$10$lddCiD/5Bgt3o2i3oNBR2e.GykW195W7wtP5h0JYDfg1/EyQCFOeC', 'Sussex', 31, 1, '1000', NULL, NULL, NULL, NULL, NULL, 'My Trade', 'Tradesmen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-02-18 20:40:34', '2023-02-18 20:40:34', '+8801717643014', NULL, 1);
 
 --
 -- Indexes for dumped tables
@@ -1069,6 +1147,29 @@ ALTER TABLE `countries`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `feeds`
+--
+ALTER TABLE `feeds`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `feeds_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `feed_comments`
+--
+ALTER TABLE `feed_comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `feed_comments_feed_id_foreign` (`feed_id`),
+  ADD KEY `feed_comments_user_id_foreign` (`user_id`),
+  ADD KEY `feed_comments_feed_comment_id_foreign` (`feed_comment_id`);
+
+--
+-- Indexes for table `feed_files`
+--
+ALTER TABLE `feed_files`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `feed_files_feed_id_foreign` (`feed_id`);
 
 --
 -- Indexes for table `migrations`
@@ -1232,10 +1333,28 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `feeds`
+--
+ALTER TABLE `feeds`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `feed_comments`
+--
+ALTER TABLE `feed_comments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `feed_files`
+--
+ALTER TABLE `feed_files`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -1277,7 +1396,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -1307,7 +1426,7 @@ ALTER TABLE `subroles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -1339,6 +1458,26 @@ ALTER TABLE `contacts`
 --
 ALTER TABLE `counties`
   ADD CONSTRAINT `counties_state_id_foreign` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `feeds`
+--
+ALTER TABLE `feeds`
+  ADD CONSTRAINT `feeds_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `feed_comments`
+--
+ALTER TABLE `feed_comments`
+  ADD CONSTRAINT `feed_comments_feed_comment_id_foreign` FOREIGN KEY (`feed_comment_id`) REFERENCES `feed_comments` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `feed_comments_feed_id_foreign` FOREIGN KEY (`feed_id`) REFERENCES `feeds` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `feed_comments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `feed_files`
+--
+ALTER TABLE `feed_files`
+  ADD CONSTRAINT `feed_files_feed_id_foreign` FOREIGN KEY (`feed_id`) REFERENCES `feeds` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `notification_user`

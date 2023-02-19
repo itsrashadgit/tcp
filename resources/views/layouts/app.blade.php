@@ -391,10 +391,6 @@
     <script type="text/javascript">
         $(document).ready(function(e) {
             $('img[usemap]').tcpImageMaps();
-
-            $('area').on('click', function() {
-                alert($(this).attr('alt') + ' clicked');
-            });
         });
     </script>
 

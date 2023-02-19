@@ -21,29 +21,8 @@
                     <img src="{{ asset('assets/img/states/new-jersey.jpg') }}" usemap="#newjersey" class="mx-auto d-block" alt="united-state-map" style="width: 1200px; max-width: 100%; height: auto;" alt="new-jersey" />
                     <map name="newjersey">
                         @foreach ($counties as $county)
-                            <area target="" alt="{{ $county->name }}" title="{{ $county->name }}" href="{{ route("feeds", ["state" => strtolower($county->state->code), 'county' => $county->slug]) }}" coords="607,192,107" shape="circle">
+                            <area target="" alt="{{ $county->slug }}" title="{{ $county->name }}" href="{{ route('feeds', ['state' => strtolower($county->state->code), 'county' => $county->slug]) }}" coords="{{ $county->coords }}" shape="{{ $county->shape }}">
                         @endforeach
-                        {{-- <area target="" alt="sussex" title="Sussex" href="{{ route('feeds') }}" coords="607,192,107" shape="circle">
-                        <area target="" alt="passaic" title="Passaic" href="{{ route('feeds') }}" coords="808,229,60" shape="circle">
-                        <area target="" alt="bergen" title="Bergen" href="{{ route('feeds') }}" coords="1011,344,63" shape="circle">
-                        <area target="" alt="warren" title="Warren" href="{{ route('feeds') }}" coords="462,379,78" shape="circle">
-                        <area target="" alt="morris" title="Morris" href="{{ route('feeds') }}" coords="721,405,97" shape="circle">
-                        <area target="" alt="essex" title="Essex" href="{{ route('feeds') }}" coords="875,476,56" shape="circle">
-                        <area target="" alt="hunterdon" title="Hunterdon" href="{{ route('feeds') }}" coords="465,634,96" shape="circle">
-                        <area target="" alt="union" title="Union" href="{{ route('feeds') }}" coords="783,542,887,611" shape="rect">
-                        <area target="" alt="hudson" title="Hudson" href="{{ route('feeds') }}" coords="940,486,932,513,950,506,959,517,957,533,969,554,953,581,985,555,1009,531,1014,494,1026,469,1014,456,984,469,976,494,964,499,958,488" shape="poly">
-                        <area target="" alt="somerset" title="Somerset" href="{{ route('feeds') }}" coords="644,704,71" shape="circle">
-                        <area target="" alt="middlesex" title="Middlesex" href="{{ route('feeds') }}" coords="762,797,70" shape="circle">
-                        <area target="" alt="mercer" title="Mercer" href="{{ route('feeds') }}" coords="612,899,60" shape="circle">
-                        <area target="" alt="monmouth" title="Monmouth" href="{{ route('feeds') }}" coords="880,898,78" shape="circle">
-                        <area target="" alt="ocean" title="Ocean" href="{{ route('feeds') }}" coords="835,1178,82" shape="circle">
-                        <area target="" alt="burlington" title="Burlington" href="{{ route('feeds') }}" coords="606,1181,124" shape="circle">
-                        <area target="" alt="camden" title="Camden" href="{{ route('feeds') }}" coords="416,1288,535,1329" shape="rect">
-                        <area target="" alt="gloucester" title="Gloucester" href="{{ route('feeds') }}" coords="209,1280,376,1345" shape="rect">
-                        <area target="" alt="salem" title="Salem" href="{{ route('feeds') }}" coords="182,1429,79" shape="circle">
-                        <area target="" alt="atlantic" title="Atlantic" href="{{ route('feeds') }}" coords="599,1522,106" shape="circle">
-                        <area target="" alt="cumberland" title="Cumberland" href="{{ route('feeds') }}" coords="337,1628,88" shape="circle">
-                        <area target="" alt="cape-may" title="Cape May" href="{{ route('feeds') }}" coords="483,1693,602,1799" shape="rect"> --}}
                     </map>
                 </div>
             </div>
