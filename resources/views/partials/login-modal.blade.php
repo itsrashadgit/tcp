@@ -15,20 +15,20 @@
 
                      <div class="mb-3">
                         <input class="form-control form-round" type="email" name="email" id="email"
-                                :class="{ 'is-invalid': errors.email }" v-model="form.email" autocomplete="new-password" placeholder="Email">
+                                :class="{ 'is-invalid': errors.email }" v-model="loginform.email" autocomplete="new-password" placeholder="Email">
                         <div class="invalid-feedback">@{{ errors.email }}</div>
                      </div>
 
                      <div class="mb-3">
                         <input class="form-control form-round" type="password" name="password" id="password"
                             autocomplete="new-password" :class="{ 'is-invalid': errors.password }"
-                            v-model="form.password" autocomplete="new-password" placeholder="Password">
+                            v-model="loginform.password" autocomplete="new-password" placeholder="Password">
                         <div class="invalid-feedback">@{{ errors.password }}</div>
                      </div>
 
                      <div class="mb-2 d-flex justify-content-between">
                          <label>
-                             <input type="checkbox" name="remember" v-model="form.remember" id="remember">
+                             <input type="checkbox" name="remember" v-model="loginform.remember" id="remember">
                              <span class="text-muted">{{ __("Remember Me") }}</span>
                          </label>
                          <a href="{{ route('password.request') }}"
@@ -64,7 +64,7 @@
 <script>
     vdata = {
         ...vdata,
-        form: {
+        loginform: {
             email: '',
             password: '',
             role: "user"
@@ -83,7 +83,7 @@
                 this.loading = true;
                 this.errors = {};
                 this.response = "";
-                const res = await axios.post("{{ route('login') }}", this.form);
+                const res = await axios.post("{{ route('login') }}", this.loginform);
                 window.location.reload();
 
             } catch (e) {

@@ -1,6 +1,4 @@
-@extends('layouts.master')
-
-
+@extends('layouts.app')
 
 @section('content')
 <div class="tophive-container">
@@ -501,7 +499,7 @@
 
                     <ul v-else class="activity-list item-list bp-list">
 
-                            <li class="activity activity_update activity-item date-recorded-1674913577"
+                            <li class="activity activity_update activity-item"
                                     id="activity-60"
                                     v-for="feed in feeds"
                                     :key="feed.id"
@@ -595,8 +593,7 @@
                                         <a
                                             class="button button-activity-delete"
                                             href="#"
-                                            data-id="60"
-                                            data-action="delete"
+                                            @click.prevent="() => deleteFeed(feed.id)"
                                         >
                                             <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -629,8 +626,8 @@
                                             ></line>
                                             </svg>
                                             <div>
-                                            <h4>Delete</h4>
-                                            <p>Move this activity to trash</p>
+                                                <h4>Delete</h4>
+                                                <p>Move this activity to trash</p>
                                             </div>
                                         </a>
                                         </li>
@@ -754,35 +751,23 @@
 
                                         <span class="reaction_icon_con">
                                             <img
-                                            data-activity-id="60"
-                                            data-type="cry"
                                             src="https://theconstructionplatform.com/wp-content/themes/metafans/assets/images/reactions/sad.png"
                                             alt="reaction"
                                             />
-                                            <span class="reaction_icon_tooltip"
-                                            >cry</span
-                                            >
+                                            <span class="reaction_icon_tooltip">cry</span>
                                         </span>
 
                                         <span class="reaction_icon_con">
                                             <img
-                                            data-activity-id="60"
-                                            data-type="angry"
                                             src="https://theconstructionplatform.com/wp-content/themes/metafans/assets/images/reactions/angry.png"
                                             alt="reaction"
                                             />
-                                            <span class="reaction_icon_tooltip"
-                                            >angry</span
-                                            >
+                                            <span class="reaction_icon_tooltip">angry</span>
                                         </span>
                                         </span>
                                     </div>
                                     <div class="th-bp-post-comment-button">
-                                        <a
-                                        href=""
-                                        data-activity-id="activity-60"
-                                        class="button"
-                                        >
+                                        <a  href="" class="button">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="24"
@@ -806,7 +791,6 @@
                                     >
                                         <a
                                         href=""
-                                        data-activity-id="60"
                                         class="button activity-share"
                                         >
                                         <span class="share_icon"
@@ -949,7 +933,7 @@
                                         data-placeholder="Type a comment..."
                                     ></div> --}}
                                     <div>
-                                        <input type="text" placeholder="Type a comment..." :id="'comment-'+feed.id">
+                                        <input type="text" placeholder="Type a comment..." :id="'comment-'+feed.id" class="post-comment">
                                     </div>
                                     <div class="comments-media-icons">
                                         <p class="comments-image-uploader">
@@ -1010,7 +994,7 @@
                                             <span class="comment-avatar"
                                                 ><img
                                                 alt=""
-                                                src="//www.gravatar.com/avatar/82597721255b38f095bf4d5ca9c50b8c?s=30&amp;r=g&amp;d=mm"
+                                                :src="comment.user_avatar"
                                                 class="avatar avatar-30 photo"
                                                 height="30"
                                                 width="30"
@@ -1019,36 +1003,47 @@
                                             ><span class="comment-content"
                                                 ><span class="comment-meta"
                                                 ><a
-                                                    href="https://theconstructionplatform.com/members/admin/"
+                                                    href=""
                                                     >admin</a
                                                 ><span class="comment-date"
                                                     >6 mins ago</span
                                                 ></span
                                                 >
                                                 <p>@{{ comment.comment }}</p></span
-                                            ><span class="comment-meta-actions"
+                                            >
+                                            <span class="comment-meta-actions"
                                                 ><a
                                                 class="comment-reply-form-toggle"
                                                 href="#comment-reply-form-3HNL0QTICG"
-                                                >Reply</a
-                                                ><a
-                                                class="comment-delete"
-                                                href="#"
-                                                data-activity-id="60"
-                                                data-reply-id=""
-                                                data-comment-id="3HNL0QTICG"
-                                                >Delete</a
-                                                ></span
-                                            ><span
+                                                >Reply</a>
+                                                <a class="comment-delete" href="#" @click.prevent="() => deleteComment(comment.id)">Delete</a>
+                                            </span>
+
+                                            <span class="comment-replies">
+                                                <ul>
+                                                   <li v-for="reply in comment.replies" :key="reply.id">
+                                                      <span class="comment-avatar">
+                                                        <img alt="" :src="reply.user_avatar" class="avatar avatar-30 photo" height="30" width="30" loading="lazy" decoding="async">
+                                                    </span>
+                                                      <span class="comment-content">
+                                                         <span class="comment-meta"><a href="https://theconstructionplatform.com/members/admin/">admin</a><span class="comment-date">2 days ago</span></span>
+                                                         <p>@{{ reply.comment }}</p>
+                                                      </span>
+                                                      <span class="comment-meta-actions">
+                                                        <a class="comment-reply-form-toggle" href="#comment-reply-form-3HNL0QTICG">Reply</a>
+                                                        <a class="comment-delete" href="#" @click.prevent="() => deleteComment(reply.id)">Delete</a>
+                                                      </span>
+                                                   </li>
+                                                </ul>
+                                             </span>
+
+                                            <span
                                                 class="comment-reply comment-reply-form-3HNL0QTICG"
                                                 id="comment-reply-form-3HNL0QTICG"
                                                 ><div class="activity-comments-form">
                                                 <img
                                                     alt=""
-                                                    src="//www.gravatar.com/avatar/82597721255b38f095bf4d5ca9c50b8c?s=30&amp;r=g&amp;d=mm"
-                                                    srcset="
-                                                    //www.gravatar.com/avatar/82597721255b38f095bf4d5ca9c50b8c?s=30&amp;r=g&amp;d=mm 2x
-                                                    "
+                                                    :src="comment.user_avatar"
                                                     class="avatar avatar-30 photo"
                                                     height="30"
                                                     width="30"
@@ -1057,15 +1052,12 @@
                                                 />
                                                 <form
                                                     class="tophive-bp-comment-form activity-60"
-                                                    data-type="postCommentReply"
-                                                    data-comment-id="3HNL0QTICG"
-                                                    data-activity-id="60"
+                                                    @submit.prevent="() => replyComment(feed.id, comment.id)"
                                                 >
-                                                    <div
+                                                    {{-- <div
                                                     class="comments-text editable-div"
-                                                    contenteditable=""
-                                                    data-placeholder="Type a comment..."
-                                                    ></div>
+                                                    ></div> --}}
+                                                    <input type="text" placeholder="Type a comment..." :id="'comment-'+comment.id" class="post-comment">
                                                     <div class="comments-media-icons">
                                                     <p class="comments-image-uploader">
                                                         <label
@@ -1224,7 +1216,7 @@
                     const state_id = @json($state->id);
                     const county_id = @json($county->id);
                     try{
-                        const response = await axios.get(`{{ route("api.feed.get") }}?state_id=${state_id}&county_id=${county_id}`);
+                        const response = await axios.get(`{{ route("api.feeds.index") }}?state_id=${state_id}&county_id=${county_id}`);
                         vdata.feeds = response.data.data;
                         vdata.loading_feeds = false;
                     }catch(err){
@@ -1239,7 +1231,7 @@
                     const content = $("#th-bp-whats-new").text().trim();
 
                     try{
-                        const response = await axios.post("{{ route('api.feed.post') }}", {
+                        const response = await axios.post("{{ route('api.feeds.store') }}", {
                             visibility,
                             content
                         });
@@ -1249,21 +1241,55 @@
                         // this.toast("Something Wen't Wrong!", "error");
                     }
                 },
-                async postComment(feed_id){
+                async deleteFeed(feed_id){
+
+                    try{
+                        const response = await axios.delete("/tcp/api/v1/feeds/"+feed_id);
+                        this.fetchFeeds();
+                    }catch(err){
+                        console.log(err);
+                        // this.toast("Something Wen't Wrong!", "error");
+                    }
+                },
+                async postComment(feed_id, comment_id){
 
                     const comment = $("#comment-"+feed_id).val();
                     try{
-                        const response = await axios.post("{{ route('api.comment.post') }}", {
+                        const response = await axios.post("{{ route('api.comments.store') }}", {
                             feed_id,
                             comment: comment,
-                            feed_comment_id: '',
                         });
                         this.fetchFeeds();
                     }catch(err){
                         console.log(err);
                         // this.toast("Something Wen't Wrong!", "error");
                     }
-                }
+                },
+                async replyComment(feed_id, comment_id){
+
+                    const comment = $("#comment-"+comment_id).val();
+                    try{
+                        const response = await axios.post("{{ route('api.comments.store') }}", {
+                            feed_id,
+                            comment: comment,
+                            feed_comment_id: comment_id
+                        });
+                        this.fetchFeeds();
+                    }catch(err){
+                        console.log(err);
+                        // this.toast("Something Wen't Wrong!", "error");
+                    }
+                },
+                async deleteComment(comment_id){
+
+                    try{
+                        const response = await axios.delete("/tcp/api/v1/comments/"+comment_id);
+                        this.fetchFeeds();
+                    }catch(err){
+                        console.log(err);
+                        // this.toast("Something Wen't Wrong!", "error");
+                    }
+                },
             }
 
             vcreated = {

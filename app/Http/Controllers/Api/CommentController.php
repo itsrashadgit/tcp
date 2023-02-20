@@ -15,7 +15,7 @@ class CommentController extends Controller
         $this->middleware("auth:sanctum");
     }
 
-    public function postComment(Request $request){
+    public function store(Request $request){
 
         $comment = new FeedComment();
         $comment->feed_id = $request->feed_id;
@@ -28,5 +28,24 @@ class CommentController extends Controller
             "success" => true,
             "message" => "Commented Successfully"
         ]);
+    }
+
+
+    public function destroy($id){
+
+        $comment = FeedComment::where("id", $id)->where("user_id", Auth::user()->id)->first();
+
+        if($comment->delete()){
+            return response()->json([
+                "success" => true,
+                "message" => "Delete Successfully"
+            ]);
+        }else{
+            return response()->json([
+                "success" => false,
+                "message" => "Failed to Delete"
+            ]);
+        }
+
     }
 }

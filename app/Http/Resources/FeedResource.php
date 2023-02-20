@@ -22,7 +22,7 @@ class FeedResource extends JsonResource
             "content" => $this->content,
             "created_at" => $this->created_at->diffForHumans(),
             "total_comments" => $this->comments()->count(),
-            "comments" => CommentResource::collection($this->comments),
+            "comments" => CommentResource::collection($this->comments()->where("feed_comment_id", null)->get()),
         ];
     }
 }

@@ -14,8 +14,8 @@ class HomeController extends Controller
     }
 
     public function index(){
-        $recent_orders = [];
-        return view("user.home",  compact("recent_orders"));
+
+        return view("user.home");
     }
 
 

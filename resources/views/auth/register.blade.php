@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section("meta_tags")
     <x-website-meta-tags></x-website-meta-tags>
@@ -41,14 +41,14 @@
                             </div> --}}
                         </div>
 
-                        <div class="mb-3" v-if="form.role != 'vendor'">
+                        <div class="mb-3" v-if="form.user_type != 'vendors'">
                             <label class="required" for="trade">{{ __('Trade') }}</label>
                             <input class="form-control form-round" type="text" name="trade" id="trade"
                                 :class="{ 'is-invalid': errors.trade }" v-model="form.trade">
                             <div class="invalid-feedback">@{{ errors.trade }}</div>
                         </div>
 
-                        <div class="mb-3" v-if="form.role != 'vendor'">
+                        <div class="mb-3" v-if="form.user_type != 'vendors'">
                             <label class="required" for="profession_title">{{ __('Profession Title') }}</label>
                             <input class="form-control form-round" type="text" name="profession_title" id="profession_title"
                                 :class="{ 'is-invalid': errors.profession_title }" v-model="form.profession_title">

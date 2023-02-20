@@ -6587,8 +6587,8 @@ body.menu_sidebar_dropdown:before {
 }
 @media screen and (min-width: 48em) {
   .sidebar-content-sidebar .content-inner {
-    padding-left: 40px;
-    padding-right: 40px;
+    /* padding-left: 40px;
+    padding-right: 40px; */
   }
   .buddypress.sidebar-content-sidebar .content-inner {
     padding-left: 1em;
@@ -9349,4 +9349,25 @@ body.single-item.groups.mf-dark-mode
 }
 .tophive-nacked-widget {
   margin: 20px 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.site-content {
+    background-color: rgba(232,232,232,0.32);
+}
+
+
+.post-comment{
+    border-radius: 20px !important;
 }

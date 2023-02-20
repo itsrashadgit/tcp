@@ -23,14 +23,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::group(["as" => "api.", "prefix" => "api/v1"], function(){
+Route::group(["as" => "api.", "prefix" => "v1"], function(){
 
     Route::post('register', [RegisterController::class, 'register'])->name("register");
-
     Route::get("counties", [CountyController::class, 'index'])->name("counties");
 
-    Route::post("post-feed", [FeedController::class, 'postFeed'])->name("feed.post");
-    Route::get("feeds", [FeedController::class, 'getFeeds'])->name("feed.get");
 
-    Route::post("post-comment", [CommentController::class, 'postComment'])->name("comment.post");
+
+
+    Route::apiResource("feeds", FeedController::class);
+    Route::get("my-feeds", [FeedController::class, 'getMyFeeds'])->name("myfeeds.get");
+
+    Route::apiResource("comments", CommentController::class);
 });

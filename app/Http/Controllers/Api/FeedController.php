@@ -11,7 +11,12 @@ use Auth;
 class FeedController extends Controller
 {
 
-    public function getFeeds(Request $request){
+    public function __construct()
+    {
+        $this->middleware("auth:sanctum")->except(["index"]);
+    }
+
+    public function index(Request $request){
 
         $state_id = $request->state_id;
         $county_id = $request->county_id;
@@ -25,8 +30,19 @@ class FeedController extends Controller
 
     }
 
+    public function getMyFeeds(Request $request){
 
-    public function postFeed(Request $request){
+        $user = Auth::user();
+
+        $feeds = Feed::whereHas("user", function($q) use($user) {
+            $q->where("user_id", $user->id);
+        })->orderBy("created_at", "desc")->paginate($request->per_page ?? 10);
+
+        return FeedResource::collection($feeds);
+
+    }
+
+    public function store(Request $request){
 
         $feed = new Feed();
 
@@ -39,6 +55,29 @@ class FeedController extends Controller
             "success" => true,
             "message" => "Feed Posted Successfully"
         ]);
+    }
+
+
+    public function update(Request $request, $id){
+
+    }
+
+    public function destroy($id){
+
+        $feed = Feed::where("id", $id)->where("user_id", Auth::user()->id)->first();
+
+        if($feed->delete()){
+            return response()->json([
+                "success" => true,
+                "message" => "Delete Successfully"
+            ]);
+        }else{
+            return response()->json([
+                "success" => false,
+                "message" => "Failed to Delete"
+            ]);
+        }
+
     }
 
 }

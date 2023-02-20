@@ -18,6 +18,12 @@
 
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inter%3A400%2Cmedium%2Csemi-bold%2Cbold%7COpen+Sans%3A300%2C300i%2C400%2C400i%2C600%2C600i%2C700%2C700i%2C800%2C800i&#038;ver=3.3.1" media="all" />
 
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+    <script src="{{ asset('tcp/js/bud.js') }}" id="th-bud-js"></script>
+
+    <link rel="stylesheet" id="bp-nouveau-css" href="{{ asset('tcp/css/bud.min.css') }}" media="screen" />
+    <link rel="stylesheet" id="th-bud-css" href="{{ asset('tcp/css/budcomp.css') }}" media="all" />
     <link rel="stylesheet" href="{{ asset('assets/css/tcp.css') }}">
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" media="screen" href="{{ asset('vendor/boxicons/css/boxicons.min.css') }}" />

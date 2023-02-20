@@ -2045,7 +2045,7 @@ body.buddypress.bp-user .buddypress-wrap .member-header-actions * > * {
     display: block;
 }
 .buddypress-wrap .item-body {
-    margin: 20px 0;
+    /* margin: 20px 0; */
 }
 .buddypress-wrap .item-body .screen-heading {
     font-size: 20px;
