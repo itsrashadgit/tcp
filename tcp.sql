@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2023 at 09:48 AM
+-- Generation Time: Feb 21, 2023 at 11:41 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -1046,6 +1046,43 @@ CREATE TABLE `subroles` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `trades`
+--
+
+CREATE TABLE `trades` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_type` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `trades`
+--
+
+INSERT INTO `trades` (`id`, `user_type`, `name`, `slug`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'Electricians', 'electricians', '2023-02-21 10:29:03', '2023-02-21 10:29:03'),
+(2, NULL, 'Plumbers', 'plumbers', '2023-02-21 10:29:16', '2023-02-21 10:29:16'),
+(3, NULL, 'HVAC', 'hvac', '2023-02-21 10:29:26', '2023-02-21 10:29:26'),
+(4, NULL, 'Telecommunications', 'telecommunications', '2023-02-21 10:29:36', '2023-02-21 10:29:36'),
+(5, NULL, 'Low Voltage', 'low-voltage', '2023-02-21 10:30:46', '2023-02-21 10:30:46'),
+(6, NULL, 'Fire Alarm', 'fire-alarm', '2023-02-21 10:30:46', '2023-02-21 10:30:46'),
+(7, NULL, 'Computers', 'computers', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(8, NULL, 'Dry Well', 'dry-well', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(9, NULL, 'Farms', 'farms', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(10, NULL, 'Masons', 'masons', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(11, NULL, 'Roofing', 'roofing', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(12, NULL, 'Tile Marble', 'tile-marble', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(13, NULL, 'Flooring', 'flooring', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(14, NULL, 'Painting', 'painting', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(15, NULL, 'Glass', 'glass', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(16, NULL, 'Welding', 'welding', '2023-02-21 10:30:50', '2023-02-21 10:30:50');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -1286,6 +1323,13 @@ ALTER TABLE `subroles`
   ADD KEY `subroles_company_id_foreign` (`company_id`);
 
 --
+-- Indexes for table `trades`
+--
+ALTER TABLE `trades`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -1421,6 +1465,12 @@ ALTER TABLE `states`
 --
 ALTER TABLE `subroles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `trades`
+--
+ALTER TABLE `trades`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`
