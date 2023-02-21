@@ -17,6 +17,80 @@
                 @endforeach
             </div>
             <div class="col-lg-9 col-md-9">
+                <div class="container position-relative zindex-5 py-1 py-md-2 py-lg-2">
+                    <div class="row justify-content-center">
+                        <!-- slider main container -->
+                        <div id="tcpSwiper" class="swiper-container">
+                            <!-- additional required wrapper -->
+                            <div class="swiper-wrapper">
+                                <!-- slides -->
+                                <div class="swiper-slide">
+                                    <div class="product">
+                                        <img class="photograph" src="https://unsplash.it/g/200/300?image=502" alt="">
+                                        <h2 class="product__name">Lorem ipsum 1</h2>
+                                        <p class="product__description">lorem ipsum dol</p>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="product">
+                                        <img class="photograph" src="https://unsplash.it/g/200/300?image=401" alt="">
+                                        <h2 class="product__name">Lorem ipsum 2</h2>
+                                        <p class="product__description">lorem ipsum dol</p>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="product">
+                                        <img class="photograph" src="https://unsplash.it/g/200/300?image=201" alt="">
+                                        <h2 class="product__name">Lorem ipsum 3</h2>
+                                        <p class="product__description">lorem ipsum dol</p>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="product">
+                                        <img class="photograph" src="https://unsplash.it/g/200/300?image=504" alt="">
+                                        <h2 class="product__name">Lorem ipsum 4</h2>
+                                        <p class="product__description">lorem ipsum dol</p>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="product">
+                                        <img class="photograph" src="https://unsplash.it/g/200/300?image=404" alt="">
+                                        <h2 class="product__name">Lorem ipsum 5</h2>
+                                        <p class="product__description">lorem ipsum dol</p>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="product">
+                                        <img class="photograph" src="https://unsplash.it/g/200/300?image=406" alt="">
+                                        <h2 class="product__name">Lorem ipsum 6</h2>
+                                        <p class="product__description">lorem ipsum dol</p>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="product">
+                                        <img class="photograph" src="https://unsplash.it/g/200/300?image=407" alt="">
+                                        <h2 class="product__name">Lorem ipsum 7</h2>
+                                        <p class="product__description">lorem ipsum dol</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- pagination -->
+                            <div class="swiper-pagination"></div>
+                        </div>
+
+                        <!-- navigation buttons -->
+                        <div id="tcpPrev" class="swiper-button-prev"></div>
+                        <div id="tcpNext" class="swiper-button-next"></div>
+                    </div>
+                </div>
+
                 <div class="usamap">
                     <img src="{{ asset('assets/img/states/new-jersey.jpg') }}" usemap="#newjersey" class="mx-auto d-block" alt="united-state-map" style="width: 1200px; max-width: 100%; height: auto;" alt="new-jersey" />
                     <map name="newjersey">

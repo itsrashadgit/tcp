@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8" />
     <title>TCP &#8211; Networking, resources, revolutionizing the construction marketplace</title>
@@ -18,7 +18,9 @@
 
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inter%3A400%2Cmedium%2Csemi-bold%2Cbold%7COpen+Sans%3A300%2C300i%2C400%2C400i%2C600%2C600i%2C700%2C700i%2C800%2C800i&#038;ver=3.3.1" media="all" />
 
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css" />
 
     <script src="{{ asset('tcp/js/bud.js') }}" id="th-bud-js"></script>
 
@@ -27,7 +29,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/tcp.css') }}">
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" media="screen" href="{{ asset('vendor/boxicons/css/boxicons.min.css') }}" />
+    
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+
 </head>
 
 <body class="home-page directory activity buddypress bp-nouveau home page-template-default page page-id-6 logged-in admin-bar no-customize-support wp-custom-logo pmpro-body-has-access sidebar-content-sidebar main-layout-sidebar-content-sidebar site-full-width menu_sidebar_slide_left v-nav-active elementor-default elementor-kit-29 no-js directorist-content-active directorist-preload">
@@ -442,5 +446,9 @@
         });
     </script>
     {{-- ---------------------------------- End of VUE SCRIPTS --------------------------------------- --}}
+
+    <!-- Swiper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
+    <script src="{{ asset('assets/js/custom.js') }}" type="text/javascript"></script>
 </body>
 </html>
