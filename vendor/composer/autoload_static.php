@@ -97,6 +97,7 @@ class ComposerStaticInit8c3f125d0f4ffaa92235358874baf869
             'Spatie\\Backtrace\\' => 17,
             'SalimHosen\\Website\\' => 19,
             'SalimHosen\\Core\\' => 16,
+            'SalimHosen\\Chat\\' => 16,
         ),
         'R' => 
         array (
@@ -357,6 +358,10 @@ class ComposerStaticInit8c3f125d0f4ffaa92235358874baf869
         array (
             0 => __DIR__ . '/../..' . '/packages/salim-hosen/Core/src',
         ),
+        'SalimHosen\\Chat\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/packages/salim-hosen/Chat/src',
+        ),
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
@@ -615,7 +620,7 @@ class ComposerStaticInit8c3f125d0f4ffaa92235358874baf869
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\PublicPageController' => __DIR__ . '/../..' . '/app/Http/Controllers/PublicPageController.php',
         'App\\Http\\Controllers\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/RegisterController.php',
-        'App\\Http\\Controllers\\SliderController' => __DIR__ . '/../..' . '/app/Http/Controllers/SliderController.php',
+        'App\\Http\\Controllers\\TradeController' => __DIR__ . '/../..' . '/app/Http/Controllers/TradeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -634,7 +639,6 @@ class ComposerStaticInit8c3f125d0f4ffaa92235358874baf869
         'App\\Models\\FeedComment' => __DIR__ . '/../..' . '/app/Models/FeedComment.php',
         'App\\Models\\FeedFile' => __DIR__ . '/../..' . '/app/Models/FeedFile.php',
         'App\\Models\\Page' => __DIR__ . '/../..' . '/app/Models/Page.php',
-        'App\\Models\\Slider' => __DIR__ . '/../..' . '/app/Models/Slider.php',
         'App\\Models\\State' => __DIR__ . '/../..' . '/app/Models/State.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
@@ -1970,7 +1974,6 @@ class ComposerStaticInit8c3f125d0f4ffaa92235358874baf869
         'Illuminate\\Cache\\Events\\CacheMissed' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Cache/Events/CacheMissed.php',
         'Illuminate\\Cache\\Events\\KeyForgotten' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Cache/Events/KeyForgotten.php',
         'Illuminate\\Cache\\Events\\KeyWritten' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Cache/Events/KeyWritten.php',
-        'Illuminate\\Cache\\FileLock' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Cache/FileLock.php',
         'Illuminate\\Cache\\FileStore' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Cache/FileStore.php',
         'Illuminate\\Cache\\HasCacheLock' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Cache/HasCacheLock.php',
         'Illuminate\\Cache\\Lock' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Cache/Lock.php',
@@ -2358,7 +2361,6 @@ class ComposerStaticInit8c3f125d0f4ffaa92235358874baf869
         'Illuminate\\Database\\Query\\Grammars\\PostgresGrammar' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Query/Grammars/PostgresGrammar.php',
         'Illuminate\\Database\\Query\\Grammars\\SQLiteGrammar' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Query/Grammars/SQLiteGrammar.php',
         'Illuminate\\Database\\Query\\Grammars\\SqlServerGrammar' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Query/Grammars/SqlServerGrammar.php',
-        'Illuminate\\Database\\Query\\IndexHint' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Query/IndexHint.php',
         'Illuminate\\Database\\Query\\JoinClause' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Query/JoinClause.php',
         'Illuminate\\Database\\Query\\Processors\\MySqlProcessor' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Query/Processors/MySqlProcessor.php',
         'Illuminate\\Database\\Query\\Processors\\PostgresProcessor' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Query/Processors/PostgresProcessor.php',
@@ -2636,7 +2638,6 @@ class ComposerStaticInit8c3f125d0f4ffaa92235358874baf869
         'Illuminate\\Mail\\Transport\\ArrayTransport' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Mail/Transport/ArrayTransport.php',
         'Illuminate\\Mail\\Transport\\LogTransport' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Mail/Transport/LogTransport.php',
         'Illuminate\\Mail\\Transport\\SesTransport' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Mail/Transport/SesTransport.php',
-        'Illuminate\\Mail\\Transport\\SesV2Transport' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Mail/Transport/SesV2Transport.php',
         'Illuminate\\Notifications\\Action' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Action.php',
         'Illuminate\\Notifications\\AnonymousNotifiable' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/AnonymousNotifiable.php',
         'Illuminate\\Notifications\\ChannelManager' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/ChannelManager.php',
@@ -5568,6 +5569,14 @@ class ComposerStaticInit8c3f125d0f4ffaa92235358874baf869
         'Ramsey\\Uuid\\UuidInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidInterface.php',
         'Ramsey\\Uuid\\Validator\\GenericValidator' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/GenericValidator.php',
         'Ramsey\\Uuid\\Validator\\ValidatorInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/ValidatorInterface.php',
+        'SalimHosen\\Chat\\Console\\Commands\\InstallChat' => __DIR__ . '/../..' . '/packages/salim-hosen/Chat/src/Console/Commands/InstallChat.php',
+        'SalimHosen\\Chat\\Http\\Controllers\\ChatController' => __DIR__ . '/../..' . '/packages/salim-hosen/Chat/src/Http/Controllers/ChatController.php',
+        'SalimHosen\\Chat\\Http\\Controllers\\ChatUserStatusController' => __DIR__ . '/../..' . '/packages/salim-hosen/Chat/src/Http/Controllers/ChatUserStatusController.php',
+        'SalimHosen\\Chat\\Http\\Requests\\Chat\\StoreChatRequest' => __DIR__ . '/../..' . '/packages/salim-hosen/Chat/src/Http/Requests/Chat/StoreChatRequest.php',
+        'SalimHosen\\Chat\\Http\\Resources\\ChatMessages' => __DIR__ . '/../..' . '/packages/salim-hosen/Chat/src/Http/Resources/ChatMessages.php',
+        'SalimHosen\\Chat\\Http\\Resources\\ChatUsers' => __DIR__ . '/../..' . '/packages/salim-hosen/Chat/src/Http/Resources/ChatUsers.php',
+        'SalimHosen\\Chat\\Models\\ChatMessage' => __DIR__ . '/../..' . '/packages/salim-hosen/Chat/src/Models/ChatMessage.php',
+        'SalimHosen\\Chat\\Providers\\ChatServiceProvider' => __DIR__ . '/../..' . '/packages/salim-hosen/Chat/src/Providers/ChatServiceProvider.php',
         'SalimHosen\\Core\\Console\\Commands\\InstallCore' => __DIR__ . '/../..' . '/packages/salim-hosen/Core/src/Console/Commands/InstallCore.php',
         'SalimHosen\\Core\\Console\\Commands\\SeedCore' => __DIR__ . '/../..' . '/packages/salim-hosen/Core/src/Console/Commands/SeedCore.php',
         'SalimHosen\\Core\\Console\\Commands\\SeedRole' => __DIR__ . '/../..' . '/packages/salim-hosen/Core/src/Console/Commands/SeedRole.php',

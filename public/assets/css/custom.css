@@ -2908,7 +2908,16 @@ article.comment .comment-post-author {
     > * {
     max-width: calc(8 * (100vw / 12) - 28px);
   }
+
+
 }
+
+@media only screen and (min-width: 1020px) {
+    .loggedin-user-links{
+        right: 350px !important;
+    }
+}
+
 @media only screen and (min-width: 1168px) {
   .entry
     .entry-content
@@ -9459,4 +9468,43 @@ body.single-item.groups.mf-dark-mode
   .product__description {
     font-size: .92em;
   }
+}
+
+
+
+
+
+.tabs7 a{
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    margin: 3px;
+}
+
+
+
+.profile-img-uploader {
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    font-size: 25px;
+    background: #D8DADF;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+
+.cover-photo-uploader{
+    background: #fff;
+    padding: 5px 20px;
+    border-radius: 8px;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
 }

@@ -35,4 +35,6 @@ Route::group(["as" => "api.", "prefix" => "v1"], function(){
     Route::get("my-feeds", [FeedController::class, 'getMyFeeds'])->name("myfeeds.get");
 
     Route::apiResource("comments", CommentController::class);
+
+
 });

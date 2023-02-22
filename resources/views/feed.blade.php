@@ -2,9 +2,23 @@
 
 @section('content')
 <div class="tophive-container">
+
+    <div class="tabs7 mt-4">
+      <ul class="nav m-0">
+        <li class="nav-item"><a class="nav-link" href="{{ route("trade.list") }}">Tradesmen</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route("trade.list") }}">Contractors</a></li>
+        <li class="nav-item"><a class="nav-link" href="">Architects/Engineers</a></li>
+        <li class="nav-item"><a class="nav-link" href="">Trade Organizations/Associations</a></li>
+        <li class="nav-item"><a class="nav-link" href="">Trade Schools/Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="">Facility/Property Mgmt</a></li>
+        <li class="nav-item"><a class="nav-link" href="">Vendors</a></li>
+      </ul>
+    </div>
+
     <div class="tophive-grid">
       <main id="main" class="content-area tophive-col-6_md-9_sm-12">
         <div class="content-inner">
+
           <article
             id="post-0"
             class="bp_activity type-bp_activity entry post-0 page type-page status-publish hentry pmpro-has-access"

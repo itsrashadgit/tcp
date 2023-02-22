@@ -47,6 +47,7 @@ return array(
     'Spatie\\Backtrace\\' => array($vendorDir . '/spatie/backtrace/src'),
     'SalimHosen\\Website\\' => array($baseDir . '/packages/salim-hosen/Website/src'),
     'SalimHosen\\Core\\' => array($baseDir . '/packages/salim-hosen/Core/src'),
+    'SalimHosen\\Chat\\' => array($baseDir . '/packages/salim-hosen/Chat/src'),
     'Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
     'Ramsey\\Collection\\' => array($vendorDir . '/ramsey/collection/src'),
     'Pusher\\' => array($vendorDir . '/pusher/pusher-php-server/src'),

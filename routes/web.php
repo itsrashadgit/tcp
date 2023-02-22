@@ -4,7 +4,9 @@ use App\Http\Controllers\Admin\CountyController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MessageBoardController;
 use App\Http\Controllers\PublicPageController;
+use App\Http\Controllers\TradeController;
 use App\Models\City;
 use App\Models\State;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +47,14 @@ Route::get('/home/user', [HomeController::class, 'index'])->name("home.user");
 
 
 Route::get("feeds/{state}/{county}", [FeedController::class, 'showFeed'])->name("feeds")->middleware("auth:sanctum");
+
+Route::get("trades", [TradeController::class, 'index'])->name("trade.list");
+
+Route::get("message-board", [MessageBoardController::class, 'index'])->name("message.board");
+
+
+Route::get("profile", [HomeController::class, 'profile'])->name("user.profile");
+Route::get("settings", [HomeController::class, 'settings'])->name("user.settings");
 
 
 Route::group(['middleware' => ['auth'], "as" => "admin."], function() {

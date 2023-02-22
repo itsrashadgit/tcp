@@ -25,7 +25,7 @@
     <link rel="stylesheet" media="screen" href="{{ asset('vendor/boxicons/css/boxicons.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     <style>
-         .buddypress.sidebar-content-sidebar .content-inner {
+        .buddypress.sidebar-content-sidebar .content-inner {
             padding-left: 0 !important;
             padding-right: 1em;
         }
@@ -68,14 +68,14 @@
                                                         </a>
                                                     </li>
                                                     <li id="menu-item--main-desktop-953" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-953">
-                                                        <a href="" class="d-flex flex-column">
+                                                        <a href="{{ route("message.board") }}" class="d-flex flex-column">
                                                             <i class="bx bx-message fs-3"></i>
                                                             <span class="link-before">My Message Board</span>
                                                         </a>
                                                     </li>
 
                                                     <li id="menu-item--main-desktop-953" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-953">
-                                                        <a href="{{ route('home') }}" class="d-flex flex-column">
+                                                        <a href="{{ route('user.settings') }}" class="d-flex flex-column">
                                                             <i class="bx bx-cog fs-3"></i>
                                                             <span class="link-before">Settings</span>
                                                         </a>
@@ -142,7 +142,7 @@
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <a href="{{ route('home') }}">Profile</a>
+                                                            <a href="{{ route('user.profile') }}">Profile</a>
                                                         </li>
                                                         {{-- <li>
                                                             <a href="https://theconstructionplatform.com/members/admin/forums">Topics<span class="count">34</span></a>
@@ -157,7 +157,7 @@
                                                             <a href="https://theconstructionplatform.com/members/admin/messages">Messages<span class="count"></span></a>
                                                         </li> --}}
                                                         <li>
-                                                            <a href="https://theconstructionplatform.com/members/admin/settings">Settings</a>
+                                                            <a href="{{ route("user.settings") }}">Settings</a>
                                                         </li>
                                                         <li>
                                                             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
@@ -248,32 +248,33 @@
                                                 <ul class="loggedin-user-links">
                                                     <li class="user-account-dd-segment">
                                                         <div class="account-avatar">
-                                                            <img alt="" src="//www.gravatar.com/avatar/82597721255b38f095bf4d5ca9c50b8c?s=70&#038;r=g&#038;d=mm" srcset="//www.gravatar.com/avatar/82597721255b38f095bf4d5ca9c50b8c?s=70&#038;r=g&#038;d=mm 2x" class="avatar avatar-70 photo" height="70" width="70" loading="lazy" decoding="async" />
+                                                            <img alt="" src="{{ asset(Auth::user()->avatar ? '/images/user/'. Auth::user()->avatar : 'images/avatar.png') }}" class="avatar avatar-70 photo" height="70" width="70" loading="lazy" decoding="async" />
                                                         </div>
                                                         <div class="account-diplay-name">
-                                                            <h6 class="ec-mb-0 ec-mt-2">Hello, admin</h6>
+                                                            <h6 class="ec-mb-0 ec-mt-2">Hello,  {{ Auth::user()->name }}</h6>
                                                         </div>
                                                     </li>
                                                     <li>
-                                                        <a href="{{ route('home') }}">Profile</a>
+                                                        <a href="{{ route('user.profile') }}">Profile</a>
                                                     </li>
-                                                    <li>
+                                                    {{-- <li>
                                                         <a href="https://theconstructionplatform.com/members/admin/forums">Topics<span class="count">34</span></a>
-                                                    </li>
+                                                    </li> --}}
                                                     <li>
                                                         <a href="https://theconstructionplatform.com/members/admin/groups">Groups<span class="count"></span></a>
                                                     </li>
-                                                    <li>
+                                                    {{-- <li>
                                                         <a href="https://theconstructionplatform.com/members/admin/friends">Friends<span class="count"></span></a>
                                                     </li>
                                                     <li>
                                                         <a href="https://theconstructionplatform.com/members/admin/messages">Messages<span class="count"></span></a>
+                                                    </li> --}}
+                                                    <li>
+                                                        <a href="{{ route("user.settings") }}">Settings</a>
                                                     </li>
                                                     <li>
-                                                        <a href="https://theconstructionplatform.com/members/admin/settings">Settings</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="https://theconstructionplatform.com/wp-login.php?action=logout&amp;_wpnonce=182b5d09aa&redirect_to=https%3A%2F%2Ftheconstructionplatform.com%2Fmembers%2Fknight%2Factivity%2F60%2F%3Floggedout%3Dtrue">Logout</a>
+                                                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
                                                     </li>
                                                 </ul>
                                             </div>
