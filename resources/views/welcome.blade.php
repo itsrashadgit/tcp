@@ -6,11 +6,8 @@
     <section class="position-relative py-1">
         <div class="container position-relative zindex-5 py-1 py-md-2 py-lg-2">
             <div class="row justify-content-center">
-                <!-- slider main container -->
                 <div id="tcpSwiper" class="swiper-container">
-                    <!-- additional required wrapper -->
                     <div class="swiper-wrapper">
-                        <!-- slides -->
                         <div class="swiper-slide">
                             <div class="product">
                                 <img class="photograph" src="https://unsplash.it/g/200/300?image=502" alt="">
@@ -67,12 +64,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- pagination -->
                     <div class="swiper-pagination"></div>
                 </div>
-
-                <!-- navigation buttons -->
                 <div id="tcpPrev" class="swiper-button-prev"></div>
                 <div id="tcpNext" class="swiper-button-next"></div>
             </div>

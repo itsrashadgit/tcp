@@ -397,13 +397,12 @@
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/jquery1.10.2.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/jquery.tcpImageMaps.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/imageMapResizer.min.js') }}" type="text/javascript"></script>
+    <!-- <script src="{{ asset('assets/js/imageMapResizer.min.js') }}" type="text/javascript"></script> -->
 
     <script type="text/javascript">
         $(document).ready(function(e) {
             $('img[usemap]').tcpImageMaps();
         });
-        $('map').imageMapResize();
     </script>
 
     {{-- ---------------------------------- VUE SCRIPTS --------------------------------------- --}}
