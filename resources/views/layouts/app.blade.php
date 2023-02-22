@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <title>TCP &#8211; Networking, resources, revolutionizing the construction marketplace</title>
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="MobileOptimized" content="320" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=yes" />
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- TCP Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/icons/apple-touch-icon.png') }}">
@@ -397,11 +397,13 @@
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/jquery1.10.2.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/jquery.tcpImageMaps.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/imageMapResizer.min.js') }}" type="text/javascript"></script>
 
     <script type="text/javascript">
         $(document).ready(function(e) {
             $('img[usemap]').tcpImageMaps();
         });
+        $('map').imageMapResize();
     </script>
 
     {{-- ---------------------------------- VUE SCRIPTS --------------------------------------- --}}

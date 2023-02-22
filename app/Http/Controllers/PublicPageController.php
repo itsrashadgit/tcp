@@ -14,6 +14,11 @@ class PublicPageController extends Controller
         return view("welcome", compact("states"));
     }
 
+    public function usa() {
+        $states = State::all();
+        return view("usa", compact("states"));
+    }
+
     public function stateCounties($slug){
 
         $state = State::where("code", $slug)->first();

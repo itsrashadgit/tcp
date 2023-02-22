@@ -87,8 +87,8 @@
                 <div class="col-lg-2 col-md-2">
                 </div>
                 <div class="col-lg-8 col-md-8">
-                    <div class="usa-map">
-                        <img src="{{ asset('assets/img/usa.jpg') }}" usemap="#usamap" class="mx-auto d-block" alt="united-state-map" style="width: 1200px; max-width: 100%; height: auto;" />
+                    <div class="usamap">
+                        <img src="{{ asset('assets/img/usa.jpg') }}" usemap="#usamap" class="img-fluid mx-auto d-block" />
                         <map name="usamap">
                             <area target="" alt="Washington" title="Washington" href="{{ route('state.counties','wa') }}" coords="78,34,165,91" shape="rect">
                             <area target="" alt="Oregon" title="Oregon" href="{{ route('state.counties','or') }}" coords="95,143,44" shape="circle">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2023 at 11:41 AM
+-- Generation Time: Feb 21, 2023 at 04:56 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -350,7 +350,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (25, '2023_02_06_054119_create_counties_table', 1),
 (32, '2023_02_18_060630_create_feeds_table', 2),
 (33, '2023_02_18_061409_create_feed_files_table', 2),
-(34, '2023_02_18_070722_create_feed_comments_table', 2);
+(34, '2023_02_18_070722_create_feed_comments_table', 2),
+(35, '2023_02_21_130146_create_sliders_table', 3);
 
 -- --------------------------------------------------------
 
@@ -958,6 +959,18 @@ CREATE TABLE `site_menus` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sliders`
+--
+
+CREATE TABLE `sliders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `states`
 --
 
@@ -1078,7 +1091,18 @@ INSERT INTO `trades` (`id`, `user_type`, `name`, `slug`, `created_at`, `updated_
 (13, NULL, 'Flooring', 'flooring', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
 (14, NULL, 'Painting', 'painting', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
 (15, NULL, 'Glass', 'glass', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(16, NULL, 'Welding', 'welding', '2023-02-21 10:30:50', '2023-02-21 10:30:50');
+(16, NULL, 'Welding', 'welding', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(17, NULL, 'Excavation', 'excavation', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(18, NULL, 'Demolition', 'demolition', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(19, NULL, 'Structural Steel', 'structural-steel', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(20, NULL, 'Paving', 'paving', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(21, NULL, 'Landscape', 'landscape', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(22, NULL, 'Pools', 'pools', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(23, NULL, 'Fencing', 'fencing', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(24, NULL, 'Laborers', 'laborers', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(25, NULL, 'Acoustics Ceilings', 'acoustics-ceilings', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(26, NULL, 'Tree Service', 'tree-service', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(27, NULL, 'Paving Cost', 'paving-cost', '2023-02-21 10:30:50', '2023-02-21 10:30:50');
 
 -- --------------------------------------------------------
 
@@ -1309,6 +1333,12 @@ ALTER TABLE `site_menus`
   ADD KEY `site_menus_site_menu_id_foreign` (`site_menu_id`);
 
 --
+-- Indexes for table `sliders`
+--
+ALTER TABLE `sliders`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `states`
 --
 ALTER TABLE `states`
@@ -1398,7 +1428,7 @@ ALTER TABLE `feed_files`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -1455,6 +1485,12 @@ ALTER TABLE `site_menus`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `sliders`
+--
+ALTER TABLE `sliders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `states`
 --
 ALTER TABLE `states`
@@ -1470,7 +1506,7 @@ ALTER TABLE `subroles`
 -- AUTO_INCREMENT for table `trades`
 --
 ALTER TABLE `trades`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `users`
