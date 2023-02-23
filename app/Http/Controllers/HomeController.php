@@ -29,4 +29,10 @@ class HomeController extends Controller
         $user = Auth::user();
         return view('user.settings', compact('user'));
     }
+
+
+    public function portfolio(){
+
+        return view("user.portfolio");
+    }
 }

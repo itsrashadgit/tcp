@@ -50,9 +50,10 @@ Route::get("feeds/{state}/{county}", [FeedController::class, 'showFeed'])->name(
 
 Route::get("trades", [TradeController::class, 'index'])->name("trade.list");
 
-Route::get("message-board", [MessageBoardController::class, 'index'])->name("message.board");
+Route::get("message-board", [MessageBoardController::class, 'index'])->name("message.board")->middleware("auth:sanctum");
 
 
+Route::get("portfolio", [HomeController::class, 'portfolio'])->name("user.portfolio");
 Route::get("profile", [HomeController::class, 'profile'])->name("user.profile");
 Route::get("settings", [HomeController::class, 'settings'])->name("user.settings");
 

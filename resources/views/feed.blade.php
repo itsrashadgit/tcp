@@ -1179,7 +1179,7 @@
             id="block-22"
             class="widget widget_block widget_bp_core_whos_online_widget buddypress"
           >
-            <h2 class="widget-title">Who&#039;s Online</h2>
+            {{-- <h2 class="widget-title">Who&#039;s Online</h2>
             <div class="avatar-block">
               <div class="item-avatar">
                 <a
@@ -1198,6 +1198,43 @@
                   />
                 </a>
               </div>
+            </div> --}}
+            <div id="item-header" role="complementary" class="users-header single-headers">
+                <div id="cover-image-container">
+                    <a id="header-cover-image" href=""></a>
+
+                    <div id="item-header-cover-image">
+                        <div id="item-header-avatar">
+                            <img
+                                loading="lazy"
+                                src="//www.gravatar.com/avatar/db9578ef026af3aa804383699b90d150?s=150&amp;r=g&amp;d=mm"
+                                class="avatar user-2-avatar avatar-150 photo"
+                                width="150"
+                                height="150"
+                                alt="Profile picture of Michael Knight"
+                            />
+                        </div>
+                        <div id="item-header-content">
+                            <h2 class="user-nicename">Michael Knight</h2>
+                            <div id="item-buttons"></div>
+                            <div id="item-meta">
+                                <p class="profile-header-meta-date"><span class="hide-badge">@knight</span> • <span>Joined : January 27, 2023 </span></p>
+                                <div class="user-facts">
+                                    <p>
+                                        <span class="secondary-color followers-count-2">0</span>
+                                        <span>Followers</span>
+                                    </p>
+                                    <p>
+                                        <span class="secondary-color following-count-2">0</span>
+                                        <span>Following</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="template-notices" role="alert" aria-atomic="true"></div>
             </div>
           </section>
         </div>

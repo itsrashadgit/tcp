@@ -41,6 +41,7 @@ return new class extends Migration
             $table->text("achievements")->nullable();
             $table->string("ability_skills")->nullable();
             $table->text("about_you")->nullable();
+            $table->string("cover_photo")->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
