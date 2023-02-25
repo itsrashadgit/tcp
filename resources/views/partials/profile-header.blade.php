@@ -61,27 +61,37 @@
                             <div class="members-list">
                                 <li>
                                     <div class="members-action-buttons">
-                                        @if (Auth::user()->following)
-                                            <a href="#" class="bp-th-follow-button following">
+                                        @php
+                                            $following = Auth::user()->following()->where('user_id', $user->id)->first();
+                                            // $friend = Auth::user()->user()->where("user_id", Auth::user()->id)->where("friend_id", $user->id)->first();
+                                        @endphp
+                                        @if ($following)
+                                            <a href="{{ route("unfollow", ['user_id' => $user->id]) }}" class="bp-th-follow-button following">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path></svg>
                                                 Following</a>
                                         @else
                                             <a href="{{ route("follow", ['user_id' => $user->id]) }}" class="bp-th-follow-button">+ Follow</a>
                                         @endif
 
-                                        <a href="" class="bp-th-friends-button">
-                                            <svg
-                                                class="small-icon" xmlns="http://www.w3.org/2000/svg" width="16"
-                                                height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z">
-                                                </path>
-                                                <path fill-rule="evenodd"
-                                                    d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z">
-                                                </path>
-                                            </svg>
-                                            Add Friend
-                                        </a>
+                                        {{-- @if ($friend)
+                                        <a href="{{ route("unfriend", ['user_id' => $user->id]) }}" class="bp-th-follow-button following">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path></svg>
+                                            Friend</a>
+                                        @else
+                                            <a href="{{ route("addfriend", ['user_id' => $user->id]) }}" class="bp-th-friends-button px-3">
+                                                <svg
+                                                    class="small-icon" xmlns="http://www.w3.org/2000/svg" width="16"
+                                                    height="16" fill="currentColor" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z">
+                                                    </path>
+                                                    <path fill-rule="evenodd"
+                                                        d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z">
+                                                    </path>
+                                                </svg>
+                                                Add Friend
+                                            </a>
+                                        @endif --}}
 
                                         <a href="#" data-recipients-id="2" class="private-msg">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-dots" viewBox="0 0 16 16">
@@ -115,14 +125,15 @@
                         </div>
                     </div>
                     <div id="item-meta">
-                        <p class="profile-header-meta-date"><span class="hide-badge">@admin</span> •
-                            <span>Joined : January 27, 2023 </span>
+                        <p class="profile-header-meta-date"><span class="hide-badge">{{ "@".$user->username }}</span> •
+                            <span>Joined : {{ $user->created_at->format("M d,Y") }} </span>
                         </p>
                         <div class="user-facts">
                             <p>
                                 <span class="secondary-color followers-count-1">0</span>
                                 <span>Followers</span>
                             </p>
+                            <span class="mx-1"></span>
                             <p>
                                 <span class="secondary-color following-count-1">0</span>
                                 <span>Following</span>

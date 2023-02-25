@@ -1207,18 +1207,18 @@
                         <div id="item-header-avatar">
                             <img
                                 loading="lazy"
-                                src="//www.gravatar.com/avatar/db9578ef026af3aa804383699b90d150?s=150&amp;r=g&amp;d=mm"
-                                class="avatar user-2-avatar avatar-150 photo"
+                                src="{{ asset(Auth::user()->avatar ? '/images/user/'. Auth::user()->avatar : 'images/avatar.png') }}"
+                                class="avatar user-2-avatar avatar-50 photo"
                                 width="150"
                                 height="150"
                                 alt="Profile picture of Michael Knight"
                             />
                         </div>
                         <div id="item-header-content">
-                            <h2 class="user-nicename">Michael Knight</h2>
+                            <h2 class="user-nicename">{{ Auth::user()->name }}</h2>
                             <div id="item-buttons"></div>
                             <div id="item-meta">
-                                <p class="profile-header-meta-date"><span class="hide-badge">@knight</span> • <span>Joined : January 27, 2023 </span></p>
+                                <p class="profile-header-meta-date"><span class="hide-badge">{{ __("@".Auth::user()->name) }}</span> • <span>Joined : January 27, 2023 </span></p>
                                 <div class="user-facts">
                                     <p>
                                         <span class="secondary-color followers-count-2">0</span>

@@ -27,4 +27,14 @@ class FollowController extends Controller
         return redirect()->back()->with("success", "Following");
     }
 
+    public function unfollow(Request $request){
+
+        $following = Follower::where("user_id", $request->user_id)->where("follower_id", Auth::user()->id)->first();
+        if($following){
+            $following->delete();
+        }
+
+        return redirect()->back()->with("success", "Unfollowing");
+    }
+
 }

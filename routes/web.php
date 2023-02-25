@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CountyController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\FriendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageBoardController;
 use App\Http\Controllers\PublicPageController;
@@ -59,7 +60,12 @@ Route::get("profile/{username}", [HomeController::class, 'profile'])->name("user
 Route::get("activity/{username}", [HomeController::class, 'activity'])->name("user.activity");
 
 Route::get("settings", [HomeController::class, 'settings'])->name("user.settings");
+
 Route::get("follow", [FollowController::class, "follow"])->name("follow");
+Route::get("unfollow", [FollowController::class, "unfollow"])->name("unfollow");
+
+// Route::get("add-friend", [FriendController::class, "addFriend"])->name("addfriend");
+// Route::get("unfriend", [FriendController::class, "unFriend"])->name("unfriend");
 
 Route::group(['middleware' => ['auth'], "as" => "admin."], function() {
 

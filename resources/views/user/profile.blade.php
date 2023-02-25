@@ -44,7 +44,8 @@
                                                 <h2 class="user-nicename">{{ $user->name }}</h2>
                                                 <div id="item-buttons"></div>
                                                 <div id="item-meta">
-                                                    <p class="profile-header-meta-date"><span class="hide-badge">@knight</span> • <span>Joined : January 27, 2023 </span></p>
+                                                    <p class="profile-header-meta-date"><span class="hide-badge">{{ "@".$user->username }}</span> •
+                                                        <span>Joined : January 27, 2023 </span></p>
                                                     <div class="user-facts">
                                                         <p>
                                                             <span class="secondary-color followers-count-2">0</span>
