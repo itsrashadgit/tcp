@@ -61,6 +61,12 @@
                                 :class="{ 'is-invalid': errors.name }" v-model="form.name">
                             <div class="invalid-feedback">@{{ errors.name }}</div>
                         </div>
+                        <div class="mb-3">
+                            <label class="required" for="username">{{ __('Username') }}</label>
+                            <input class="form-control form-round" type="text" name="username" id="username"
+                                :class="{ 'is-invalid': errors.username }" v-model="form.username">
+                            <div class="invalid-feedback">@{{ errors.username }}</div>
+                        </div>
 
                         <div class="mb-3">
                             <label class="required" for="address">{{ __('Address') }}</label>
@@ -257,6 +263,7 @@
                 user_type: 'tradesmen',
                 role: "user",
                 name: '',
+                username: '',
                 email: '',
                 phone: '',
                 password: '',

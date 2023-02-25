@@ -3,37 +3,41 @@
         class="users-header single-headers top-header">
         <div id="cover-image-container">
             <div id="header-cover-image" class="cover-photo-uploader overflow-hidden">
-                <img src="{{ asset(Auth::user()->cover_photo ? 'images/user/' . Auth::user()->cover_photo : '') }}"
+                <img src="{{ asset($user->cover_photo ? 'images/user/' . $user->cover_photo : '') }}"
                     alt="" class="w-100" style="height: 300px;">
-                <label for="coverupload">
-                    <input @change.prevent="handleCoverPhoto" type="file" id="coverupload" hidden="hidden"
-                        name="avatar">
-                    <i class='bx bxs-camera'></i> Edit Cover Photo
-                </label>
+                @if (Auth::user()->id == $user->id)
+                    <label for="coverupload">
+                        <input @change.prevent="handleCoverPhoto" type="file" id="coverupload" hidden="hidden"
+                            name="avatar">
+                        <i class='bx bxs-camera'></i> Edit Cover Photo
+                    </label>
+                @endif
             </div>
 
             <div id="item-header-cover-image">
                 <div id="item-header-avatar">
                     <div class="position-relative">
                         <img loading="lazy"
-                            src="{{ asset(Auth::user()->avatar ? 'images/user/' . Auth::user()->avatar : 'images/avatar.png') }}"
+                            src="{{ asset($user->avatar ? 'images/user/' . $user->avatar : 'images/avatar.png') }}"
                             class="avatar user-1-avatar avatar-150 photo" width="150" height="150"
                             alt="Profile picture of admin">
-                        <label for="avatarupload" class="profile-img-uploader">
-                            <input @change.prevent="handleImage" type="file" id="avatarupload" hidden="hidden"
-                                name="avatar">
-                            <i class='bx bxs-camera'></i>
-                        </label>
+                        @if (Auth::user()->id == $user->id)
+                            <label for="avatarupload" class="profile-img-uploader">
+                                <input @change.prevent="handleImage" type="file" id="avatarupload" hidden="hidden"
+                                    name="avatar">
+                                <i class='bx bxs-camera'></i>
+                            </label>
+                        @endif
                     </div>
                 </div>
                 <div id="item-header-content" class="desktop">
 
                     <div class="user-section">
-                        <h2 class="user-nicename">{{ Auth::user()->name }}</h2>
+                        <h2 class="user-nicename">{{ $user->name }}</h2>
                         <ul class="bp-socials-vertical"></ul>
                         <div id="item-meta">
                             <p class="profile-header-meta-date"><span class="hide-badge">@admin</span> •
-                                <span>Joined : {{ Auth::user()->created_at->format('M d,Y') }} </span>
+                                <span>Joined : {{ $user->created_at->format('M d,Y') }} </span>
                             </p>
                             <div class="user-facts d-flex">
                                 <p>
@@ -52,36 +56,48 @@
                             </div>
                         </div>
                     </div>
-                    <div id="item-buttons">
-                        <div class="members-list">
-                            <li>
-                                <div class="members-action-buttons">
-                                    <a href="" class="bp-th-follow-button " data-follower-id="1"
-                                        data-following="" data-following-id="2">+ Follow</a>
-                                    <a href="" class="bp-th-friends-button" data-user-id="2" data-action=""><svg
-                                            class="small-icon" xmlns="http://www.w3.org/2000/svg" width="16"
-                                            height="16" fill="currentColor" viewBox="0 0 16 16">
-                                            <path
-                                                d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z">
-                                            </path>
-                                            <path fill-rule="evenodd"
-                                                d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z">
-                                            </path>
-                                        </svg> Add Friend</a>
-                                    <a href="#" data-recipients-id="2" class="private-msg"><svg
-                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-chat-dots" viewBox="0 0 16 16">
-                                            <path
-                                                d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z">
-                                            </path>
-                                            <path
-                                                d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.273.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z">
-                                            </path>
-                                        </svg></a>
-                                </div>
-                            </li>
+                    @if ($user->id != Auth::user()->id)
+                        <div id="item-buttons">
+                            <div class="members-list">
+                                <li>
+                                    <div class="members-action-buttons">
+                                        @if (Auth::user()->following)
+                                            <a href="#" class="bp-th-follow-button following">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path></svg>
+                                                Following</a>
+                                        @else
+                                            <a href="{{ route("follow", ['user_id' => $user->id]) }}" class="bp-th-follow-button">+ Follow</a>
+                                        @endif
+
+                                        <a href="" class="bp-th-friends-button">
+                                            <svg
+                                                class="small-icon" xmlns="http://www.w3.org/2000/svg" width="16"
+                                                height="16" fill="currentColor" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z">
+                                                </path>
+                                                <path fill-rule="evenodd"
+                                                    d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z">
+                                                </path>
+                                            </svg>
+                                            Add Friend
+                                        </a>
+
+                                        <a href="#" data-recipients-id="2" class="private-msg">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-dots" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z">
+                                                </path>
+                                                <path
+                                                    d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.273.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </li>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
                 <div id="item-header-content" class=" mobile">
 
@@ -157,7 +173,7 @@
 
 
             <li id="photos-personal-li" class="bp-personal-tab">
-                <a href="{{ route("user.portfolio") }}" id="user-photos">
+                <a href="{{ route('user.portfolio', $user->username) }}" id="user-photos">
                     Portfolio
                 </a>
             </li>
@@ -165,7 +181,7 @@
 
             <li id="xprofile-personal-li"
                 class="bp-personal-tab @if (request()->routeIs('user.profile')) current selected @endif">
-                <a href="{{ route('user.profile') }}" id="user-xprofile">
+                <a href="{{ route('user.profile', $user->username) }}" id="user-xprofile">
                     Profile
                 </a>
             </li>
@@ -222,14 +238,14 @@
 
 
                     <li id="photos-personal-li" class="bp-personal-tab">
-                        <a href="{{ route("user.portfolio") }}" id="user-photos">
+                        <a href="{{ route('user.portfolio', $user->username) }}" id="user-photos">
                             Portfolio
                         </a>
                     </li>
 
 
                     <li id="xprofile-personal-li" class="bp-personal-tab">
-                        <a href="{{ route('user.profile') }}" id="user-xprofile">
+                        <a href="{{ route('user.profile', $user->username) }}" id="user-xprofile">
                             Profile
                         </a>
                     </li>

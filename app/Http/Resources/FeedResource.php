@@ -17,7 +17,8 @@ class FeedResource extends JsonResource
         return [
             "id" => $this->id,
             "user_avatar" => asset($this->user->avatar ? '/images/user/'. $this->user->avatar : 'images/avatar.png'),
-            "user_name" => $this->user->name,
+            "name" => $this->user->name,
+            "username" => $this->user->username,
             "visibility" => $this->visibility,
             "content" => $this->content,
             "created_at" => $this->created_at->diffForHumans(),

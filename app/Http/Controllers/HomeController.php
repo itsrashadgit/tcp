@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Auth;
 
 class HomeController extends Controller
@@ -15,24 +16,31 @@ class HomeController extends Controller
 
     public function index(){
 
-        return view("user.home");
+        $user = Auth::user();
+        return view("user.home", compact("user"));
+    }
+
+    public function activity($username){
+
+        $user = User::where("username", $username)->first();
+        return view("user.home", compact("user"));
     }
 
 
-    public function profile(){
+    public function profile($username){
 
-        return view("user.profile");
+        $user = User::where("username", $username)->first();
+        return view("user.profile", compact("user"));
+    }
+
+    public function portfolio($username){
+        $user = User::where("username", $username)->first();
+        return view("user.portfolio", compact("user"));
     }
 
     public function settings(){
 
         $user = Auth::user();
         return view('user.settings', compact('user'));
-    }
-
-
-    public function portfolio(){
-
-        return view("user.portfolio");
     }
 }

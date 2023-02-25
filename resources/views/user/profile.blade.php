@@ -19,7 +19,7 @@
                 <div class="content-inner">
                     <article id="post-0" class="bp_members type-bp_members entry post-0 page type-page status-publish hentry pmpro-no-access">
                         <header class="entry-header">
-                            <h1 class="entry-title">Michael Knight</h1>
+                            <h1 class="entry-title">{{ $user->name }}</h1>
                         </header>
                         <!-- .entry-header -->
 
@@ -33,7 +33,7 @@
                                             <div id="item-header-avatar">
                                                 <img
                                                     loading="lazy"
-                                                    src="//www.gravatar.com/avatar/db9578ef026af3aa804383699b90d150?s=150&amp;r=g&amp;d=mm"
+                                                    src="{{ asset($user->avatar ? '/images/user/'.$user->avatar : 'images/avatar.png') }}"
                                                     class="avatar user-2-avatar avatar-150 photo"
                                                     width="150"
                                                     height="150"
@@ -41,7 +41,7 @@
                                                 />
                                             </div>
                                             <div id="item-header-content">
-                                                <h2 class="user-nicename">Michael Knight</h2>
+                                                <h2 class="user-nicename">{{ $user->name }}</h2>
                                                 <div id="item-buttons"></div>
                                                 <div id="item-meta">
                                                     <p class="profile-header-meta-date"><span class="hide-badge">@knight</span> • <span>Joined : January 27, 2023 </span></p>
@@ -114,7 +114,7 @@
                                                             <tr class="field_1 field_name required-field visibility-public field_type_textbox">
                                                                 <td class="label">Name</td>
 
-                                                                <td class="data"><p>Michael Knight</p></td>
+                                                                <td class="data"><p>{{ $user->name }}</p></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>

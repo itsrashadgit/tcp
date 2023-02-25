@@ -534,7 +534,7 @@
                                 <div class="activity-content">
                                 <div class="activity-header">
                                     <p>
-                                    <a href="https://theconstructionplatform.com/members/knight/">@{{ feed.user_name }}</a>
+                                    <a :href="`/tcp/profile/${feed.username}`">@{{ feed.name }}</a>
                                     posted an update<a href="https://theconstructionplatform.com/activity/p/60/"
                                         class="view activity-time-since bp-tooltip"
                                         data-bp-tooltip="View Discussion"

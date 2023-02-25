@@ -142,7 +142,7 @@
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <a href="{{ route('user.profile') }}">Profile</a>
+                                                            <a href="{{ route('user.profile', Auth::user()->username ?? "") }}">Profile</a>
                                                         </li>
                                                         {{-- <li>
                                                             <a href="https://theconstructionplatform.com/members/admin/forums">Topics<span class="count">34</span></a>
@@ -255,7 +255,7 @@
                                                         </div>
                                                     </li>
                                                     <li>
-                                                        <a href="{{ route('user.profile') }}">Profile</a>
+                                                        <a href="{{ route('user.profile', Auth::user()->username ?? "") }}">Profile</a>
                                                     </li>
                                                     {{-- <li>
                                                         <a href="https://theconstructionplatform.com/members/admin/forums">Topics<span class="count">34</span></a>

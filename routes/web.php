@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CountyController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\FeedController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageBoardController;
 use App\Http\Controllers\PublicPageController;
@@ -53,10 +54,12 @@ Route::get("trades", [TradeController::class, 'index'])->name("trade.list");
 Route::get("message-board", [MessageBoardController::class, 'index'])->name("message.board")->middleware("auth:sanctum");
 
 
-Route::get("portfolio", [HomeController::class, 'portfolio'])->name("user.portfolio");
-Route::get("profile", [HomeController::class, 'profile'])->name("user.profile");
-Route::get("settings", [HomeController::class, 'settings'])->name("user.settings");
+Route::get("portfolio/{username}", [HomeController::class, 'portfolio'])->name("user.portfolio");
+Route::get("profile/{username}", [HomeController::class, 'profile'])->name("user.profile");
+Route::get("activity/{username}", [HomeController::class, 'activity'])->name("user.activity");
 
+Route::get("settings", [HomeController::class, 'settings'])->name("user.settings");
+Route::get("follow", [FollowController::class, "follow"])->name("follow");
 
 Route::group(['middleware' => ['auth'], "as" => "admin."], function() {
 
