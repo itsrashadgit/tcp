@@ -3,7 +3,7 @@
 @section("content")
 
 <!-- Content Main -->
-<section class="position-relative py-1">
+<section class="position-relative py-1 bg-white">
     <div class="container position-relative zindex-5 py-1 py-md-2 py-lg-2">
         <div class="row justify-content-center">
             <div class="col-lg-3 col-md-3">

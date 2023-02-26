@@ -8,6 +8,7 @@ use App\Http\Controllers\FriendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageBoardController;
 use App\Http\Controllers\PublicPageController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TradeController;
 use App\Models\City;
 use App\Models\State;
@@ -52,9 +53,9 @@ Route::get("feeds/{state}/{county}", [FeedController::class, 'showFeed'])->name(
 
 Route::get("trades", [TradeController::class, 'index'])->name("trade.list");
 
-Route::get("message-board", [MessageBoardController::class, 'index'])->name("message.board")->middleware("auth:sanctum");
 
 
+Route::get("messages/{username}", [MessageBoardController::class, 'index'])->name("message.board");
 Route::get("portfolio/{username}", [HomeController::class, 'portfolio'])->name("user.portfolio");
 Route::get("profile/{username}", [HomeController::class, 'profile'])->name("user.profile");
 Route::get("activity/{username}", [HomeController::class, 'activity'])->name("user.activity");
@@ -63,6 +64,9 @@ Route::get("settings", [HomeController::class, 'settings'])->name("user.settings
 
 Route::get("follow", [FollowController::class, "follow"])->name("follow");
 Route::get("unfollow", [FollowController::class, "unfollow"])->name("unfollow");
+
+
+Route::get("search", [SearchController::class, "search"])->name("search");
 
 // Route::get("add-friend", [FriendController::class, "addFriend"])->name("addfriend");
 // Route::get("unfriend", [FriendController::class, "unFriend"])->name("unfriend");

@@ -5,13 +5,13 @@
 
     <div class="tabs7 mt-4">
       <ul class="nav m-0">
-        <li class="nav-item"><a class="nav-link" href="{{ route("trade.list") }}">Tradesmen</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ route("trade.list") }}">Contractors</a></li>
-        <li class="nav-item"><a class="nav-link" href="">Architects/Engineers</a></li>
-        <li class="nav-item"><a class="nav-link" href="">Trade Organizations/Associations</a></li>
-        <li class="nav-item"><a class="nav-link" href="">Trade Schools/Education</a></li>
-        <li class="nav-item"><a class="nav-link" href="">Facility/Property Mgmt</a></li>
-        <li class="nav-item"><a class="nav-link" href="">Vendors</a></li>
+        <li class="nav-item"><a class="nav-link bg-white" href="{{ route("trade.list") }}">Tradesmen</a></li>
+        <li class="nav-item"><a class="nav-link bg-white" href="{{ route("trade.list") }}">Contractors</a></li>
+        <li class="nav-item"><a class="nav-link bg-white" href="">Architects/Engineers</a></li>
+        <li class="nav-item"><a class="nav-link bg-white" href="">Trade Organizations/Associations</a></li>
+        <li class="nav-item"><a class="nav-link bg-white" href="">Trade Schools/Education</a></li>
+        <li class="nav-item"><a class="nav-link bg-white" href="">Facility/Property Mgmt</a></li>
+        <li class="nav-item"><a class="nav-link bg-white" href="">Vendors</a></li>
       </ul>
     </div>
 

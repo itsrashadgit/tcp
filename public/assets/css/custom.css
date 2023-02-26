@@ -9508,3 +9508,8 @@ body.single-item.groups.mf-dark-mode
     right: 15px;
     bottom: 15px;
 }
+
+
+.site-content {
+    background-color: rgba(232,232,232,0.32) !important;
+}
