@@ -1,3 +1,15 @@
 Union Grove -> city
 Marshall -> county
 Cost model -> 4 Feb 2023
+
+
+1. State and county image should be dynamic state-county.blade.php 95 line.
+ Backend state map image input as raw and if image then show state image else the page is under construction.
+2. Register as Interview for profile page should change the field when tradesman and require field must sign *
+
+3. Registration need verification email sent to user email.
+
+4. https://en.gravatar.com/site/implement/images/php/
+
+
+
