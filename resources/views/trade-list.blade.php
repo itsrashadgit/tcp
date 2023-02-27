@@ -3,15 +3,11 @@
 
 @section('content')
     <div class="tophive-container">
-        <div class="tabs7 mt-4">
+        <div class="tabs7 my-4">
             <ul class="nav m-0">
-                <li class="nav-item"><a class="nav-link" href="">Electronics</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Plumbers</a></li>
-                <li class="nav-item"><a class="nav-link" href="">HVAC</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Telecommunication</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Fire Alarm</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Facility/Property Mgmt</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Vendors</a></li>
+                @foreach ($trades as $trade)
+                    <li class="nav-item"><a class="nav-link bg-white" href="{{ route("search") }}">{{ $trade->name }}</a></li>
+                @endforeach
             </ul>
         </div>
     </div>

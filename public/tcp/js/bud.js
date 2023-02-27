@@ -25,7 +25,7 @@
       "bp-nouveau-activity-form"
     );
     if (!activityPostFormDom) return;
-  
+
     if (type === "open") {
       //add css so it can be popup
       activityPostFormDom.classList.add("activity-post-form-popup");
@@ -41,7 +41,7 @@
           jQuery("#whats-new-attachments").show();
         });
       });
-  
+
       jQuery(".whats-new-header-media-section").hide(0);
       jQuery(".advanced-th-bp-activity-form").focus();
       jQuery(".whats-new-intro-header").css({
@@ -50,7 +50,7 @@
       });
       jQuery(".whats-new-intro-header").hide();
     }
-  
+
     if (type === "close") {
       //remove css so it cant be a popup
       activityPostFormDom.classList.remove("activity-post-form-popup");
@@ -68,14 +68,14 @@
       resetGroupAndViType(activityPostFormDom);
       //clear post box text
       activityPostFormDom.querySelector("#th-bp-whats-new").innerText = "";
-  
+
       //reset activity post form state
       mf_activity_edite_is_delete_activity = false;
       mf_activity_id_of_current_editeing_activity = false;
       mf_activity_current_editing_activity_dom = false;
     }
   }
-  
+
   function renderDefaultVisibility(text, formDom) {
     const nameDom = formDom.querySelector(".what-is-new-avatar-text");
     const markup = `<div id="visibility-handler">
@@ -85,11 +85,11 @@
     //add this markup to dom
     nameDom.insertAdjacentHTML("beforeend", markup);
   }
-  
+
   function getgroups(formDom) {
     const groupDom = formDom.querySelectorAll("#whats-new-post-in option");
     if (!groupDom.length) return [];
-  
+
     return Array.from(groupDom).map((cur, i) => ({
       dom: cur,
       index: i,
@@ -97,14 +97,14 @@
       groups: groupDom,
     }));
   }
-  
+
   function getVisibility(formDom) {
     const visibilityTypesDom = formDom.querySelectorAll(
       "#mf-activity-accessibility option"
     );
-  
+
     if (!visibilityTypesDom.length) return [];
-  
+
     return Array.from(visibilityTypesDom).map((cur, i) => ({
       dom: cur,
       index: i,
@@ -112,7 +112,7 @@
       visibilitys: visibilityTypesDom,
     }));
   }
-  
+
   function activityVisibilityMarkup() {
     const markup = `
           <div class="ac-vi-form-pop-main">
@@ -163,13 +163,13 @@
           </div>`;
     return markup;
   }
-  
+
   function markupPostFormGroups(groups) {
     return `${groups
       .map(
         (cur) => `
            <div class="ac-vi-group-item" data-id="${cur.id}">
-              <!-- <img src="" alt="" /> -->      
+              <!-- <img src="" alt="" /> -->
               <p class="ac-vi-group-label">${cur.dom.label}</p>
               <span class="ac-vi-group-select"></span>
            </div>
@@ -177,7 +177,7 @@
       )
       .join(" ")}`;
   }
-  
+
   function activityGroupMarkup(groups) {
     const markup = `
       <div class="ac-group-main">
@@ -190,7 +190,7 @@
           </span>
          </div>
          <div class="ac-group-search">
-          <input class="ac-vi-group-search-input" 
+          <input class="ac-vi-group-search-input"
           type="text" placeholder="Search groups" />
           <svg  viewBox="0 0 48 48"><path d="m40.8994141 39.4853516-7.8127441-7.8127441c2.3978882-2.734375 3.7209473-6.1942749 3.7209473-9.8649902 0-4.0068359-1.5605469-7.7734375-4.3935547-10.6064453s-6.5996094-4.3935547-10.6064453-4.3935547-7.7734375 1.5605469-10.6064453 4.3935547-4.3935547 6.5996094-4.3935547 10.6064453 1.5605469 7.7734375 4.3935547 10.6064453 6.5996094 4.3935547 10.6064453 4.3935547c3.6707153 0 7.1306152-1.3230591 9.8649902-3.7209473l7.8127441 7.8127441c.1953125.1953125.4511719.2929688.7070313.2929688s.5117188-.0976563.7070313-.2929688c.3906249-.390625.3906249-1.0234375-.0000001-1.4140625zm-28.2841797-8.4853516c-2.4550781-2.4555664-3.8076172-5.7202148-3.8076172-9.1923828s1.3525391-6.7368164 3.8076172-9.1923828c2.4555664-2.4550781 5.7202148-3.8076172 9.1923828-3.8076172s6.7368164 1.3525391 9.1923828 3.8076172c2.4550781 2.4555664 3.8076172 5.7202148 3.8076172 9.1923828s-1.3525391 6.7368164-3.8076172 9.1923828c-2.4555664 2.4550781-5.7202148 3.8076172-9.1923828 3.8076172s-6.7368164-1.3525391-9.1923828-3.8076172z"></path></svg>
          </div>
@@ -203,28 +203,28 @@
          </div>
       </div>
       `;
-  
+
     return markup;
   }
-  
+
   function closePostVisibilityPopup(formDom) {
     const visibilityEl = formDom.querySelector(".ac-vi-form-pop-main");
     const postFormEl = formDom.querySelector("#whats-new-form");
-  
+
     visibilityEl.style.display = "none";
     postFormEl.style.display = "block";
   }
-  
+
   function setPostVisibility(formDom, visibilityType) {
     const hiddenVisisbilityEl = formDom.querySelector(
       "#mf-activity-accessibility"
     );
     if (!hiddenVisisbilityEl)
       return console.log(new Error("no activity visibility el found"));
-  
+
     hiddenVisisbilityEl.value = visibilityType;
   }
-  
+
   function setInisialPostViTypeInPopup(formDom) {
     const option = formDom.querySelector(".ac-vi-form-options");
     Array.from(option.children).forEach((cur) =>
@@ -232,12 +232,12 @@
     );
     const viType = formDom.querySelector("#mf-activity-accessibility").value;
     const activeEl = option.querySelector(`[data-type="${viType}"]`);
-  
+
     if (!activeEl)
       return console.log(new Error("no visibility is active!! Thats weird!"));
     activeEl.classList.add("ac-vi-form-active");
   }
-  
+
   function resetGroupAndViType(formDom) {
     //reset group
     const haveGroup = formDom.querySelector("#whats-new-post-in");
@@ -253,14 +253,14 @@
     formDom.querySelector("#mf-activity-accessibility").value = "public";
     setViMarkup(formDom, "public");
   }
-  
+
   function setViMarkup(formDom, viType) {
     const markup = `
       ${visibilityPostFormData.find((cur) => cur.vi == viType).svg}
       <span>${viType}</span>`;
     formDom.querySelector("#visibility-handler").innerHTML = markup;
   }
-  
+
   function setGroupViMarkup(formDom, label) {
     const con = formDom.querySelector("#visibility-handler");
     con.innerHTML = `
@@ -271,7 +271,7 @@
       </div>
       `;
   }
-  
+
   function closeGroupPopup(formDom) {
     //close group
     const group = formDom.querySelector(".ac-group-main");
@@ -281,7 +281,7 @@
     //set inisial visibility
     setInisialPostViTypeInPopup(formDom);
   }
-  
+
   function handleGroupSearchInPopupForm(e, formDom, groups) {
     console.log(groups, e, formDom);
     //get input value
@@ -301,17 +301,17 @@
     formDom.querySelector(".ac-group-lists").innerHTML =
       markupPostFormGroups(newGroups);
   }
-  
+
   function handleGroupSelect(item, formDom) {
     const allGroups = item.parentElement.children;
     Array.from(allGroups).forEach((cur) => cur.classList.remove("active"));
     item.classList.add("active");
   }
-  
+
   function handleGroupSelectSaveClick(formDom) {
     //select cur selectd group
     const selectedGroup = formDom.querySelector(".ac-vi-group-item.active");
-  
+
     const hiddenGroupEl = formDom.querySelector(
       `#whats-new-post-in option[value="${selectedGroup.dataset.id}"]`
     );
@@ -329,7 +329,7 @@
     closeGroupPopup(formDom);
     closePostVisibilityPopup(formDom);
   }
-  
+
   //controller
   function handleActivityPostFormPublickBtnClick(formDom) {
     const markup = activityVisibilityMarkup();
@@ -349,7 +349,7 @@
   function addListernerToVisibilityPopup(formDom) {
     const option = formDom.querySelector(".ac-vi-form-options");
     const options = option.children;
-  
+
     for (i = 0; i < options.length; i++) {
       if (i < 3) {
         const index = i;
@@ -363,13 +363,13 @@
         };
       }
     }
-  
+
     formDom.querySelector(".close-popup").onclick = (e) => {
       closePostVisibilityPopup(formDom);
       toggleActivityPostFormPopup("close");
     };
   }
-  
+
   function handleActivityVisibilityClick(e, clickEl, optionsEl, formDom) {
     //remove other active el
     Array.from(optionsEl).forEach((cur) =>
@@ -385,40 +385,40 @@
     //close visibility popup
     closePostVisibilityPopup(formDom);
   }
-  
+
   function addListenerToAcViGroupPopup(formDom) {
     const popup = formDom.querySelector(".ac-group-main");
     //console.log(popup);
     if (!popup) return console.log(new Error("group popup is not there."));
-  
+
     popup.onclick = (e) => {
       if (e.target.matches(".ac-group-back")) {
         closeGroupPopup(formDom);
         return;
       }
-  
+
       if (e.target.closest(".ac-vi-group-item")) {
         const item = e.target.closest(".ac-vi-group-item");
         handleGroupSelect(item, formDom);
       }
-  
+
       if (e.target.matches(".ac-group-save")) {
         handleGroupSelectSaveClick(formDom);
       }
-  
+
       if (e.target.closest(".close-popup")) {
         closeGroupPopup(formDom);
         closePostVisibilityPopup(formDom);
         toggleActivityPostFormPopup("close");
       }
     };
-  
+
     const groups = getgroups(formDom);
     popup.querySelector(".ac-vi-group-search-input").oninput = (e) => {
       handleGroupSearchInPopupForm(e, formDom, groups);
     };
   }
-  
+
   function handleActivityVisibilityGroupClick(e, clickEl, optionsEl, formDom) {
     //remove other active el
     Array.from(optionsEl).forEach((cur) =>
@@ -439,7 +439,7 @@
     //add necessary event listener
     addListenerToAcViGroupPopup(formDom);
   }
-  
+
   function activityPostFormEventHandler(e, formDom) {
     const publicBtnClicked = e.target.closest("#visibility-handler");
     if (publicBtnClicked) {
@@ -452,7 +452,7 @@
       resetActivityForm();
     }
   }
-  
+
   function ActivityPostFormInit() {
     //select activity popup form
     const activityPostFormDom = document.getElementById(
@@ -462,30 +462,30 @@
       ".ac-post-form-showcase"
     );
     if (!activityPostFormDom) return;
-  
+
     //console.log(getgroups(activityPostFormDom));
     const visibility = getVisibility(activityPostFormDom);
     //console.log(visibility);
-  
+
     renderDefaultVisibility(visibility[0].dom.label, activityPostFormDom);
-  
+
     activityPostFormDom.addEventListener("click", (e) => {
       activityPostFormEventHandler(e, activityPostFormDom);
     });
-  
+
     activityPostShowCaseForm.addEventListener("click", (e) => {
       toggleActivityPostFormPopup("open");
     });
   }
-  
+
   window.addEventListener("load", () => {
     ActivityPostFormInit();
   });
-  
+
   /****************
    Activity popup script end here
    *****************/
-  
+
   /****************
    Activity edite script start here
    *****************/
@@ -494,17 +494,17 @@
   let mf_activity_edite_is_delete_activity = false;
   let mf_activity_id_of_current_editeing_activity = false;
   let mf_activity_current_editing_activity_dom = false;
-  
+
   class ActivityEditeControler {
     constructor() {
       this.postFormDom = document.querySelector("#bp-nouveau-activity-form");
       this.addListenerToEditeActivityBtn();
     }
-  
+
     addListenerToEditeActivityBtn() {
       const activityStremEl = document.querySelector("#activity-stream");
       if (!activityStremEl) return;
-  
+
       activityStremEl.addEventListener("click", (e) => {
         const editeActivityBtn = e.target.closest(".edite-activity");
         if (editeActivityBtn) {
@@ -512,11 +512,11 @@
         }
       });
     }
-  
+
     async handleActivityEditeBtnClick(e) {
-  
+
       const canEdite = e.target.closest(".activity-item").dataset.canedite;
-  
+
       if(canEdite == "false") return;
       //open post form popup
       this.openPostFormPopup();
@@ -536,7 +536,7 @@
       //remove loader
       this.removeLoader();
     }
-  
+
     openPostFormPopup() {
       this.addLoader();
       //change post activity btn text
@@ -544,7 +544,7 @@
         "Update Post";
       toggleActivityPostFormPopup("open");
     }
-  
+
     setEditeActivityData(e) {
       mf_activity_edite_is_delete_activity = true;
       mf_activity_id_of_current_editeing_activity =
@@ -552,7 +552,7 @@
       const el = e.target.closest(".activity-item");
       mf_activity_current_editing_activity_dom = el;
     }
-  
+
     addLoader() {
       //add loader
       const form = this.postFormDom.querySelector("#whats-new-form");
@@ -565,7 +565,7 @@
           `<svg class="sharing-spinner" viewBox="0 0 50 50"><circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="4"></circle></svg>`
         );
     }
-  
+
     removeLoader() {
       //remove loader
       const form = this.postFormDom.querySelector("#whats-new-form");
@@ -573,7 +573,7 @@
       form.classList.remove("submitting");
       this.postFormDom.querySelector(".sharing-spinner").remove();
     }
-  
+
     async getActivity(id) {
       const res = await jQuery.ajax({
         type: "post",
@@ -584,20 +584,20 @@
         },
       });
       console.log(res);
-  
+
       this.activity = res;
       //console.log(this.activity);
     }
-  
+
     setActivityVisibility() {
       setPostVisibility(this.postFormDom, this.activity.activity_visibility);
       setViMarkup(this.postFormDom, this.activity.activity_visibility);
     }
-  
+
     setActivityGroup() {
       const isGroup = this.activity.activities[0].component;
       if (isGroup !== "groups") return;
-  
+
       const hiddenGroupEl = this.postFormDom.querySelector(
         `#whats-new-post-in option[value="${this.activity.activities[0].item_id}"]`
       );
@@ -607,34 +607,34 @@
       //add markup to post form to indicate group is selected
       setGroupViMarkup(this.postFormDom, hiddenGroupEl.innerText);
     }
-  
+
     setActivityContent() {
       this.postFormDom.querySelector("#th-bp-whats-new").innerHTML =
         this.activity.activities[0].content.replace(/\\/g, "").replace(/\n/g,"<br>");
     }
-  
+
     setActivityImages() {
       if (!this.activity.meta.length) return;
-  
+
       const markup = `${this.activity.meta
         .map((cur) => this.previewMarkup(cur))
         .join(" ")}`;
-  
+
       //add ids to hidden input so new image can save
       this.postFormDom.querySelector("#whats-new-post-media").value =
         this.activity.meta.map((cur) => cur.attachment_id).join(", "); //keep space after ,
-  
+
       const preCon = this.postFormDom.querySelector(".whats-new-previewer");
       preCon.classList.add("previewer-toggle");
       preCon.insertAdjacentHTML("afterbegin", markup);
     }
-  
+
     previewMarkup(img) {
       const uid = Date.now() + Math.round(Math.random() * 20);
       const imgMediaMarkup = (url) => `<img src="${url}">`;
       const videoMediaMarkup = (url) => `<video src="${url}" alt="video" />`;
       //const applicationMediaMarkup = (url) =>
-  
+
       return `<p class="media-uploading done image/png" id="${uid}">
             ${img.thumb ? imgMediaMarkup(img.thumb[0]) : ""}
              <span class="remove-media" data-media-id="${uid}"
@@ -645,11 +645,11 @@
   window.addEventListener("load", () => {
     new ActivityEditeControler();
   });
-  
+
   /****************
    Activity edite script end here
    *****************/
-  
+
   function resetActivityForm() {
     jQuery("#whats-new-form").removeClass("submitting");
     jQuery("#whats-new-content").hide(200);
@@ -667,13 +667,13 @@
     jQuery("#whats-new-post-url-preview").val("");
     jQuery("#whats-new-post-media").val("");
   }
-  
+
   jQuery(document).ready(function () {
     jQuery(document).on("click", "#more-nav > li > a", function (e) {
       e.preventDefault();
       jQuery(this).parent().toggleClass("more-nav-open");
     });
-  
+
     if (jQuery("#th_bbp_reply").length) {
       var quillEditor = new Quill("#th_bbp_reply", {
         modules: {
@@ -717,7 +717,7 @@
       data.filter(function (item) {
         newData[item.name] = item.value;
       });
-  
+
       console.log(newData);
       jQuery.ajax({
         url: Metafans_JS.ajaxurl,
@@ -746,7 +746,7 @@
         },
       });
     });
-  
+
     jQuery(document).on(
       "click",
       ".activity-inner a:not(.media-popup-thumbnail)",
@@ -756,7 +756,7 @@
         window.open(url);
       }
     );
-  
+
     jQuery("#bold_btn").on("click", function () {
       //jQuery('#textarea, #textarea-show').toggleClass('bold');
       document.execCommand("bold");
@@ -765,7 +765,7 @@
       //jQuery('#textarea, #textarea-show').toggleClass('italic');
       document.execCommand("italic");
     });
-  
+
     jQuery(document).mouseup(function (e) {
       var container = jQuery("#whats-new-form");
       if (!container.is(e.target) && container.has(e.target).length === 0) {
@@ -850,9 +850,9 @@
       .css("backgroundColor", "transparent");
     // });
   });
-  
+
   jQuery(".activity-update-form").append("<h2>go pro</h2>");
-  
+
   /****************
    Toaster Notification starts
    *****************/
@@ -897,13 +897,13 @@
     setNotification(type, message);
     openNotification(5000);
   }
-  
+
   jQuery(function () {
     jQuery(document).on("click", "button.popup-cancel", function (e) {
       e.preventDefault();
       jQuery(".metafans-alert-popup").removeClass("open");
     });
-  
+
     jQuery(document).on("click", ".confirm-delete-activity", function (e) {
       e.preventDefault();
       console.log("deleting...");
@@ -970,7 +970,7 @@
         jQuery(".th-bp-header-messenger-container ul").toggleClass("show_dd");
       }
     );
-  
+
     jQuery("#whats-new-form").on("submit", function (e) {
       var formData = jQuery("#whats-new-form").serializeArray();
       var text = jQuery("#th-bp-whats-new").text();
@@ -985,7 +985,7 @@
       const activityAccessibility = document.querySelector(
         "#mf-activity-accessibility"
       ).value;
-  
+
       console.log(ht);
       formData.push(
         { name: "whats-new-post-content", value: ht },
@@ -999,7 +999,7 @@
       newData.activity_accessibility = activityAccessibility
         ? activityAccessibility
         : "public";
-  
+
       console.log(newData);
       newData.is_delete_activity = mf_activity_edite_is_delete_activity;
       newData.activity_id = mf_activity_id_of_current_editeing_activity;
@@ -1046,7 +1046,7 @@
       function () {
         jQuery("#whats-new-post-url-preview").val("");
         jQuery("#whats-new-textarea .url-scrap-view").remove();
-  
+
         if (
             jQuery(".advanced-th-bp-activity-form").text().length > 0 ||
             document.querySelector("form .whats-new-live-preview")
@@ -1180,7 +1180,7 @@
       var attachment_id = jQuery(this).attr("data-attachment-id");
       var media_id = jQuery(this).attr("data-media-id");
       var ids = jQuery("#whats-new-post-media").val();
-  
+
       jQuery.ajax({
         url: Metafans_JS.ajaxurl,
         type: "post",
@@ -1224,7 +1224,7 @@
         messenger.removeClass("show_dd");
       }
     });
-  
+
     jQuery(".header-social_search_box-item input.search-field").on(
       "blur input",
       function (event) {
@@ -1265,11 +1265,11 @@
       e.preventDefault();
       var current_slider = jQuery(this).closest(".bp-image-single").attr("id");
       var full_url = jQuery(this).attr("href");
-  
+
       setCurrentId(current_slider);
       jQuery(".th-media-viewer-container").addClass("show");
       setTheImage(full_url);
-  
+
       var media_id = jQuery(this).attr("data-id");
       var activity_id = jQuery(this).attr("data-activity");
       setMediaAuthor(media_id, activity_id);
@@ -1388,7 +1388,7 @@
       var image_html = "<img src=" + url + ' alt="image_popup"/>';
       jQuery(".th-media-viewer-container .th-media-view").html(image_html);
     }
-  
+
     jQuery(document).on(
       "click",
       ".th-bp-media-comment-button .bp-media-reactions",
@@ -1396,11 +1396,11 @@
         e.preventDefault();
         var media_id = jQuery(this).attr("data-media-id");
         var activity_id = jQuery(this).attr("data-activity-id");
-  
+
         postCommentReaction("love", media_id, activity_id);
       }
     );
-  
+
     jQuery(document).on(
       "click",
       ".th-bp-post-like-button .reaction_icons img",
@@ -1411,7 +1411,7 @@
         var _that = jQuery(this);
         var reaction_type = _that.attr("data-type");
         var activity_id = _that.attr("data-activity-id");
-  
+
         if (reaction_type === "haha") {
           _that
             .parents(".th-bp-post-like-button")
@@ -1542,7 +1542,7 @@
           );
       }
       var activity_id = _that.attr("data-id");
-  
+
       postActivityReaction(reaction_type, activity_id);
     });
     function hideReactions(reaction) {
@@ -1729,9 +1729,9 @@
     });
     jQuery(document).on("click", ".th-bp-post-comment-button a", function (e) {
       e.preventDefault();
-  
+
       const rootItem = e.target.closest(".activity-item");
-  
+
       const el = rootItem.querySelector(".comments-text");
       const selection = window.getSelection();
       const range = document.createRange();
@@ -1841,7 +1841,7 @@
         jQuery(document).find(".image-viewer-next-prev .img-next").click();
       }
     });
-  
+
     jQuery( document ).on("click", ".notification-actions a", function( e ){
       e.preventDefault();
       var _that = jQuery(this);
@@ -1850,7 +1850,7 @@
       if( Action === "delete" ){
         jQuery(".metafans-alert-popup.notification-delete").addClass("open");
         jQuery( document ).on("click", ".confirm-delete-notification", function( e ){
-          
+
           e.preventDefault();
           jQuery(".metafans-alert-popup").removeClass("open");
           jQuery.ajax({
@@ -1895,10 +1895,10 @@
           },
         });
       }
-  
+
     });
-  
-  
+
+
     jQuery(document).on("click", ".th-bp-logged-out a", function (e) {
       e.preventDefault();
       jQuery("#tophive-signin-signup").addClass("open");
@@ -1986,47 +1986,47 @@
         },
       });
     });
-    jQuery(document).on("click", ".bp-th-follow-button", function (e) {
-      e.preventDefault();
-      // var loading_icon =
-        // '<svg class="sharing-spinner" viewBox="0 0 50 50"><circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="4"></circle></svg>';
-      var following_id  = jQuery(this).attr("data-following-id");
-      var follower_id   = jQuery(this).attr("data-follower-id");
-      var status   = jQuery(this).attr("data-following");
-      var _that         = jQuery(this);
-      jQuery.ajax({
-        url   : Metafans_JS.ajaxurl,
-        type  : "post",
-        data  : {
-          action        : "metafans_handle_follow",
-          following_id  : following_id,
-          follower_id   : follower_id
-        },
-        beforeSend: function () {
-          _that.toggleClass('following');
-          console.log( status );
-          status === 'following' ? 
-            _that.html(Metafans_JS.follow) : _that.html(Metafans_JS.following);
-          // console.log('Following...');
-        },
-        success: function (response) {
-          console.log(response);
-          if (response.is_following) {
-            _that.attr( 'data-following', 'following' );
-            jQuery('.followers-count-' + following_id).html(response.followers_count);
-            jQuery('.following-count-' + follower_id).html(response.following_count);
-          }else{
-            _that.attr( 'data-following', '' );
-            jQuery('.followers-count-' + following_id).html(response.followers_count);
-            jQuery('.following-count-' + follower_id).html(response.following_count);
-          }
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-          console.log(xhr);
-        },
-      });
-    });
-  
+    // jQuery(document).on("click", ".bp-th-follow-button", function (e) {
+    //   e.preventDefault();
+    //   // var loading_icon =
+    //     // '<svg class="sharing-spinner" viewBox="0 0 50 50"><circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="4"></circle></svg>';
+    //   var following_id  = jQuery(this).attr("data-following-id");
+    //   var follower_id   = jQuery(this).attr("data-follower-id");
+    //   var status   = jQuery(this).attr("data-following");
+    //   var _that         = jQuery(this);
+    //   jQuery.ajax({
+    //     url   : Metafans_JS.ajaxurl,
+    //     type  : "post",
+    //     data  : {
+    //       action        : "metafans_handle_follow",
+    //       following_id  : following_id,
+    //       follower_id   : follower_id
+    //     },
+    //     beforeSend: function () {
+    //       _that.toggleClass('following');
+    //       console.log( status );
+    //       status === 'following' ?
+    //         _that.html(Metafans_JS.follow) : _that.html(Metafans_JS.following);
+    //       // console.log('Following...');
+    //     },
+    //     success: function (response) {
+    //       console.log(response);
+    //       if (response.is_following) {
+    //         _that.attr( 'data-following', 'following' );
+    //         jQuery('.followers-count-' + following_id).html(response.followers_count);
+    //         jQuery('.following-count-' + follower_id).html(response.following_count);
+    //       }else{
+    //         _that.attr( 'data-following', '' );
+    //         jQuery('.followers-count-' + following_id).html(response.followers_count);
+    //         jQuery('.following-count-' + follower_id).html(response.following_count);
+    //       }
+    //     },
+    //     error: function (xhr, ajaxOptions, thrownError) {
+    //       console.log(xhr);
+    //     },
+    //   });
+    // });
+
     // create group progress script
     function createGroupProgress() {
       const groupProgNavs = document.querySelectorAll(".group-create-buttons li");
@@ -2037,7 +2037,7 @@
           index = i;
         }
       }
-  
+
       const genarateHtml = (isCompleate, number, text, isLast) => {
         return `<span class="nm ${isCompleate ? "cnm" : ""}">${number}</span>
             <span class="txt ${isCompleate ? "ctxt" : ""}">${text}</span>
@@ -2047,12 +2047,12 @@
               : ""
           }`;
       };
-  
+
       //add arrow and design to completed progress
       if (index >= 0) {
         for (let i = 0; i < groupProgNavs.length; i++) {
           const el = groupProgNavs[i];
-  
+
           if (i <= index) {
             const atag = el.querySelector("a");
             const text = atag.innerText.split(".");
@@ -2080,7 +2080,7 @@
       }
     }
     createGroupProgress(); //end create group progress script
-  
+
     //start edite visibility script
     const visibilityData = [
       {
@@ -2099,7 +2099,7 @@
         content: `<span class="ac-vi-co" data-vi="3"><span class="ac_vi_text">Only me </span><svg viewBox="0 0 30 30" width="30px" height="30px"><g id="surface67244366"><path style=" stroke:none;fill-rule:nonzero;fill:#555;fill-opacity:1;" d="M 15 2 C 11.144531 2 8 5.144531 8 9 L 8 11 L 6 11 C 4.894531 11 4 11.894531 4 13 L 4 25 C 4 26.105469 4.894531 27 6 27 L 24 27 C 25.105469 27 26 26.105469 26 25 L 26 13 C 26 11.894531 25.105469 11 24 11 L 22 11 L 22 9 C 22 5.273438 19.035156 2.269531 15.355469 2.074219 C 15.242188 2.027344 15.121094 2.003906 15 2 Z M 15 4 C 17.773438 4 20 6.226562 20 9 L 20 11 L 10 11 L 10 9 C 10 6.226562 12.226562 4 15 4 Z M 15 4 "/></g></svg></span>`,
       },
     ];
-  
+
     function editeVisibilityMarkup() {
       const markup = `
        <div class="ac-vi-pop">
@@ -2144,7 +2144,7 @@
        </div>`;
       return markup;
     }
-  
+
     function updateVisibility(acId, visiType) {
       console.log(acId);
       jQuery.ajax({
@@ -2160,28 +2160,28 @@
         },
       });
     }
-  
+
     function changeVisibilityIcon(eventTarget, iconIn) {
       const parentDom = eventTarget.parentElement;
       eventTarget.remove();
       parentDom.insertAdjacentHTML("beforeend", visibilityData[iconIn].content);
     }
-  
+
     function selectVisibilityHandeler(eventTarget, acId) {
       const acPop = document.querySelector(".ac-vi-pop");
       const options = acPop.querySelector(".ac-vi-options").children;
-  
+
       Array.from(options).forEach((cur, i) => {
         cur.addEventListener("click", (e) => {
           activeVisibility(i);
           changeVisibilityIcon(eventTarget, i);
-  
+
           updateVisibility(parseInt(acId), visibilityData[i].vi);
-  
+
           closeEditeVisibilityPopup();
         });
       });
-  
+
       const acClosePopIcon = acPop.querySelector(".close-ac-vi-popup");
       if (acClosePopIcon) {
         acClosePopIcon.addEventListener("click", (e) => {
@@ -2189,20 +2189,20 @@
         });
       }
     }
-  
+
     function closeEditeVisibilityPopup() {
       const acPop = document.querySelector(".ac-vi-pop");
       if (!acPop) return;
       acPop.remove();
     }
-  
+
     function activeVisibility(elIn) {
       const options = document.querySelector(".ac-vi-options").children;
       if (!options.length) return;
       Array.from(options).forEach((cur) => cur.classList.remove("ac-vi-active"));
       options[elIn].classList.add("ac-vi-active");
     }
-  
+
     function openEditeVisibilityPopup(eventTarget, acId) {
       //close previous popup
       closeEditeVisibilityPopup();
@@ -2213,35 +2213,35 @@
       //add handler
       selectVisibilityHandeler(eventTarget, acId);
     }
-  
+
     function initEditeVisibility() {
       const activityCon = document.getElementById("activity-stream");
       if (!activityCon) return;
-  
+
       //add listener
       activityCon.addEventListener("click", (e) => {
         const visibilityIcon = e.target.closest(".ac-vi-co");
         if (!visibilityIcon) return;
         e.preventDefault();
-  
+
         //check if have edite permision or not
         const acItemDom = visibilityIcon.closest(".activity-item");
         const hasPermision = acItemDom.dataset.canedite;
         if (!hasPermision || hasPermision === "false") return;
-  
+
         const acId = acItemDom.dataset.bpActivityId;
         if (!acId) return;
-  
+
         openEditeVisibilityPopup(visibilityIcon, parseInt(acId));
-  
+
         const acviId = visibilityIcon.dataset.vi;
         if (!acviId) return;
-  
+
         activeVisibility(parseInt(acviId) - 1);
       });
     }
     initEditeVisibility(); //end edite visibility script
-  
+
     //start activity  action button script
     const favoriteMarkup = {
       unsave: `
@@ -2267,7 +2267,7 @@
           </a>
       </li>`,
     };
-  
+
     function activityOptionOpenHandleer(icon) {
       document
         .querySelectorAll(".activity-extension-links")
@@ -2275,7 +2275,7 @@
       const ulEl = icon.parentElement;
       ulEl.classList.add("ac-action-open");
     }
-  
+
     function activityDeleteActionHandler(deletIcon, e) {
       var activity_id = deletIcon.getAttribute("data-id");
       var action = deletIcon.getAttribute("data-action");
@@ -2285,13 +2285,13 @@
       });
       jQuery(".metafans-alert-popup.activity-delete").addClass("open");
     }
-  
+
     async function activityFavoriteActionHandler(favoriteIcon, e, mode) {
       const { bpActivityId } = e.target.closest(".activity-item").dataset;
       if (!bpActivityId) throw new Error("No activity id found");
-  
+
       //favoriteIcon.classList.add("loading");
-  
+
       try {
         const res = await jQuery.ajax({
           type: "post",
@@ -2302,7 +2302,7 @@
             action_type: mode, //either add or delete
           },
         });
-  
+
         showNotification("success", res);
         const ulEl = favoriteIcon.parentElement.parentElement;
         //remove favourite element
@@ -2321,11 +2321,11 @@
         showNotification("error", err);
       }
     }
-  
+
     async function getFullActivityContent(e, readMoreBtnEl) {
       const { bpActivityId } = e.target.closest(".activity-item").dataset;
       if (!bpActivityId) throw new Error("No activity id found");
-  
+
       try {
         const res = await jQuery.ajax({
           type: "post",
@@ -2342,7 +2342,7 @@
         console.log(err);
       }
     }
-  
+
     function initActivityActionButtonClick() {
       const streamConEl = document.querySelector("#activity-stream");
       if (!streamConEl) return;
@@ -2351,13 +2351,13 @@
         if (icon) {
           activityOptionOpenHandleer(icon);
         }
-  
+
         const deletIcon = e.target.closest(".button-activity-delete");
         if (deletIcon) {
           e.preventDefault();
           activityDeleteActionHandler(deletIcon, e);
         }
-  
+
         const favoriteIcon = e.target.closest(".activity-make-favourite");
         if (favoriteIcon) {
           e.preventDefault();
@@ -2368,7 +2368,7 @@
           e.preventDefault();
           activityFavoriteActionHandler(unSaveIcon, e, "delete");
         }
-  
+
         const readMoreBtn = e.target.closest(".activity-read-more");
         if (readMoreBtn) {
           e.preventDefault();
@@ -2376,7 +2376,7 @@
           // getFullActivityContent(e, readMoreBtn);
         }
       });
-  
+
       window.addEventListener("click", (e) => {
         const actionEl = e.target.closest(".activity-extension-links");
         if (actionEl) {

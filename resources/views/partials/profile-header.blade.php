@@ -1,6 +1,5 @@
 <div id="buddypress" class="buddypress-wrap metafans round-avatars bp-dir-hori-nav">
-    <div id="item-header" role="complementary" data-bp-item-id="1" data-bp-item-component="members"
-        class="users-header single-headers top-header">
+    <div id="item-header" class="users-header single-headers top-header">
         <div id="cover-image-container">
             <div id="header-cover-image" class="cover-photo-uploader overflow-hidden">
                 <img src="{{ asset($user->cover_photo ? 'images/user/' . $user->cover_photo : '') }}"
@@ -23,8 +22,7 @@
                             alt="Profile picture of admin">
                         @if (Auth::user()->id == $user->id)
                             <label for="avatarupload" class="profile-img-uploader">
-                                <input @change.prevent="handleImage" type="file" id="avatarupload" hidden="hidden"
-                                    name="avatar">
+                                <input @change.prevent="handleImage" type="file" id="avatarupload" hidden="hidden" name="avatar">
                                 <i class='bx bxs-camera'></i>
                             </label>
                         @endif
@@ -36,16 +34,17 @@
                         <h2 class="user-nicename">{{ $user->name }}</h2>
                         <ul class="bp-socials-vertical"></ul>
                         <div id="item-meta">
-                            <p class="profile-header-meta-date"><span class="hide-badge">@admin</span> •
+                            <p class="profile-header-meta-date"><span class="hide-badge">{{ "@".$user->username }}</span> •
                                 <span>Joined : {{ $user->created_at->format('M d,Y') }} </span>
                             </p>
                             <div class="user-facts d-flex">
                                 <p>
-                                    <span class="secondary-color followers-count-1">0</span>
+                                    <span class="fw-bold">{{ $user->followers()->count() }}</span>
                                     <span>Followers</span>
                                 </p>
+                                <span class="mx-1"></span>
                                 <p>
-                                    <span class="secondary-color following-count-1">0</span>
+                                    <span class="fw-bold">{{ $user->followings()->count() }}</span>
                                     <span>Following</span>
                                 </p>
                                 <!-- <p>
@@ -162,7 +161,7 @@
 
 
             <li id="front-personal-li" class="bp-personal-tab">
-                <a href="{{ route('home.user') }}" id="user-front">
+                <a href="{{ route('welcome') }}" id="user-front">
                     Home
                 </a>
             </li>
@@ -170,7 +169,7 @@
 
             <li id="activity-personal-li"
                 class="bp-personal-tab @if (request()->routeIs('home.user')) current selected @endif loading">
-                <a href="{{ route('home.user') }}" id="user-activity">
+                <a href="{{ route('user.activity', $user->username) }}" id="user-activity">
                     Activity
                 </a>
             </li>
@@ -183,7 +182,7 @@
             </li> --}}
 
 
-            <li id="photos-personal-li" class="bp-personal-tab">
+            <li id="photos-personal-li" class="bp-personal-tab @if (request()->routeIs('user.portfolio')) current selected @endif">
                 <a href="{{ route('user.portfolio', $user->username) }}" id="user-photos">
                     Portfolio
                 </a>
@@ -215,7 +214,8 @@
 
 
         </ul>
-        <ul id="more-nav">
+
+        {{-- <ul id="more-nav">
             <li><a href="#" class="more-nav-anchor">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-three-dots" viewBox="0 0 16 16">
@@ -233,19 +233,19 @@
                     </li>
 
 
-                    {{-- <li id="activity-personal-li" class="bp-personal-tab current selected loading">
+                    <li id="activity-personal-li" class="bp-personal-tab current selected loading">
                         <a href="{{ route("home.user") }}" id="user-activity">
                             Activity
                         </a>
-                    </li> --}}
+                    </li>
 
 
-                    {{-- <li id="notifications-personal-li" class="bp-personal-tab">
+                    <li id="notifications-personal-li" class="bp-personal-tab">
                         <a href="https://theconstructionplatform.com/members/admin/notifications/"
                             id="user-notifications">
                             Notifications
                         </a>
-                    </li> --}}
+                    </li>
 
 
                     <li id="photos-personal-li" class="bp-personal-tab">
@@ -262,11 +262,11 @@
                     </li>
 
 
-                    {{-- <li id="forums-personal-li" class="bp-personal-tab">
+                    <li id="forums-personal-li" class="bp-personal-tab">
                         <a href="https://theconstructionplatform.com/members/admin/forums/" id="user-forums">
                             Forums
                         </a>
-                    </li> --}}
+                    </li>
 
 
                     <li id="settings-personal-li" class="bp-personal-tab">
@@ -277,7 +277,7 @@
 
                 </ul>
             </li>
-        </ul>
+        </ul> --}}
 
 
     </nav>

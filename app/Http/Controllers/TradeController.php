@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Trade;
 use Illuminate\Http\Request;
 
 class TradeController extends Controller
 {
     public function index(){
 
-        return view("trade-list");
+        $trades = Trade::orderBy("name", "asc")->get();
+        return view("trade-list", compact("trades"));
     }
 }

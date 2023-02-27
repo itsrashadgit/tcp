@@ -7,6 +7,7 @@ use App\Http\Controllers\FollowController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageBoardController;
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\PublicPageController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TradeController;
@@ -49,7 +50,7 @@ Route::get('/home/user', [HomeController::class, 'index'])->name("home.user");
 
 
 
-Route::get("feeds/{state}/{county}", [FeedController::class, 'showFeed'])->name("feeds")->middleware("auth:sanctum");
+Route::get("feeds/{state}/{county}", [FeedController::class, 'showFeed'])->name("feeds");
 
 Route::get("trades", [TradeController::class, 'index'])->name("trade.list");
 
@@ -69,6 +70,7 @@ Route::get("unfollow", [FollowController::class, "unfollow"])->name("unfollow");
 Route::get("search", [SearchController::class, "search"])->name("search");
 
 Route::post("send-message", [MessageBoardController::class, 'sendMsg'])->name("send.msg");
+Route::post("upload-portfolio", [PortfolioController::class, 'uploadPortfolio'])->name("portfolio.upload");
 
 // Route::get("add-friend", [FriendController::class, "addFriend"])->name("addfriend");
 // Route::get("unfriend", [FriendController::class, "unFriend"])->name("unfriend");

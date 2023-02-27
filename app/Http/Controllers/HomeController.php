@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Portfolio;
 use App\Models\User;
 use Auth;
 
@@ -35,7 +36,18 @@ class HomeController extends Controller
 
     public function portfolio($username){
         $user = User::where("username", $username)->first();
-        return view("user.portfolio", compact("user"));
+
+        $query = request("q");
+        if($query){
+            $portfolios = Portfolio::where("user_id", $user->id)
+                ->where("file_name", "%$query%")
+                ->where("original_name", "%$query%")
+                ->paginate(20)->appends(request()->query());
+        }else{
+            $portfolios = Portfolio::where("user_id", $user->id)->paginate(20)->appends(request()->query());
+        }
+
+        return view("user.portfolio", compact("user", "portfolios"));
     }
 
     public function settings(){
