@@ -1,27 +1,76 @@
+@extends("layouts.usa")
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>HTML ImageMap resizing example</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="description" content="iFrame message passing test">
-	<meta name="viewport" content="width=device-width"></head>
-	<style type="text/css">
-	
-	.credits{
-		margin: 25px auto;
-		font-size: 11px;
-		font-style: italic;
-		text-align: center;
-	}
+@section("content")
 
-	</style>
-<body>
+<!-- Photos Slider -->
+<section class="position-relative py-1 bg-white">
+    <div class="container position-relative zindex-5 py-1 py-md-2 py-lg-2">
+        <div class="row justify-content-center">
+            <div id="tcpSwiper" class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="product">
+                            <img class="photograph" src="https://unsplash.it/g/200/300?image=502" alt="">
+                            <h2 class="product__name">Lorem ipsum 1</h2>
+                            <p class="product__description">lorem ipsum dol</p>
+                        </div>
+                    </div>
 
-	<h2>Automagically resizing imageMap</h2>
-	<p>Resize window and the HTML ImageMap will scale with the image.</p>
+                    <div class="swiper-slide">
+                        <div class="product">
+                            <img class="photograph" src="https://unsplash.it/g/200/300?image=401" alt="">
+                            <h2 class="product__name">Lorem ipsum 2</h2>
+                            <p class="product__description">lorem ipsum dol</p>
+                        </div>
+                    </div>
 
+                    <div class="swiper-slide">
+                        <div class="product">
+                            <img class="photograph" src="https://unsplash.it/g/200/300?image=201" alt="">
+                            <h2 class="product__name">Lorem ipsum 3</h2>
+                            <p class="product__description">lorem ipsum dol</p>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="product">
+                            <img class="photograph" src="https://unsplash.it/g/200/300?image=504" alt="">
+                            <h2 class="product__name">Lorem ipsum 4</h2>
+                            <p class="product__description">lorem ipsum dol</p>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="product">
+                            <img class="photograph" src="https://unsplash.it/g/200/300?image=404" alt="">
+                            <h2 class="product__name">Lorem ipsum 5</h2>
+                            <p class="product__description">lorem ipsum dol</p>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="product">
+                            <img class="photograph" src="https://unsplash.it/g/200/300?image=406" alt="">
+                            <h2 class="product__name">Lorem ipsum 6</h2>
+                            <p class="product__description">lorem ipsum dol</p>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="product">
+                            <img class="photograph" src="https://unsplash.it/g/200/300?image=407" alt="">
+                            <h2 class="product__name">Lorem ipsum 7</h2>
+                            <p class="product__description">lorem ipsum dol</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <div id="tcpPrev" class="swiper-button-prev"></div>
+            <div id="tcpNext" class="swiper-button-next"></div>
+        </div>
+    </div>
+</section>
 	<p>
 		<img name="usaMap" src="{{ asset('assets/img/ex.gif') }}" usemap="#m_usaMap" border="0" width="100%">
 	</p>
@@ -128,22 +177,4 @@
 		<area shape="poly" coords="148,148,155,94,224,101,220,155,181,154,150,150,148,148" href="http://en.wikipedia.org/wiki/Wyoming" title="Wyoming">
 	</map>
 
-	<p class="credits">
-		JavaScript &copy; David J. Bradshaw - <a href="https://github.com/davidjbradshaw/imagemap-resizer">https://github.com/davidjbradshaw/imagemap-resizer</a>.
-		<br>
-		HTML imageMap example from <a href="http://html.cita.illinois.edu/text/map/map-example.php">http://html.cita.illinois.edu/text/map/map-example.php</a>  (Permission requested).
-	</p>
-	<!--[if lte IE 8]>
-		<script type="text/javascript" src="{{ asset('assets/js/ie8-polyfill.js') }}"></script>
-	<![endif]-->
-	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script type="text/javascript" src="{{ asset('assets/js/imageMapResizer.min.js') }}"></script>
-	<script type="text/javascript">
-
-		$('map').imageMapResize();
-
-	</script>
-
-</body>
-</html>
+@endsection
