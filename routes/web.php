@@ -68,6 +68,8 @@ Route::get("unfollow", [FollowController::class, "unfollow"])->name("unfollow");
 
 Route::get("search", [SearchController::class, "search"])->name("search");
 
+Route::post("send-message", [MessageBoardController::class, 'sendMsg'])->name("send.msg");
+
 // Route::get("add-friend", [FriendController::class, "addFriend"])->name("addfriend");
 // Route::get("unfriend", [FriendController::class, "unFriend"])->name("unfriend");
 
