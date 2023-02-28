@@ -25,7 +25,7 @@ class PublicPageController extends Controller
         $state = State::where("code", $slug)->first();
 
         $counties = County::where("state_id", $state->id)->get();
-        //dd($counties);
+
         return view("state-county", compact("state", "counties"));
 
     }
