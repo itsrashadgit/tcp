@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,7 +13,7 @@ use SalimHosen\Core\Models\Role;
 use SalimHosen\Core\Notifications\ResetPassword;
 use SalimHosen\Core\Notifications\VerifyEmail;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -23,6 +24,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'user_type',
         'email',
         'phone',
@@ -36,7 +38,7 @@ class User extends Authenticatable
         'company_vision',
         'products',
         'services',
-        'trade',
+        'trade_id',
         'profession_title',
         'years_of_experience',
         'education',
@@ -46,6 +48,7 @@ class User extends Authenticatable
         'certificates',
         'achivements',
         'ability_skills',
+        'achievements',
         'about_you'
     ];
 
@@ -121,5 +124,17 @@ class User extends Authenticatable
 
     public function user(){
         return $this->belongsToMany(User::class, 'user_user', 'user_id', 'friend_id');
+    }
+
+    public function trade(){
+        return $this->belongsTo(Trade::class, 'trade_id');
+    }
+
+    public function state(){
+        return $this->belongsTo(State::class);
+    }
+
+    public function county(){
+        return $this->belongsTo(County::class);
     }
 }

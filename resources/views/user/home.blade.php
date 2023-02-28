@@ -20,7 +20,7 @@
                     <article id="post-0"
                         class="bp_members type-bp_members entry post-0 page type-page status-publish hentry pmpro-no-access">
                         <header class="entry-header">
-                            <h1 class="entry-title">admin</h1>
+                            <h1 class="entry-title">{{ Auth::user()->username }}</h1>
                         </header><!-- .entry-header -->
 
                         <div class="entry-content">
@@ -33,22 +33,21 @@
 
                                     <div id="cover-image-container">
                                         <a id="header-cover-image"
-                                            href="https://theconstructionplatform.com/members/admin/"></a>
+                                            href=""></a>
 
                                         <div id="item-header-cover-image">
                                             <div id="item-header-avatar">
                                                 <img loading="lazy"
-                                                    src="//www.gravatar.com/avatar/82597721255b38f095bf4d5ca9c50b8c?s=150&amp;r=g&amp;d=mm"
+                                                    src=""
                                                     class="avatar user-1-avatar avatar-150 photo" width="150"
                                                     height="150" alt="Profile picture of admin">
                                             </div>
                                             <div id="item-header-content">
-                                                <h2 class="user-nicename">admin</h2>
+                                                <h2 class="user-nicename">{{ Auth::user()->name }}</h2>
                                                 <div id="item-buttons"></div>
                                                 <div id="item-meta">
                                                     <p class="profile-header-meta-date"><span
-                                                            class="hide-badge">@admin</span> • <span>Joined : January
-                                                            27, 2023 </span></p>
+                                                            class="hide-badge">{{ "@".Auth::user()->username }}</span> • <span>Joined : {{ Auth::user()->created_at->format("M d, Y") }} </span></p>
                                                     <div class="user-facts">
                                                         <p>
                                                             <span class="secondary-color followers-count-1">0</span>

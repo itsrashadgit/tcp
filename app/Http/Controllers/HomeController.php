@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\County;
 use App\Models\Portfolio;
+use App\Models\Trade;
 use App\Models\User;
 use Auth;
+use Illuminate\Http\Client\Request;
 
 class HomeController extends Controller
 {
@@ -55,4 +58,18 @@ class HomeController extends Controller
         $user = Auth::user();
         return view('user.settings', compact('user'));
     }
+
+    public function editProfile()
+    {
+        $user = Auth::user();
+        $trades = Trade::all();
+        $counties = County::all();
+
+        return view("user.profile-edit", compact("user", "trades", "counties"));
+    }
+
+    // public function updateProfile(Request $request){
+
+    //     dd($request->all());
+    // }
 }

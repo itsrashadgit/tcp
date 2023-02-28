@@ -2,8 +2,10 @@
     <div id="item-header" class="users-header single-headers top-header">
         <div id="cover-image-container">
             <div id="header-cover-image" class="cover-photo-uploader overflow-hidden">
-                <img src="{{ asset($user->cover_photo ? 'images/user/' . $user->cover_photo : '') }}"
+                @if ($user->cover_photo)
+                    <img src="{{ asset($user->cover_photo ? 'images/user/' . $user->cover_photo : '') }}"
                     alt="" class="w-100" style="height: 300px;">
+                @endif
                 @if (Auth::user()->id == $user->id)
                     <label for="coverupload">
                         <input @change.prevent="handleCoverPhoto" type="file" id="coverupload" hidden="hidden"

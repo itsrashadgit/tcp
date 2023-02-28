@@ -41,14 +41,19 @@
                             </div> --}}
                         </div>
 
-                        <div class="mb-3" v-if="form.user_type != 'vendors'">
+                        <div class="mb-3" v-if=" form.user_type == 'tradesmen' || form.user_type == 'contractors' ">
                             <label class="required" for="trade">{{ __('Trade') }}</label>
-                            <input class="form-control form-round" type="text" name="trade" id="trade"
-                                :class="{ 'is-invalid': errors.trade }" v-model="form.trade">
+                            {{-- <input class="form-control form-round" type="text" name="trade" id="trade"
+                                :class="{ 'is-invalid': errors.trade }" v-model="form.trade"> --}}
+                                <select name="trade" id="trade" class="form-control">
+                                    @foreach ($trades as $trade)
+                                        <option value="{{ $trade->id }}">{{ $trade->name }}</option>
+                                    @endforeach
+                                </select>
                             <div class="invalid-feedback">@{{ errors.trade }}</div>
                         </div>
 
-                        <div class="mb-3" v-if="form.user_type != 'vendors'">
+                        <div class="mb-3" v-if="form.user_type == 'tradesmen'">
                             <label class="required" for="profession_title">{{ __('Profession Title') }}</label>
                             <input class="form-control form-round" type="text" name="profession_title" id="profession_title"
                                 :class="{ 'is-invalid': errors.profession_title }" v-model="form.profession_title">
@@ -61,11 +66,43 @@
                                 :class="{ 'is-invalid': errors.name }" v-model="form.name">
                             <div class="invalid-feedback">@{{ errors.name }}</div>
                         </div>
+
                         <div class="mb-3">
                             <label class="required" for="username">{{ __('Username') }}</label>
                             <input class="form-control form-round" type="text" name="username" id="username"
                                 :class="{ 'is-invalid': errors.username }" v-model="form.username">
                             <div class="invalid-feedback">@{{ errors.username }}</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="required" for="email">{{ __('Email') }}</label>
+                            <input class="form-control form-round" type="email" name="email" id="email"
+                                :class="{ 'is-invalid': errors.email }" v-model="form.email">
+                            <div class="invalid-feedback">@{{ errors.email }}</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="required" for="phone">{{ __('Phone') }}</label>
+                            <input class="form-control form-round" type="text" name="phone" id="phone"
+                                :class="{ 'is-invalid': errors.phone }" v-model="form.phone">
+                            <div class="invalid-feedback">@{{ errors.phone }}</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="required" for="password">{{ __('Password') }}</label>
+                            <input class="form-control form-round " type="password" name="password" id="password"
+                                autocomplete="new-password" :class="{ 'is-invalid': errors.password }"
+                                v-model="form.password">
+                            <div class="invalid-feedback">@{{ errors.password }}</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="required"
+                                for="password_confirmation">{{ __('Password Confirmation') }}</label>
+                            <input class="form-control form-round" type="password" name="password_confirmation"
+                                id="password_confirmation" :class="{ 'is-invalid': errors.password_confirmation }"
+                                v-model="form.password_confirmation">
+                            <div class="invalid-feedback">@{{ errors.password_confirmation }}</div>
                         </div>
 
                         <div class="mb-3">
@@ -101,38 +138,9 @@
                             <div class="invalid-feedback">@{{ errors.zip_code }}</div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="required" for="email">{{ __('Email') }}</label>
-                            <input class="form-control form-round" type="email" name="email" id="email"
-                                :class="{ 'is-invalid': errors.email }" v-model="form.email">
-                            <div class="invalid-feedback">@{{ errors.email }}</div>
-                        </div>
 
-                        <div class="mb-3">
-                            <label class="required" for="phone">{{ __('Phone') }}</label>
-                            <input class="form-control form-round" type="text" name="phone" id="phone"
-                                :class="{ 'is-invalid': errors.phone }" v-model="form.phone">
-                            <div class="invalid-feedback">@{{ errors.phone }}</div>
-                        </div>
 
-                        <div class="mb-3">
-                            <label class="required" for="password">{{ __('Password') }}</label>
-                            <input class="form-control form-round " type="password" name="password" id="password"
-                                autocomplete="new-password" :class="{ 'is-invalid': errors.password }"
-                                v-model="form.password">
-                            <div class="invalid-feedback">@{{ errors.password }}</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="required"
-                                for="password_confirmation">{{ __('Password Confirmation') }}</label>
-                            <input class="form-control form-round" type="password" name="password_confirmation"
-                                id="password_confirmation" :class="{ 'is-invalid': errors.password_confirmation }"
-                                v-model="form.password_confirmation">
-                            <div class="invalid-feedback">@{{ errors.password_confirmation }}</div>
-                        </div>
-
-                        <div v-if="form.role == 'vendor'">
+                        <div v-if="form.user_type != 'tradesmen'">
                             <div class="mb-3">
                                 <label class="required" for="business_description">{{ __('Business Description') }}</label>
                                 <textarea name="business_description" id="business_description" cols="30" rows="4" class="form-control" v-model="form.business_description" :class="{ 'is-invalid': errors.business_description }"></textarea>

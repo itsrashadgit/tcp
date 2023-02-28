@@ -31,9 +31,10 @@ return new class extends Migration
             $table->text("company_vision")->nullable();
             $table->text("products")->nullable();
             $table->text("services")->nullable();
-            $table->string("trade")->nullable();
+            // $table->string("trade")->nullable();
+            $table->foreignId("trade_id")->nullable();
             $table->string("profession_title")->nullable();
-            $table->integer("years_of_experience")->nullable();
+            $table->string("years_of_experience")->nullable();
             $table->string("education")->nullable();
             $table->string("institution")->nullable();
             $table->text("work_history")->nullable();

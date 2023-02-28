@@ -13,6 +13,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/icons/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/icons/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('assets/img/icons/site.webmanifest') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
     <link rel="mask-icon" href="{{ asset('assets/img/icons/safari-pinned-tab.svg') }}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
@@ -34,6 +35,7 @@
     <link rel="stylesheet" media="screen" href="{{ asset('vendor/boxicons/css/boxicons.min.css') }}" />
 
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css">
 
     @stack('head_tags')
 </head>
@@ -243,7 +245,7 @@
                                     <div class="item--inner builder-item--social_search_box"
                                         data-section="social_search_box" data-item-id="social_search_box">
                                         <div class="header-social_search_box-item item--social_search_box">
-                                            <form role="search" class="header-search-form" action="{{ route("search") }}" method="GET">
+                                            <form role="search" class="header-search-form" action="{{ route("profile.list") }}" method="GET">
                                                 <div class="search-form-fields">
                                                     <span class="screen-reader-text">Search for:</span>
                                                     <input autocomplete="off" type="search" class="search-field"
@@ -654,6 +656,8 @@
     <script src="{{ asset('assets/js/jquery1.10.2.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/jquery.tcpImageMaps.min.js') }}" type="text/javascript"></script>
     <!-- <script src="{{ asset('assets/js/imageMapResizer.min.js') }}" type="text/javascript"></script> -->
+
+    @include('core::partials.toastr')
 
     <script type="text/javascript">
         $(document).ready(function(e) {

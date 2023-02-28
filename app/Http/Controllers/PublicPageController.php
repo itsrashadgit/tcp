@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\County;
 use App\Models\State;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PublicPageController extends Controller
@@ -29,4 +30,15 @@ class PublicPageController extends Controller
 
     }
 
+    public function profiles(Request $request){
+
+        $query = $request->q;
+
+        $profiles = User::whereHas("roles", function($q){
+                    $q->where("title", "!=", "admin");
+                })->where("name", "like", "%$query%")
+                    ->paginate(20);
+
+        return view("profile-list", compact("profiles"));
+    }
 }

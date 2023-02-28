@@ -13,6 +13,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TradeController;
 use App\Models\City;
 use App\Models\State;
+use App\Models\Trade;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +34,8 @@ Route::get('/', [PublicPageController::class, 'index'])->name("welcome");
 
 Route::get('register', function(){
 
-    return view("auth.register");
+    $trades = Trade::all();
+    return view("auth.register", compact("trades"));
 
 })->name("register")->middleware("guest");
 
@@ -62,6 +64,8 @@ Route::get("profile/{username}", [HomeController::class, 'profile'])->name("user
 Route::get("activity/{username}", [HomeController::class, 'activity'])->name("user.activity");
 
 Route::get("settings", [HomeController::class, 'settings'])->name("user.settings");
+Route::get("edit-profile", [HomeController::class, 'editProfile'])->name("profile.edit");
+Route::post("edit-profile", [HomeController::class, 'updateProfile'])->name("profile.update");
 
 Route::get("follow", [FollowController::class, "follow"])->name("follow");
 Route::get("unfollow", [FollowController::class, "unfollow"])->name("unfollow");
@@ -71,6 +75,8 @@ Route::get("search", [SearchController::class, "search"])->name("search");
 
 Route::post("send-message", [MessageBoardController::class, 'sendMsg'])->name("send.msg");
 Route::post("upload-portfolio", [PortfolioController::class, 'uploadPortfolio'])->name("portfolio.upload");
+
+Route::get("profiles", [PublicPageController::class, "profiles"])->name("profile.list");
 
 // Route::get("add-friend", [FriendController::class, "addFriend"])->name("addfriend");
 // Route::get("unfriend", [FriendController::class, "unFriend"])->name("unfriend");

@@ -38,6 +38,7 @@ Route::group(["as" => "api.", "prefix" => "v1"], function(){
     Route::apiResource("comments", CommentController::class);
 
     Route::put("coverphoto/update", [HomeController::class, 'updateCoverPhoto'])->name("coverphoto.update");
+    Route::post('update-profile', [HomeController::class, 'updateProfile'])->name("profile.update");
 
 
 });

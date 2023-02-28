@@ -6,7 +6,7 @@
         <div class="tabs7 my-4">
             <ul class="nav m-0">
                 @foreach ($trades as $trade)
-                    <li class="nav-item"><a class="nav-link bg-white" href="{{ route("search") }}">{{ $trade->name }}</a></li>
+                    <li class="nav-item"><a class="nav-link bg-white" href="{{ route("profile.list") }}">{{ $trade->name }}</a></li>
                 @endforeach
             </ul>
         </div>

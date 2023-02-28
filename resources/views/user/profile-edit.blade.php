@@ -20,32 +20,31 @@
                     <article id="post-0"
                         class="bp_members type-bp_members entry post-0 page type-page status-publish hentry pmpro-no-access">
                         <header class="entry-header">
-                            <h1 class="entry-title">Michael Knight</h1>
+                            <h1 class="entry-title">{{ $user->name }}</h1>
                         </header>
                         <!-- .entry-header -->
 
                         <div class="entry-content">
                             <div id="buddypress" class="buddypress-wrap metafans round-avatars bp-dir-hori-nav">
-                                <div id="item-header" role="complementary" data-bp-item-id="2"
-                                    data-bp-item-component="members" class="users-header single-headers">
+                                <div id="item-header" role="complementary" class="users-header single-headers">
                                     <div id="cover-image-container">
-                                        <a id="header-cover-image"
-                                            href="https://theconstructionplatform.com/members/knight/"></a>
+                                        <a id="header-cover-image" href=""></a>
 
                                         <div id="item-header-cover-image">
                                             <div id="item-header-avatar">
                                                 <img loading="lazy"
-                                                    src="//www.gravatar.com/avatar/db9578ef026af3aa804383699b90d150?s=150&amp;r=g&amp;d=mm"
+                                                    src="{{ asset($user->avatar ? '/images/user/' . $user->avatar : 'images/avatar.png') }}"
                                                     class="avatar user-2-avatar avatar-150 photo" width="150"
                                                     height="150" alt="Profile picture of Michael Knight" />
                                             </div>
                                             <div id="item-header-content">
-                                                <h2 class="user-nicename">Michael Knight</h2>
+                                                <h2 class="user-nicename">{{ $user->name }}</h2>
                                                 <div id="item-buttons"></div>
                                                 <div id="item-meta">
                                                     <p class="profile-header-meta-date"><span
-                                                            class="hide-badge">@knight</span> • <span>Joined : January 27,
-                                                            2023 </span></p>
+                                                            class="hide-badge">{{ '@' . $user->username }}</span> •
+                                                        <span>Joined : January 27, 2023 </span>
+                                                    </p>
                                                     <div class="user-facts">
                                                         <p>
                                                             <span class="secondary-color followers-count-2">0</span>
@@ -56,10 +55,10 @@
                                                             <span>Following</span>
                                                         </p>
                                                         <!-- <p>
-                                <span class="secondary-color">0</span>
-                                <span>Topics</span>
-                            </p>
-                             -->
+                                        <span class="secondary-color">0</span>
+                                        <span>Topics</span>
+                                    </p>
+                                     -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -71,59 +70,36 @@
                                 <!-- #item-header -->
 
                                 <div class="bp-wrap">
-
-
-
                                     <div id="item-body" class="item-body">
-
-
-                                        <nav class="bp-navs bp-subnavs no-ajax user-subnav" id="subnav" role="navigation"
+                                        <nav class="bp-navs no-ajax user-subnav" id="subnav" role="navigation"
                                             aria-label="Profile menu">
                                             <ul class="subnav">
-
-
-
-
-                                                <li id="public-personal-li" class="bp-personal-sub-tab"
-                                                    data-bp-user-scope="public">
-                                                    <a href="https://theconstructionplatform.com/members/knight/profile/"
-                                                        id="public">
+                                                <li id="public-personal-li" class="bp-personal-sub-tab">
+                                                    <a href="{{ route('user.profile', $user->username) }}" id="public">
                                                         View
                                                     </a>
                                                 </li>
 
-
-                                                <li id="edit-personal-li" class="bp-personal-sub-tab current selected"
-                                                    data-bp-user-scope="edit">
-                                                    <a href="https://theconstructionplatform.com/members/knight/profile/edit/"
-                                                        id="edit">
+                                                <li id="edit-personal-li" class="bp-personal-sub-tab current selected">
+                                                    <a href="{{ route('profile.edit') }}" id="edit">
                                                         Edit
                                                     </a>
                                                 </li>
 
-
-                                                <li id="change-avatar-personal-li" class="bp-personal-sub-tab"
-                                                    data-bp-user-scope="change-avatar">
-                                                    <a href="https://theconstructionplatform.com/members/knight/profile/change-avatar/"
-                                                        id="change-avatar">
+                                                {{-- <li id="change-avatar-personal-li" class="bp-personal-sub-tab">
+                                                    <a href="" id="change-avatar">
                                                         Change Profile Photo
                                                     </a>
                                                 </li>
 
-
-                                                <li id="change-cover-image-personal-li" class="bp-personal-sub-tab"
-                                                    data-bp-user-scope="change-cover-image">
-                                                    <a href="https://theconstructionplatform.com/members/knight/profile/change-cover-image/"
-                                                        id="change-cover-image">
+                                                <li id="change-cover-image-personal-li" class="bp-personal-sub-tab">
+                                                    <a href="" id="change-cover-image">
                                                         Change Cover Image
                                                     </a>
-                                                </li>
-
-
-
+                                                </li> --}}
                                             </ul>
-                                        </nav><!-- .item-list-tabs -->
-
+                                        </nav>
+                                        <!-- .item-list-tabs -->
 
                                         <div class="profile edit">
 
@@ -131,61 +107,215 @@
                                             <h2 class="screen-heading edit-profile-screen">Edit Profile</h2>
 
 
-                                            <form
-                                                action="https://theconstructionplatform.com/members/knight/profile/edit/group/1/"
-                                                method="post" id="profile-edit-form"
-                                                class="standard-form profile-edit base">
+                                            <form action="{{ route('api.profile.update') }}" method="post" @submit.prevent="submitForm">
+
+                                                @csrf
+
+                                                {{-- <div class="mb-3">
+                                                    <label for="trade_role" class="required">{{ __('I am a') }}</label>
+                                                    <select name="user_type" id="user_type" class="form-control" v-model="form.user_type">
+                                                        <option value="tradesmen">Tradesmen</option>
+                                                        <option value="contractors">Contractors</option>
+                                                        <option value="architexts/engineers">Architects/Engineers</option>
+                                                        <option value="trade_organization/associations">Trade Organizations/Associations</option>
+                                                        <option value="trade_schools/education">Trade Schools/Education</option>
+                                                        <option value="facility/property_mgmt">Facility/Property Mgmt</option>
+                                                        <option value="vendors">Vendors</option>
+                                                    </select>
+                                                </div> --}}
+
+                                                <div class="mb-3" v-if=" form.user_type == 'tradesmen' || form.user_type == 'contractors' ">
+                                                    <label class="required" for="trade">{{ __('Trade') }}</label>
+                                                        <select name="trade" id="trade" class="form-control">
+                                                            @foreach ($trades as $trade)
+                                                                <option value="{{ $trade->id }}">{{ $trade->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    <div class="invalid-feedback">@{{ errors.trade }}</div>
+                                                </div>
+
+                                                <div class="mb-3" v-if="form.user_type == 'tradesmen'">
+                                                    <label class="required" for="profession_title">{{ __('Profession Title') }}</label>
+                                                    <input class="form-control form-round" type="text" name="profession_title" id="profession_title"
+                                                        :class="{ 'is-invalid': errors.profession_title }" v-model="form.profession_title">
+                                                    <div class="invalid-feedback">@{{ errors.profession_title }}</div>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label class="required" for="name">{{ __('Name') }}</label>
+                                                    <input class="form-control form-round" type="text" name="name" id="name"
+                                                        :class="{ 'is-invalid': errors.name }" v-model="form.name">
+                                                    <div class="invalid-feedback">@{{ errors.name }}</div>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label class="required" for="email">{{ __('Email') }}</label>
+                                                    <input class="form-control form-round" type="email" name="email" id="email"
+                                                        :class="{ 'is-invalid': errors.email }" v-model="form.email">
+                                                    <div class="invalid-feedback">@{{ errors.email }}</div>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label class="required" for="phone">{{ __('Phone') }}</label>
+                                                    <input class="form-control form-round" type="text" name="phone" id="phone"
+                                                        :class="{ 'is-invalid': errors.phone }" v-model="form.phone">
+                                                    <div class="invalid-feedback">@{{ errors.phone }}</div>
+                                                </div>
 
 
+                                                <div class="mb-3">
+                                                    <label class="required" for="address">{{ __('Address') }}</label>
+                                                    <textarea name="address" id="address" cols="30" rows="4" class="form-control" v-model="form.address" :class="{ 'is-invalid': errors.address }"></textarea>
+                                                    <div class="invalid-feedback">@{{ errors.name }}</div>
+                                                </div>
 
-                                                <h3 class="screen-heading profile-group-title edit">
-                                                    Editing "Base" Profile Group </h3>
+                                                <div class="mb-3">
+                                                    <label class="required" for="state">{{ __('State') }}</label>
+                                                    <select name="state" id="state" class="form-select form-round" :class="{ 'is-invalid': errors.state }" v-model="form.state" @change="fetchCounties">
+                                                        <option value="">{{ __("Select State") }}</option>
+                                                        @foreach (\App\Models\State::all() as $state)
+                                                            <option value="{{ $state->id }}">{{ $state->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <div class="invalid-feedback">@{{ errors.state }}</div>
+                                                </div>
 
+                                                <div class="mb-3">
+                                                    <label class="required" for="county">{{ __('County') }}</label>
+                                                    <select name="county" id="county" class="form-select form-round" :class="{ 'is-invalid': errors.county }" v-model="form.county">
+                                                        <option value="">{{ __("Select County") }}</option>
+                                                        <option v-for="county in counties" :value="county.id">@{{ county.name }}</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">@{{ errors.state }}</div>
+                                                </div>
 
-                                                <div
-                                                    class="editfield field_1 field_name required-field visibility-public field_type_textbox">
-                                                    <fieldset>
-
-
-                                                        <legend id="field_1-1">
-                                                            Name <span class="bp-required-field-label">(required)</span>
-                                                        </legend>
-
-
-                                                        <input id="field_1" name="field_1" type="text"
-                                                            value="Michael Knight" aria-required="true"
-                                                            aria-labelledby="field_1-1" aria-describedby="field_1-3">
-
-
-
-
-
-                                                        <p class="field-visibility-settings-notoggle field-visibility-settings-header"
-                                                            id="field-visibility-settings-toggle-1">
-                                                            This field may be seen by: <span
-                                                                class="current-visibility-level">Everyone</span> </p>
-
-
-                                                    </fieldset>
+                                                <div class="mb-3">
+                                                    <label class="required" for="zip_code">{{ __('Zip Code') }}</label>
+                                                    <input class="form-control form-round" type="text" name="zip_code" id="zip_code"
+                                                        :class="{ 'is-invalid': errors.zip_code }" v-model="form.zip_code">
+                                                    <div class="invalid-feedback">@{{ errors.zip_code }}</div>
                                                 </div>
 
 
 
-                                                <input type="hidden" name="field_ids" id="field_ids" value="1">
+                                                <div v-if="form.user_type != 'tradesmen'">
+                                                    <div class="mb-3">
+                                                        <label class="required" for="business_description">{{ __('Business Description') }}</label>
+                                                        <textarea name="business_description" id="business_description" cols="30" rows="4" class="form-control" v-model="form.business_description" :class="{ 'is-invalid': errors.business_description }"></textarea>
+                                                        <div class="invalid-feedback">@{{ errors.name }}</div>
+                                                    </div>
 
-                                                <div class="submit"><input type="submit" name="profile-group-edit-submit"
-                                                        id="profile-group-edit-submit" value="Save Changes"></div><input
-                                                    type="hidden" id="_wpnonce" name="_wpnonce"
-                                                    value="bc1b5c5654"><input type="hidden" name="_wp_http_referer"
-                                                    value="/members/knight/profile/edit/group/1/">
+                                                    <div class="mb-3">
+                                                        <label class="required" for="company_mission">{{ __('Company Mission') }}</label>
+                                                        <input class="form-control form-round" type="text" name="company_mission" id="company_mission"
+                                                            :class="{ 'is-invalid': errors.company_mission }" v-model="form.company_mission">
+                                                        <div class="invalid-feedback">@{{ errors.company_mission }}</div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="required" for="company_vision">{{ __('Company Vision') }}</label>
+                                                        <input class="form-control form-round" type="text" name="company_vision" id="company_vision"
+                                                            :class="{ 'is-invalid': errors.company_vision }" v-model="form.company_vision">
+                                                        <div class="invalid-feedback">@{{ errors.company_vision }}</div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="required" for="products">{{ __('Products') }}</label>
+                                                        <textarea name="products" id="products" cols="30" rows="4" class="form-control" v-model="form.products" :class="{ 'is-invalid': errors.products }"></textarea>
+                                                        <div class="invalid-feedback">@{{ errors.products }}</div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="required" for="services">{{ __('Services') }}</label>
+                                                        <textarea name="services" id="services" cols="30" rows="4" class="form-control" v-model="form.services" :class="{ 'is-invalid': errors.services }"></textarea>
+                                                        <div class="invalid-feedback">@{{ errors.services }}</div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div v-else>
+                                                    <div class="mb-3">
+                                                        <label class="required" for="years_of_experience">{{ __('Years of Experience') }}</label>
+                                                        <input class="form-control form-round" type="text" name="years_of_experience" id="years_of_experience"
+                                                            :class="{ 'is-invalid': errors.years_of_experience }" v-model="form.years_of_experience">
+                                                        <div class="invalid-feedback">@{{ errors.years_of_experience }}</div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="required" for="education">{{ __('Education') }}</label>
+                                                        <input class="form-control form-round" type="text" name="education" id="education"
+                                                            :class="{ 'is-invalid': errors.education }" v-model="form.education">
+                                                        <div class="invalid-feedback">@{{ errors.education }}</div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="required" for="institution">{{ __('Institution') }}</label>
+                                                        <input class="form-control form-round" type="text" name="institution" id="institution"
+                                                            :class="{ 'is-invalid': errors.institution }" v-model="form.institution">
+                                                        <div class="invalid-feedback">@{{ errors.institution }}</div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="required" for="work_history">{{ __('Work History') }}</label>
+                                                        <input class="form-control form-round" type="text" name="work_history" id="work_history"
+                                                            :class="{ 'is-invalid': errors.work_history }" v-model="form.work_history">
+                                                        <div class="invalid-feedback">@{{ errors.work_history }}</div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="required" for="license">{{ __('License') }}</label>
+                                                        <input class="form-control form-round" type="text" name="license" id="license"
+                                                            :class="{ 'is-invalid': errors.license }" v-model="form.license">
+                                                        <div class="invalid-feedback">@{{ errors.license }}</div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="required" for="certificates">{{ __('Certificates') }}</label>
+                                                        <input class="form-control form-round" type="text" name="certificates" id="certificates"
+                                                            :class="{ 'is-invalid': errors.certificates }" v-model="form.certificates">
+                                                        <div class="invalid-feedback">@{{ errors.certificates }}</div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="required" for="achievements">{{ __('Achievements') }}</label>
+                                                        <input class="form-control form-round" type="text" name="achievements" id="achievements"
+                                                            :class="{ 'is-invalid': errors.achievements }" v-model="form.achievements">
+                                                        <div class="invalid-feedback">@{{ errors.achievements }}</div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="required" for="ability_skills">{{ __('Ability Skills') }}</label>
+                                                        <input class="form-control form-round" type="text" name="ability_skills" id="ability_skills"
+                                                            :class="{ 'is-invalid': errors.ability_skills }" v-model="form.ability_skills">
+                                                        <div class="invalid-feedback">@{{ errors.ability_skills }}</div>
+                                                    </div>
+
+
+                                                    <div class="mb-3">
+                                                        <label class="required" for="about_you">{{ __('Tell the Industry about you') }}</label>
+                                                        <textarea name="about_you" id="about_you" cols="30" rows="4" class="form-control" v-model="form.about_you" :class="{ 'is-invalid': errors.about_you }"></textarea>
+                                                        <div class="invalid-feedback">@{{ errors.about_you }}</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="text text-success mb-3" v-if="response">@{{ response }}</div>
+
+                                                <div class="mb-3 d-flex justify-content-between align-items-center">
+                                                    <button type="submit" class="btn btn-primary bg-primary text-white" :disabled="registering">
+                                                        <i v-if="registering" class="fas fa-spinner fa-spin"></i>
+                                                        <span>{{ __('Update Profile') }}</span>
+                                                    </button>
+                                                    {{-- <a href="{{ route('login') }}">{{ __('Back to Login') }}</a> --}}
+                                                </div>
+
                                             </form>
 
 
 
-                                        </div><!-- .profile -->
-
-
-                                    </div><!-- #item-body -->
+                                        </div>
+                                        <!-- .profile -->
+                                    </div>
+                                    <!-- #item-body -->
                                 </div>
                                 <!-- // .bp-wrap -->
                             </div>
@@ -216,20 +346,97 @@
     <script>
         vdata = {
             ...vdata,
-            loading_feeds: true,
-            feeds: [],
+            counties: @json($counties),
+            form: {
+                state: @json($user->state_id),
+                county: @json($user->county_id),
+                user_type: @json($user->user_type),
+                name: @json($user->name),
+                email: @json($user->email),
+                phone: @json($user->phone),
+                address: @json($user->address),
+                zip_code: @json($user->zip_code),
+                business_description: @json($user->business_description),
+                company_mission: @json($user->company_mission),
+                company_vision: @json($user->company_vision),
+                products: @json($user->products),
+                services: @json($user->services),
+
+                trade: @json($user->trade_id),
+                profession_title: @json($user->profession_title),
+                years_of_experience: @json($user->years_of_experience),
+                education: @json($user->education),
+                institution: @json($user->institution),
+                work_history: @json($user->work_history),
+                license: @json($user->license),
+                certificates: @json($user->certificates),
+                achievements: @json($user->achievements),
+                ability_skills: @json($user->ability_skills),
+                about_you: @json($user->about_you)
+            },
+            errors: {},
+            registering: false,
+            response: null
         }
 
         vmethods = {
             ...vmethods,
+            async submitForm() {
 
+                try {
+
+                    this.registering = true;
+                    this.errors = {};
+                    this.response = "";
+                    const res = await axios.post("{{ route('api.profile.update') }}", this.form);
+                    this.response = res.data.message;
+                    this.registering = false;
+                    toastr.success("Updated Successfully");
+
+
+                } catch (e) {
+
+                    if (e.response && e.response.status == 422) {
+                        for (const [key, value] of Object.entries(e.response.data.errors)) {
+                            this.errors[key] = value[0];
+                        }
+                    } else {
+                        toastr.error("Something Wen't Wrong!");
+                    }
+
+                    this.registering = false;
+
+                }
+
+            },
+            async fetchCounties(e) {
+
+                try {
+
+                    const state = e.target.value;
+                    const res = await axios.get("{{ route('api.counties') }}?state="+state);
+                    this.counties = res.data.data;
+
+                } catch (e) {
+
+                    if (e.response && e.response.status == 422) {
+                        for (const [key, value] of Object.entries(e.response.data.errors)) {
+                            this.errors[key] = value[0];
+                        }
+                    } else {
+                        toastr.error("Something Wen't Wrong!");
+                    }
+
+                    this.registering = false;
+
+                }
+
+            }
         }
 
         vcreated = {
             ...vcreated,
-            run: function() {
 
-            }
             // function key: function(){}
         }
 
