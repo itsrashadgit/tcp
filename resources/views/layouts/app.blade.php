@@ -37,6 +37,40 @@
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css">
 
+    <style>
+        .required:after {
+            content:" *";
+            color: red;
+        }
+        .profile-img-uploader {
+            position: absolute;
+            right: 10px;
+            bottom: 5px;
+            font-size: 25px;
+            background: #D8DADF;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+        }
+        .cover-photo-uploader label {
+            background: #fff;
+            padding: 5px 20px;
+            border-radius: 8px;
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+        }
+
+        @media only screen and (min-width: 1020px) {
+            .loggedin-user-links{
+                right: 350px !important;
+            }
+        }
+    </style>
     @stack('head_tags')
 </head>
 
@@ -242,8 +276,7 @@
                                         </div>
                                     @endauth
 
-                                    <div class="item--inner builder-item--social_search_box"
-                                        data-section="social_search_box" data-item-id="social_search_box">
+                                    <div class="item--inner builder-item--social_search_box">
                                         <div class="header-social_search_box-item item--social_search_box">
                                             <form role="search" class="header-search-form" action="{{ route("profile.list") }}" method="GET">
                                                 <div class="search-form-fields">
@@ -263,13 +296,16 @@
                                                 <p class="ec-mb-0">Search result</p>
                                             </div>
                                         </div>
+                                        <div class="mx-2"></div>
+                                        <div>
+                                            <a href="{{ route("trade.list") }}">
+                                                <img src="{{ asset('assets/img/search.png') }}" width="25"
+                                                                height="25" title="Search">
+                                            </a>
+                                        </div>
+
                                     </div>
-                                    <div class="ms-1">
-                                        <a href="{{ route("trade.list") }}">
-                                            <img src="{{ asset('assets/img/search.png') }}" width="25"
-                                                            height="25" title="Search">
-                                        </a>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>

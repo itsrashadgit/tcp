@@ -49,8 +49,8 @@
                                         </button>
 
                                     </div>
-                                    <div class="text-center">
-                                        <a href="{{ route('login') }}" class="btn btn-primary">{{ __('Login Now') }}</a>
+                                    <div class="text-center mt-3">
+                                        <a href="{{ route('login') }}">{{ __('Back to Login') }}</a>
                                     </div>
                                 </form>
                             </div>
