@@ -8,6 +8,8 @@
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- TCP Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/icons/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/icons/favicon-32x32.png') }}">
@@ -18,6 +20,7 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
+    {{-- Font --}}
     <link rel="stylesheet"
         href="//fonts.googleapis.com/css?family=Inter%3A400%2Cmedium%2Csemi-bold%2Cbold%7COpen+Sans%3A300%2C300i%2C400%2C400i%2C600%2C600i%2C700%2C700i%2C800%2C800i&#038;ver=3.3.1"
         media="all" />
@@ -32,7 +35,8 @@
     <link rel="stylesheet" id="th-bud-css" href="{{ asset('tcp/css/budcomp.css') }}" media="all" />
     <link rel="stylesheet" href="{{ asset('assets/css/tcp.css') }}">
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" media="screen" href="{{ asset('vendor/boxicons/css/boxicons.min.css') }}" />
+    {{-- <link rel="stylesheet" media="screen" href="{{ asset('vendor/boxicons/css/boxicons.min.css') }}" /> --}}
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css">
@@ -90,7 +94,7 @@
                                             data-item-id="logo">
                                             <div class="site-branding logo-top">
                                                 <a href="{{ route('welcome') }}" class="logo-link" rel="home">
-                                                    <img class="site-img-logo" src="{{ asset('assets/img/logo.jpg') }}"
+                                                    <img class="site-img-logo" src="{{ asset('assets/img/logo.png') }}"
                                                         alt="the-construction-platform"
                                                         title="The Construction Platform" />
                                                 </a>
@@ -138,10 +142,10 @@
 
                                                     <li id="menu-item--main-desktop-953"
                                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-953">
-                                                        <a href="#exchange" class="d-flex flex-column"
-                                                            title="Exchange Calculator & Payment Center">
-                                                            <img src="{{ asset('assets/img/exchange.png') }}"
-                                                                width="30" height="30">
+                                                        <a href="{{ route('welcome') }}"
+                                                            class="d-flex flex-column">
+                                                            <i class='bx bx-dollar-circle fs-3'></i>
+                                                            <span class="link-before">Exchange Calculator</span>
                                                         </a>
                                                     </li>
 
@@ -173,8 +177,7 @@
                                                     <div class="user-account-segment">
                                                         <div class="ec-d-flex signin-items">
                                                             <button class="button button-signin show-signin-form-modal"
-                                                                data-bs-toggle="modal" data-bs-target="#loginModal">Sign
-                                                                In</button>
+                                                                data-bs-toggle="modal" data-bs-target="#loginModal">Sign In</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -218,11 +221,11 @@
                                                             {{-- <li>
                                                             <a href="https://theconstructionplatform.com/members/admin/forums">Topics<span class="count">34</span></a>
                                                         </li> --}}
-                                                            <li>
+                                                            {{-- <li>
                                                                 <a
-                                                                    href="https://theconstructionplatform.com/members/admin/groups">Groups<span
+                                                                    href="">Groups<span
                                                                         class="count"></span></a>
-                                                            </li>
+                                                            </li> --}}
                                                             {{-- <li>
                                                             <a href="https://theconstructionplatform.com/members/admin/friends">Friends<span class="count"></span></a>
                                                         </li>
@@ -313,7 +316,7 @@
                         <div class="cb-row--mobile hide-on-desktop tophive-grid tophive-grid-middle">
                             <div class="row-v2 row-v2-main no-center">
                                 <div class="col-v2 col-v2-left">
-                                    <div class="item--inner builder-item--nav-icon" data-section="header_menu_icon"
+                                    {{-- <div class="item--inner builder-item--nav-icon" data-section="header_menu_icon"
                                         data-item-id="nav-icon">
                                         <a
                                             class="menu-mobile-toggle item-button is-size-desktop-small is-size-tablet-medium is-size-mobile-small">
@@ -324,25 +327,33 @@
                                             </span>
                                             <span class="nav-icon--label hide-on-tablet hide-on-mobile"></span>
                                         </a>
-                                    </div>
+                                    </div> --}}
                                     <div class="item--inner builder-item--logo" data-section="title_tagline"
                                         data-item-id="logo">
                                         <div class="site-branding logo-top">
-                                            <a href="https://theconstructionplatform.com/" class="logo-link"
+                                            <a href="{{ route("welcome") }}" class="logo-link"
                                                 rel="home">
                                                 <img class="site-img-logo"
-                                                    src="https://theconstructionplatform.com/wp-content/uploads/2022/07/logo.png"
-                                                    alt="The Construction Platform" />
-                                                <img class="site-img-logo logo-dark" src=""
+                                                    src="{{ asset('assets/img/logo.png') }}"
                                                     alt="The Construction Platform" />
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-v2 col-v2-right">
-                                    <div class="item--inner builder-item--signin_signup" data-section="signin_signup"
-                                        data-item-id="signin_signup">
-                                        <div class="header-signin_signup-item item--signin_signup">
+                                    @guest
+                                        <div class="item--inner builder-item--signin_signup" data-section="signin_signup" data-item-id="signin_signup">
+                                            <div class="header-signin_signup-item item--signin_signup">
+                                                <div class="user-account-segment">
+                                                    <div class="ec-d-flex signin-items">
+                                                        <a class="button button-signin show-signin-form-modal btn-sm" href="{{ route("login") }}">Sign In</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="item--inner builder-item--signin_signup">
+                                            <div class="header-signin_signup-item item--signin_signup">
                                             <div class="user-account-segment">
                                                 <div class="ec-text-right user-loggedin">
                                                     <img alt=""
@@ -351,10 +362,8 @@
                                                         loading="lazy" decoding="async" />
 
                                                     <div class="ec-w-75 user-header-section">
-                                                        <h6 class="ec-mb-0 ec-mt-2">Hello,
-                                                            {{ Auth::user()->name ?? '' }}</h6>
-                                                        <a
-                                                            href="https://theconstructionplatform.com/wp-login.php?action=logout&amp;_wpnonce=182b5d09aa&redirect_to=https%3A%2F%2Ftheconstructionplatform.com%2Fmembers%2Fknight%2Factivity%2F60%2F%3Floggedout%3Dtrue">Logout</a>
+                                                        <h6 class="ec-mb-0 ec-mt-2">Hello, {{ Auth::user()->name ?? '' }}</h6>
+                                                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                                     </div>
                                                 </div>
 
@@ -378,11 +387,11 @@
                                                     {{-- <li>
                                                         <a href="https://theconstructionplatform.com/members/admin/forums">Topics<span class="count">34</span></a>
                                                     </li> --}}
-                                                    <li>
+                                                    {{-- <li>
                                                         <a
                                                             href="https://theconstructionplatform.com/members/admin/groups">Groups<span
                                                                 class="count"></span></a>
-                                                    </li>
+                                                    </li> --}}
                                                     {{-- <li>
                                                         <a href="https://theconstructionplatform.com/members/admin/friends">Friends<span class="count"></span></a>
                                                     </li>
@@ -400,42 +409,41 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="item--inner builder-item--user_notification"
-                                    data-section="user_notification" data-item-id="user_notification">
-                                    <div class="header-user_notification-item item--user_notification">
-                                        <div class="user-account-segment">
-                                            <div class="th-bp-header-notification-container">
-                                                <div class="th-bp-notif-logo">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                        height="16" fill="currentColor" class="bi bi-bell-fill"
-                                                        viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
-                                                    </svg><span>0</span>
-                                                </div>
-                                                <ul>
-                                                    <span class="notification-title">Notifications<a
-                                                            class="ec-float-right"
-                                                            href="https://theconstructionplatform.com/members/admin/notifications">View
-                                                            All</a></span>
-                                                    <li>
-                                                        <a href="https://theconstructionplatform.com/members/admin/">You
-                                                            have no new Notifications.</a>
-                                                    </li>
-                                                </ul>
                                             </div>
                                         </div>
-                                    </div>
+
+                                        <div class="item--inner builder-item--user_notification">
+                                            <div class="header-user_notification-item item--user_notification">
+                                                <div class="user-account-segment">
+                                                    <div class="th-bp-header-notification-container">
+                                                        <div class="th-bp-notif-logo">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-bell-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                                                            </svg>
+                                                            <span>0</span>
+                                                        </div>
+                                                        <ul>
+                                                            <span class="notification-title">Notifications
+                                                                <a class="ec-float-right" href="">View All</a></span>
+                                                            <li>
+                                                                <a href="">You have no new Notifications.</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endguest
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="header-menu-sidebar" class="header-menu-sidebar menu-sidebar-panel dark-mode">
+
+                {{-- <div id="header-menu-sidebar" class="header-menu-sidebar menu-sidebar-panel dark-mode">
                     <div id="header-menu-sidebar-bg" class="header-menu-sidebar-bg">
                         <div id="header-menu-sidebar-inner" class="header-menu-sidebar-inner">
                             <a class="close is-size-medium close-panel close-sidebar-panel" href="#">
@@ -554,7 +562,8 @@
                             <div class="footer ec-d-flex ec-justify-content-between"></div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
+
             </div>
         </header>
         <div id="site-content" class="content-sm-space site-content">
@@ -565,11 +574,7 @@
     </div>
 
     <div class="tophive-bp-messenger-sticky-main">
-        <div class="messenger-toggler">
-            <img alt="" src="//www.gravatar.com/avatar/82597721255b38f095bf4d5ca9c50b8c?s=30&amp;r=g&amp;d=mm"
-                srcset="//www.gravatar.com/avatar/82597721255b38f095bf4d5ca9c50b8c?s=30&amp;r=g&amp;d=mm 2x"
-                class="avatar avatar-30 photo" height="30" width="30" loading="lazy" decoding="async">
-            Messenger<span class="live-indicator"></span><span class="new-message-count hidden">0</span>
+        <div class="messenger-toggler">Messenger<span class="live-indicator"></span><span class="new-message-count hidden">0</span>
             <span class="open-arrow">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-chevron-up" viewBox="0 0 16 16">

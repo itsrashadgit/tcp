@@ -78,9 +78,17 @@
                                                     name="whats-new" id="th-bp-whats-new" cols="50" rows="10">
                                                 </div>
                                                 <div class="whats-new-previewer">
+
+                                                    <p class="media-uploading done image/jpg" v-for="media in feedform.media" :key="media.id">
+                                                        <img :src="media.media_url">
+                                                        <span class="remove-media" @click.prevent="() => removeMedia(media.id)">✕</span>
+                                                    </p>
+
+                                                    <p v-if="uploading_media" class="media-uploading"></p>
+
                                                     <p class="previewer-uploader">
                                                         <label for="upload-media">+</label>
-                                                        <input type="file" name="upload-media" id="upload-media" />
+                                                        <input type="file" name="upload-media" id="upload-media" @change.prevent="uploadFeedMedia"/>
                                                     </p>
                                                 </div>
                                                 <div id="whats-new-attachments">
@@ -98,7 +106,7 @@
                                                                 stroke-linecap="round" stroke-linejoin="round" />
                                                         </svg>
                                                     </p>
-                                                    <p class="play video has-tooltip">
+                                                    {{-- <p class="play video has-tooltip">
                                                         <span class="new-post-tooltip">Video</span>
                                                         <svg width="36" height="36" viewBox="0 0 36 36"
                                                             fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -140,7 +148,7 @@
                                                                 stroke="#C4C4C4" stroke-width="1.5"
                                                                 stroke-linecap="round" stroke-linejoin="round" />
                                                         </svg>
-                                                    </p>
+                                                    </p> --}}
                                                 </div>
                                             </div>
                                             <div id="whats-new-options">
@@ -209,66 +217,6 @@
                                 <!-- .bp-navs -->
 
                                 <div class="screen-content">
-                                    <div class="subnav-filters filters no-ajax" id="subnav-filters">
-                                        <div class="subnav-search clearfix">
-                                            <div id="activity-rss-feed" class="feed">
-                                                <a href="https://theconstructionplatform.com/activity/feed/"
-                                                    class="bp-tooltip" data-bp-tooltip="RSS Feed">
-                                                    <span class="bp-screen-reader-text">RSS Feed</span>
-                                                </a>
-                                            </div>
-
-                                            <div class="dir-search activity-search bp-search" data-bp-search="activity">
-                                                <form method="get" class="bp-dir-search-form"
-                                                    id="dir-activity-search-form" role="search">
-                                                    <label for="dir-activity-search" class="bp-screen-reader-text">Search
-                                                        Activity...</label>
-
-                                                    <input id="dir-activity-search" name="activity_search" type="search"
-                                                        placeholder="Search Activity..." />
-
-                                                    <button type="submit" id="dir-activity-search-submit"
-                                                        class="nouveau-search-submit" name="dir_activity_search_submit">
-                                                        <span class="dashicons dashicons-search"
-                                                            aria-hidden="true"></span>
-                                                        <span id="button-text" class="bp-screen-reader-text">Search</span>
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-
-                                        <div id="dir-filters" class="component-filters clearfix">
-                                            <div id="activity-filter-select" class="last filter">
-                                                <label class="bp-screen-reader-text" for="activity-filter-by">
-                                                    <span>Show:</span>
-                                                </label>
-                                                <div class="select-wrap">
-                                                    <select id="activity-filter-by" data-bp-filter="activity">
-                                                        <option value="0">
-                                                            &mdash; Everything &mdash;
-                                                        </option>
-                                                        <option value="new_member">
-                                                            New Members
-                                                        </option>
-                                                        <option value="updated_profile">
-                                                            Profile Updates
-                                                        </option>
-                                                        <option value="activity_update">
-                                                            Updates
-                                                        </option>
-                                                        <option value="bbp_topic_create">
-                                                            Topics
-                                                        </option>
-                                                        <option value="bbp_reply_create">
-                                                            Replies
-                                                        </option>
-                                                    </select>
-                                                    <span class="select-arrow" aria-hidden="true"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- search & filters -->
 
                                     <div id="activity-stream" class="activity" data-bp-list="activity">
                                         <div v-if="loading_feeds">
@@ -314,9 +262,7 @@
                                                 <div class="activity-content">
                                                     <div class="activity-header">
                                                         <p>
-                                                            <a
-                                                                :href="`/tcp/profile/${feed.username}`">@{{ feed.name }}</a>
-                                                            posted an update<a
+                                                            <a :href="`/tcp/profile/${feed.username}`">@{{ feed.name }}</a> posted an update<a
                                                                 href="https://theconstructionplatform.com/activity/p/60/"
                                                                 class="view activity-time-since bp-tooltip"
                                                                 data-bp-tooltip="View Discussion"><span
@@ -346,7 +292,7 @@
                                                                 More Options
                                                             </span>
                                                             <ul>
-                                                                <li>
+                                                                {{-- <li>
                                                                     <a class="button bp-secondary-action bp-tooltip activity-make-favourite"
                                                                         href="">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -366,7 +312,7 @@
                                                                             </p>
                                                                         </div>
                                                                     </a>
-                                                                </li>
+                                                                </li> --}}
 
                                                                 <li>
                                                                     <a class="button button-activity-delete"
@@ -399,13 +345,26 @@
 
                                                     <div class="activity-inner">
                                                         <p>@{{ feed.content }}</p>
+
+                                                        <div class="post-media post-media-fours bp-image-previewer" v-for="media in feed.media_files" :key="media.id">
+                                                            <div class="bp-image-single post-media-single-image-container">
+                                                                <a class="media-popup-thumbnail" href="">
+                                                                    <img :src="media.media_url" alt="gm">
+                                                                </a>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                     <div class="activity-footer-links">
                                                         <div class="th-bp-footer-meta">
-                                                            <div class="reactions-meta" data-activity-id="60">
+
+                                                            {{-- <div class="reactions-meta">
                                                                 <span class="reaction-meta-container"><span
                                                                         class="reaction-images"></span></span>
+                                                            </div> --}}
+
+                                                            <div class="d-flex align-items-center">
+                                                                @{{ feed.total_likes }} Likes
                                                             </div>
 
                                                             <div class="comments-meta activity-comments-meta-60"
@@ -421,12 +380,17 @@
                                                                     </svg>@{{ feed.total_comments }} Comments</a>
                                                             </div>
 
+
+
                                                         </div>
                                                         <div class="th-bp-footer-meta-actions">
                                                             <div class="th-bp-post-like-button th-bp-activity-like-button">
-                                                                <a href="#" data-reaction="" data-id="60"
-                                                                    class="button" data-user="1"
-                                                                    data-nonce="23464fb70f">
+
+                                                                <a v-if="feed.liked" href="#" class="text-primary" @click.prevent="() => unlikePost(feed.id)">
+                                                                    <img src="{{ asset("assets/img/like.png") }}"> Like
+                                                                </a>
+
+                                                                <a v-else href="#" @click.prevent="() => likePost(feed.id)" class="button">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                         height="24" viewBox="0 0 24 24" fill="none"
                                                                         stroke="#888" stroke-width="2"
@@ -436,7 +400,7 @@
                                                                         </path>
                                                                     </svg>Like
                                                                 </a>
-                                                                <span class="reaction_icons">
+                                                                {{-- <span class="reaction_icons">
                                                                     <span class="reaction_icon_con">
                                                                         <img data-activity-id="60" data-type="like"
                                                                             src="https://theconstructionplatform.com/wp-content/themes/metafans/assets/images/reactions/like.png"
@@ -476,7 +440,7 @@
                                                                             alt="reaction" />
                                                                         <span class="reaction_icon_tooltip">angry</span>
                                                                     </span>
-                                                                </span>
+                                                                </span> --}}
                                                             </div>
                                                             <div class="th-bp-post-comment-button">
                                                                 <a href="" class="button">
@@ -513,7 +477,7 @@
                                                                     <span>Share</span>
                                                                 </a>
                                                                 <ul class="sharing-options">
-                                                                    <li>
+                                                                    {{-- <li>
                                                                         <a href="60" class="timeline-share"><svg
                                                                                 xmlns="http://www.w3.org/2000/svg"
                                                                                 width="16" height="16"
@@ -523,7 +487,7 @@
                                                                                     d="M6.598 5.013a.144.144 0 0 1 .202.134V6.3a.5.5 0 0 0 .5.5c.667 0 2.013.005 3.3.822.984.624 1.99 1.76 2.595 3.876-1.02-.983-2.185-1.516-3.205-1.799a8.74 8.74 0 0 0-1.921-.306 7.404 7.404 0 0 0-.798.008h-.013l-.005.001h-.001L7.3 9.9l-.05-.498a.5.5 0 0 0-.45.498v1.153c0 .108-.11.176-.202.134L2.614 8.254a.503.503 0 0 0-.042-.028.147.147 0 0 1 0-.252.499.499 0 0 0 .042-.028l3.984-2.933zM7.8 10.386c.068 0 .143.003.223.006.434.02 1.034.086 1.7.271 1.326.368 2.896 1.202 3.94 3.08a.5.5 0 0 0 .933-.305c-.464-3.71-1.886-5.662-3.46-6.66-1.245-.79-2.527-.942-3.336-.971v-.66a1.144 1.144 0 0 0-1.767-.96l-3.994 2.94a1.147 1.147 0 0 0 0 1.946l3.994 2.94a1.144 1.144 0 0 0 1.767-.96v-.667z">
                                                                                 </path>
                                                                             </svg>Share on activity</a>
-                                                                    </li>
+                                                                    </li> --}}
                                                                     <li>
                                                                         <a target="_blank" data-share-type="twitter"
                                                                             href="https://twitter.com/intent/tweet?url=https://theconstructionplatform.com/activity/p/60/"><svg
@@ -586,7 +550,7 @@
                                                                 <input type="text" placeholder="Type a comment..."
                                                                     :id="'comment-' + feed.id" class="post-comment">
                                                             </div>
-                                                            <div class="comments-media-icons">
+                                                            {{-- <div class="comments-media-icons">
                                                                 <p class="comments-image-uploader">
                                                                     <label for="comment-upload-media-60">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -611,7 +575,7 @@
                                                             <div>
                                                                 <input type="hidden" class="comment-media-url"
                                                                     id="comment-media-url-60" value="" />
-                                                            </div>
+                                                            </div> --}}
                                                         </form>
                                                     </div>
                                                     <div class="comments-media-previewer comments-media-preview-60"></div>
@@ -677,7 +641,7 @@
                                                                             placeholder="Type a comment..."
                                                                             :id="'comment-' + comment.id"
                                                                             class="post-comment">
-                                                                        <div class="comments-media-icons">
+                                                                        {{-- <div class="comments-media-icons">
                                                                             <p class="comments-image-uploader">
                                                                                 <label for="comment-upload-media-60">
                                                                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -710,7 +674,7 @@
                                                                                 class="comment-media-url"
                                                                                 id="comment-media-url-60"
                                                                                 value="" />
-                                                                        </div>
+                                                                        </div> --}}
                                                                     </form>
                                                                 </div>
                                                                 <div
@@ -724,10 +688,8 @@
                                             </li>
 
 
-                                            <li class="load-more">
-                                                <a
-                                                    href="https://theconstructionplatform.com/wp-admin/admin-ajax.php?acpage=2&amp;offset_lower=60">Load
-                                                    More</a>
+                                            <li class="load-more" v-if="feed_meta && feed_meta.current_page != feed_meta.last_page">
+                                                <a href="" @click.prevent="loadMore">Load More</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -875,10 +837,14 @@
         vdata = {
             ...vdata,
             loading_feeds: true,
+            loading_more: false,
             feeds: [],
+            feed_meta: {},
             feedform: {
-                visibility: 'public'
+                visibility: 'public',
+                media: []
             },
+            uploading_media: false,
         }
 
         vmethods = {
@@ -888,13 +854,31 @@
                 const state_id = @json($state->id);
                 const county_id = @json($county->id);
                 try {
-                    const response = await axios.get(
-                        `{{ route('api.feeds.index') }}?state_id=${state_id}&county_id=${county_id}`);
+                    const response = await axios.get(`{{ route('api.feeds.index') }}?state_id=${state_id}&county_id=${county_id}`);
+                    vdata.feed_meta = response.data.data.meta;
                     vdata.feeds = response.data.data;
                     vdata.loading_feeds = false;
                 } catch (err) {
                     console.log(err);
                     vdata.loading_feeds = false;
+                    // this.toast("Something Wen't Wrong!", "error");
+                }
+            },
+            async loadMore() {
+
+                const state_id = @json($state->id);
+                const county_id = @json($county->id);
+
+                const page = parseInt(feed_meta.current_page) + 1;
+                try {
+                    this.loading_more = true;
+                    const response = await axios.get(`{{ route('api.feeds.index') }}?state_id=${state_id}&county_id=${county_id}&page=${page}`);
+                    this.feed_meta = response.data.data.meta;
+                    this.feeds = response.data.data;
+                    this.loading_more = false;
+                } catch (err) {
+                    console.log(err);
+                    this.loading_more = false;
                     // this.toast("Something Wen't Wrong!", "error");
                 }
             },
@@ -906,7 +890,8 @@
                 try {
                     const response = await axios.post("{{ route('api.feeds.store') }}", {
                         visibility,
-                        content
+                        content,
+                        media: this.feedform.media
                     });
                     window.location.reload();
                 } catch (err) {
@@ -938,6 +923,26 @@
                     // this.toast("Something Wen't Wrong!", "error");
                 }
             },
+            async likePost (feed_id) {
+                try {
+                    const response = await axios.post("{{ route('api.likes.store') }}", {
+                        feed_id
+                    });
+                    this.fetchFeeds();
+                } catch (err) {
+                    console.log(err);
+                    // this.toast("Something Wen't Wrong!", "error");
+                }
+            },
+            async unlikePost (feed_id) {
+                try {
+                    const response = await axios.delete("/tcp/api/v1/likes/"+feed_id);
+                    this.fetchFeeds();
+                } catch (err) {
+                    console.log(err);
+                    // this.toast("Something Wen't Wrong!", "error");
+                }
+            },
             async replyComment(feed_id, comment_id) {
 
                 const comment = $("#comment-" + comment_id).val();
@@ -963,6 +968,26 @@
                     // this.toast("Something Wen't Wrong!", "error");
                 }
             },
+            async uploadFeedMedia(event) {
+                const file = event.target.files[0];
+                let formData = new FormData();
+                formData.append("media", file);
+                // formData.append("_method", "POST");
+                try {
+                    this.uploading_media = true;
+                    const response = await axios.post("{{ route('api.feedmedia.upload') }}", formData);
+                    this.feedform.media.push(response.data.data);
+                    this.uploading_media = false;
+                } catch (err) {
+                    this.uploading_media = false;
+                    console.log(err);
+                }
+            },
+            removeMedia(media_id){
+
+                const new_media = this.feedform.media.filter(m => m.id != media_id);
+                this.feedform.media = new_media;
+            }
         }
 
         vcreated = {

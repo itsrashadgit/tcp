@@ -212,7 +212,7 @@
 
 
                     <div class="mf-photo-previewer">
-                        @foreach ($portfolios as $portfolio)
+                        @forelse ($portfolios as $portfolio)
                             <div class="bp-image-single" id="1">
                                 <div class="post-media-single">
                                     <a class="media-popup-thumbnail" href="">
@@ -220,7 +220,11 @@
                                     </a>
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                            <div class="text-center">
+                                <h4>No Image Uploaded Yet.</h4>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </main>

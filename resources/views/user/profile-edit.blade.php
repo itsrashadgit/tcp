@@ -26,79 +26,40 @@
 
                         <div class="entry-content">
                             <div id="buddypress" class="buddypress-wrap metafans round-avatars bp-dir-hori-nav">
-                                <div id="item-header" role="complementary" class="users-header single-headers">
-                                    <div id="cover-image-container">
-                                        <a id="header-cover-image" href=""></a>
-
-                                        <div id="item-header-cover-image">
-                                            <div id="item-header-avatar">
-                                                <img loading="lazy"
-                                                    src="{{ asset($user->avatar ? '/images/user/' . $user->avatar : 'images/avatar.png') }}"
-                                                    class="avatar user-2-avatar avatar-150 photo" width="150"
-                                                    height="150" alt="Profile picture of Michael Knight" />
-                                            </div>
-                                            <div id="item-header-content">
-                                                <h2 class="user-nicename">{{ $user->name }}</h2>
-                                                <div id="item-buttons"></div>
-                                                <div id="item-meta">
-                                                    <p class="profile-header-meta-date"><span
-                                                            class="hide-badge">{{ '@' . $user->username }}</span> •
-                                                        <span>Joined : January 27, 2023 </span>
-                                                    </p>
-                                                    <div class="user-facts">
-                                                        <p>
-                                                            <span class="secondary-color followers-count-2">0</span>
-                                                            <span>Followers</span>
-                                                        </p>
-                                                        <p>
-                                                            <span class="secondary-color following-count-2">0</span>
-                                                            <span>Following</span>
-                                                        </p>
-                                                        <!-- <p>
-                                        <span class="secondary-color">0</span>
-                                        <span>Topics</span>
-                                    </p>
-                                     -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div id="template-notices" role="alert" aria-atomic="true"></div>
-                                </div>
-                                <!-- #item-header -->
 
                                 <div class="bp-wrap">
                                     <div id="item-body" class="item-body">
-                                        <nav class="bp-navs no-ajax user-subnav" id="subnav" role="navigation"
-                                            aria-label="Profile menu">
-                                            <ul class="subnav">
-                                                <li id="public-personal-li" class="bp-personal-sub-tab">
-                                                    <a href="{{ route('user.profile', $user->username) }}" id="public">
-                                                        View
-                                                    </a>
-                                                </li>
 
-                                                <li id="edit-personal-li" class="bp-personal-sub-tab current selected">
-                                                    <a href="{{ route('profile.edit') }}" id="edit">
-                                                        Edit
-                                                    </a>
-                                                </li>
+                                        @if (Auth::user()->id == $user->id)
+                                            <nav class="bp-navs no-ajax user-subnav" id="subnav" role="navigation"
+                                                aria-label="Profile menu">
+                                                <ul class="subnav">
+                                                    <li id="public-personal-li" class="bp-personal-sub-tab">
+                                                        <a href="{{ route('user.profile', $user->username) }}" id="public">
+                                                            View
+                                                        </a>
+                                                    </li>
 
-                                                {{-- <li id="change-avatar-personal-li" class="bp-personal-sub-tab">
-                                                    <a href="" id="change-avatar">
-                                                        Change Profile Photo
-                                                    </a>
-                                                </li>
+                                                    <li id="edit-personal-li" class="bp-personal-sub-tab current selected">
+                                                        <a href="{{ route('profile.edit') }}" id="edit">
+                                                            Edit
+                                                        </a>
+                                                    </li>
 
-                                                <li id="change-cover-image-personal-li" class="bp-personal-sub-tab">
-                                                    <a href="" id="change-cover-image">
-                                                        Change Cover Image
-                                                    </a>
-                                                </li> --}}
-                                            </ul>
-                                        </nav>
+                                                    {{-- <li id="change-avatar-personal-li" class="bp-personal-sub-tab">
+                                                        <a href="" id="change-avatar">
+                                                            Change Profile Photo
+                                                        </a>
+                                                    </li>
+
+                                                    <li id="change-cover-image-personal-li" class="bp-personal-sub-tab">
+                                                        <a href="" id="change-cover-image">
+                                                            Change Cover Image
+                                                        </a>
+                                                    </li> --}}
+                                                </ul>
+                                            </nav>
+                                        @endif
                                         <!-- .item-list-tabs -->
 
                                         <div class="profile edit">
@@ -135,7 +96,7 @@
                                                 </div>
 
                                                 <div class="mb-3" v-if="form.user_type == 'tradesmen'">
-                                                    <label class="required" for="profession_title">{{ __('Profession Title') }}</label>
+                                                    <label class="" for="profession_title">{{ __('Profession Title') }}</label>
                                                     <input class="form-control form-round" type="text" name="profession_title" id="profession_title"
                                                         :class="{ 'is-invalid': errors.profession_title }" v-model="form.profession_title">
                                                     <div class="invalid-feedback">@{{ errors.profession_title }}</div>
@@ -200,33 +161,33 @@
 
                                                 <div v-if="form.user_type != 'tradesmen'">
                                                     <div class="mb-3">
-                                                        <label class="required" for="business_description">{{ __('Business Description') }}</label>
+                                                        <label class="" for="business_description">{{ __('Business Description') }}</label>
                                                         <textarea name="business_description" id="business_description" cols="30" rows="4" class="form-control" v-model="form.business_description" :class="{ 'is-invalid': errors.business_description }"></textarea>
                                                         <div class="invalid-feedback">@{{ errors.name }}</div>
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label class="required" for="company_mission">{{ __('Company Mission') }}</label>
+                                                        <label class="" for="company_mission">{{ __('Company Mission') }}</label>
                                                         <input class="form-control form-round" type="text" name="company_mission" id="company_mission"
                                                             :class="{ 'is-invalid': errors.company_mission }" v-model="form.company_mission">
                                                         <div class="invalid-feedback">@{{ errors.company_mission }}</div>
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label class="required" for="company_vision">{{ __('Company Vision') }}</label>
+                                                        <label class="" for="company_vision">{{ __('Company Vision') }}</label>
                                                         <input class="form-control form-round" type="text" name="company_vision" id="company_vision"
                                                             :class="{ 'is-invalid': errors.company_vision }" v-model="form.company_vision">
                                                         <div class="invalid-feedback">@{{ errors.company_vision }}</div>
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label class="required" for="products">{{ __('Products') }}</label>
+                                                        <label class="" for="products">{{ __('Products') }}</label>
                                                         <textarea name="products" id="products" cols="30" rows="4" class="form-control" v-model="form.products" :class="{ 'is-invalid': errors.products }"></textarea>
                                                         <div class="invalid-feedback">@{{ errors.products }}</div>
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label class="required" for="services">{{ __('Services') }}</label>
+                                                        <label class="" for="services">{{ __('Services') }}</label>
                                                         <textarea name="services" id="services" cols="30" rows="4" class="form-control" v-model="form.services" :class="{ 'is-invalid': errors.services }"></textarea>
                                                         <div class="invalid-feedback">@{{ errors.services }}</div>
                                                     </div>
@@ -235,56 +196,56 @@
 
                                                 <div v-else>
                                                     <div class="mb-3">
-                                                        <label class="required" for="years_of_experience">{{ __('Years of Experience') }}</label>
+                                                        <label class="" for="years_of_experience">{{ __('Years of Experience') }}</label>
                                                         <input class="form-control form-round" type="text" name="years_of_experience" id="years_of_experience"
                                                             :class="{ 'is-invalid': errors.years_of_experience }" v-model="form.years_of_experience">
                                                         <div class="invalid-feedback">@{{ errors.years_of_experience }}</div>
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label class="required" for="education">{{ __('Education') }}</label>
+                                                        <label class="" for="education">{{ __('Education') }}</label>
                                                         <input class="form-control form-round" type="text" name="education" id="education"
                                                             :class="{ 'is-invalid': errors.education }" v-model="form.education">
                                                         <div class="invalid-feedback">@{{ errors.education }}</div>
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label class="required" for="institution">{{ __('Institution') }}</label>
+                                                        <label class="" for="institution">{{ __('Institution') }}</label>
                                                         <input class="form-control form-round" type="text" name="institution" id="institution"
                                                             :class="{ 'is-invalid': errors.institution }" v-model="form.institution">
                                                         <div class="invalid-feedback">@{{ errors.institution }}</div>
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label class="required" for="work_history">{{ __('Work History') }}</label>
+                                                        <label class="" for="work_history">{{ __('Work History') }}</label>
                                                         <input class="form-control form-round" type="text" name="work_history" id="work_history"
                                                             :class="{ 'is-invalid': errors.work_history }" v-model="form.work_history">
                                                         <div class="invalid-feedback">@{{ errors.work_history }}</div>
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label class="required" for="license">{{ __('License') }}</label>
+                                                        <label class="" for="license">{{ __('License') }}</label>
                                                         <input class="form-control form-round" type="text" name="license" id="license"
                                                             :class="{ 'is-invalid': errors.license }" v-model="form.license">
                                                         <div class="invalid-feedback">@{{ errors.license }}</div>
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label class="required" for="certificates">{{ __('Certificates') }}</label>
+                                                        <label class="" for="certificates">{{ __('Certificates') }}</label>
                                                         <input class="form-control form-round" type="text" name="certificates" id="certificates"
                                                             :class="{ 'is-invalid': errors.certificates }" v-model="form.certificates">
                                                         <div class="invalid-feedback">@{{ errors.certificates }}</div>
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label class="required" for="achievements">{{ __('Achievements') }}</label>
+                                                        <label class="" for="achievements">{{ __('Achievements') }}</label>
                                                         <input class="form-control form-round" type="text" name="achievements" id="achievements"
                                                             :class="{ 'is-invalid': errors.achievements }" v-model="form.achievements">
                                                         <div class="invalid-feedback">@{{ errors.achievements }}</div>
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label class="required" for="ability_skills">{{ __('Ability Skills') }}</label>
+                                                        <label class="" for="ability_skills">{{ __('Ability Skills') }}</label>
                                                         <input class="form-control form-round" type="text" name="ability_skills" id="ability_skills"
                                                             :class="{ 'is-invalid': errors.ability_skills }" v-model="form.ability_skills">
                                                         <div class="invalid-feedback">@{{ errors.ability_skills }}</div>
@@ -292,7 +253,7 @@
 
 
                                                     <div class="mb-3">
-                                                        <label class="required" for="about_you">{{ __('Tell the Industry about you') }}</label>
+                                                        <label class="" for="about_you">{{ __('Tell the Industry about you') }}</label>
                                                         <textarea name="about_you" id="about_you" cols="30" rows="4" class="form-control" v-model="form.about_you" :class="{ 'is-invalid': errors.about_you }"></textarea>
                                                         <div class="invalid-feedback">@{{ errors.about_you }}</div>
                                                     </div>

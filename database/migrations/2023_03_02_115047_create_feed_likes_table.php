@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('feed_files', function (Blueprint $table) {
+        Schema::create('feed_likes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("feed_id")->nullable()->constrained()->onDelete("cascade");
-            $table->string("file_name");
-            $table->string("file_type");
+            $table->foreignId("feed_id")->constrained()->onDelete("cascade");
+            $table->foreignId("user_id")->constrained()->onDelete("cascade");
+            $table->string("type")->default("like"); // love // like // haha // wow // cry // angry
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('feed_files');
+        Schema::dropIfExists('feed_likes');
     }
 };

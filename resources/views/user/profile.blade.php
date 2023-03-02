@@ -26,79 +26,40 @@
 
                         <div class="entry-content">
                             <div id="buddypress" class="buddypress-wrap metafans round-avatars bp-dir-hori-nav">
-                                <div id="item-header" role="complementary" class="users-header single-headers">
-                                    <div id="cover-image-container">
-                                        <a id="header-cover-image" href=""></a>
-
-                                        <div id="item-header-cover-image">
-                                            <div id="item-header-avatar">
-                                                <img loading="lazy"
-                                                    src="{{ asset($user->avatar ? '/images/user/' . $user->avatar : 'images/avatar.png') }}"
-                                                    class="avatar user-2-avatar avatar-150 photo" width="150"
-                                                    height="150" alt="Profile picture of Michael Knight" />
-                                            </div>
-                                            <div id="item-header-content">
-                                                <h2 class="user-nicename">{{ $user->name }}</h2>
-                                                <div id="item-buttons"></div>
-                                                <div id="item-meta">
-                                                    <p class="profile-header-meta-date"><span
-                                                            class="hide-badge">{{ '@' . $user->username }}</span> •
-                                                        <span>Joined : January 27, 2023 </span>
-                                                    </p>
-                                                    <div class="user-facts">
-                                                        <p>
-                                                            <span class="secondary-color followers-count-2">0</span>
-                                                            <span>Followers</span>
-                                                        </p>
-                                                        <p>
-                                                            <span class="secondary-color following-count-2">0</span>
-                                                            <span>Following</span>
-                                                        </p>
-                                                        <!-- <p>
-                                    <span class="secondary-color">0</span>
-                                    <span>Topics</span>
-                                </p>
-                                 -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div id="template-notices" role="alert" aria-atomic="true"></div>
-                                </div>
-                                <!-- #item-header -->
 
                                 <div class="bp-wrap">
                                     <div id="item-body" class="item-body">
-                                        <nav class="bp-navs no-ajax user-subnav" id="subnav" role="navigation"
-                                            aria-label="Profile menu">
-                                            <ul class="subnav">
-                                                <li id="public-personal-li" class="bp-personal-sub-tab current selected">
-                                                    <a href="{{ route("user.profile", $user->username) }}" id="public">
-                                                        View
-                                                    </a>
-                                                </li>
 
-                                                <li id="edit-personal-li" class="bp-personal-sub-tab">
-                                                    <a href="{{ route("profile.edit") }}" id="edit">
-                                                        Edit
-                                                    </a>
-                                                </li>
+                                        @if (Auth::user()->id == $user->id)
+                                            <nav class="bp-navs no-ajax user-subnav" id="subnav" role="navigation"
+                                                aria-label="Profile menu">
+                                                <ul class="subnav">
+                                                    <li id="public-personal-li" class="bp-personal-sub-tab current selected">
+                                                        <a href="{{ route("user.profile", $user->username) }}" id="public">
+                                                            View
+                                                        </a>
+                                                    </li>
 
-                                                {{-- <li id="change-avatar-personal-li" class="bp-personal-sub-tab">
-                                                    <a href="" id="change-avatar">
-                                                        Change Profile Photo
-                                                    </a>
-                                                </li>
+                                                    <li id="edit-personal-li" class="bp-personal-sub-tab">
+                                                        <a href="{{ route("profile.edit") }}" id="edit">
+                                                            Edit
+                                                        </a>
+                                                    </li>
 
-                                                <li id="change-cover-image-personal-li" class="bp-personal-sub-tab">
-                                                    <a href="" id="change-cover-image">
-                                                        Change Cover Image
-                                                    </a>
-                                                </li> --}}
-                                            </ul>
-                                        </nav>
+                                                    {{-- <li id="change-avatar-personal-li" class="bp-personal-sub-tab">
+                                                        <a href="" id="change-avatar">
+                                                            Change Profile Photo
+                                                        </a>
+                                                    </li>
+
+                                                    <li id="change-cover-image-personal-li" class="bp-personal-sub-tab">
+                                                        <a href="" id="change-cover-image">
+                                                            Change Cover Image
+                                                        </a>
+                                                    </li> --}}
+                                                </ul>
+                                            </nav>
+                                        @endif
                                         <!-- .item-list-tabs -->
 
                                         <div class="profile public">

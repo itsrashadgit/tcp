@@ -38,6 +38,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \SalimHosen\Core\Http\Middleware\AssignPermissions::class,
             \SalimHosen\Core\Http\Middleware\CompanyMiddleware::class,
+            \App\Http\Middleware\HttpsProtocol::class,
         ],
 
         'api' => [

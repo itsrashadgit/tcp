@@ -113,7 +113,7 @@
                 <div id="item-header-content" class=" mobile">
 
                     <div class="user-section">
-                        <h2 class="user-nicename">admin</h2>
+                        <h2 class="user-nicename">{{ "@".$user->name }}</h2>
                         <ul class="bp-socials-vertical"></ul>
 
                     </div>
@@ -129,14 +129,14 @@
                         <p class="profile-header-meta-date"><span class="hide-badge">{{ "@".$user->username }}</span> •
                             <span>Joined : {{ $user->created_at->format("M d,Y") }} </span>
                         </p>
-                        <div class="user-facts">
+                        <div class="d-flex align-items-center">
                             <p>
-                                <span class="secondary-color followers-count-1">0</span>
+                                <span class="secondary-color followers-count-1">{{ $user->followers()->count() }}</span>
                                 <span>Followers</span>
                             </p>
                             <span class="mx-1"></span>
                             <p>
-                                <span class="secondary-color following-count-1">0</span>
+                                <span class="secondary-color following-count-1">{{ $user->followings()->count() }}</span>
                                 <span>Following</span>
                             </p>
                             <!-- <p>
@@ -170,7 +170,7 @@
 
 
             <li id="activity-personal-li"
-                class="bp-personal-tab @if (request()->routeIs('home.user')) current selected @endif loading">
+                class="bp-personal-tab @if (request()->routeIs('home.user') || request()->routeIs('user.activity')) current selected @endif loading">
                 <a href="{{ route('user.activity', $user->username) }}" id="user-activity">
                     Activity
                 </a>
@@ -206,12 +206,14 @@
             </li> --}}
 
 
-            <li id="settings-personal-li"
-                class="bp-personal-tab @if (request()->routeIs('user.settings')) current selected @endif">
-                <a href="{{ route('user.settings') }}" id="user-settings">
-                    Settings
-                </a>
-            </li>
+            @if (Auth::user()->id == $user->id)
+                <li id="settings-personal-li"
+                    class="bp-personal-tab @if (request()->routeIs('user.settings')) current selected @endif">
+                    <a href="{{ route('user.settings') }}" id="user-settings">
+                        Settings
+                    </a>
+                </li>
+            @endif
 
 
 

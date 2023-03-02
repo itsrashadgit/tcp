@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\FeedResource;
 use App\Models\Feed;
+use App\Models\FeedFile;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -51,6 +52,16 @@ class FeedController extends Controller
         $feed->content = $request->content;
         $feed->save();
 
+        foreach ($request->media as $media) {
+
+            $m = FeedFile::find($media['id']);
+
+            $m->feed_id = $feed->id;
+
+            $m->save();
+
+        }
+
         return response()->json([
             "success" => true,
             "message" => "Feed Posted Successfully"
@@ -77,6 +88,38 @@ class FeedController extends Controller
                 "message" => "Failed to Delete"
             ]);
         }
+
+    }
+
+
+    public function uploadFeedMedia(Request $request){
+
+        $request->validate([
+            "media" => [
+                'required',
+                'image',
+                'mimes:jpeg,jpg,png,webp'
+            ],
+        ]);
+
+        $user = Auth::user();
+
+        $filename = uploadImage($request, "media", "uploads/feed/", 600, 600);
+
+        $feed_file = new FeedFile();
+        $feed_file->file_name = $filename;
+        $feed_file->file_type = "image";
+        $feed_file->save();
+
+        return response()->json([
+            "success" => true,
+            "message" => "Uploaded Successfully",
+            "data" => [
+                "id" => $feed_file->id,
+                "media_url" => asset("uploads/feed/$filename")
+            ]
+        ], 200);
+
 
     }
 

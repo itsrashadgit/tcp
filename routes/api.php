@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\CountyController;
 use App\Http\Controllers\Api\FeedController;
 use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\LikeController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,12 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+// Custom Routes
+if (App::environment('production')) {
+    URL::forceScheme('https');
+}
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -34,8 +41,10 @@ Route::group(["as" => "api.", "prefix" => "v1"], function(){
 
     Route::apiResource("feeds", FeedController::class);
     Route::get("my-feeds", [FeedController::class, 'getMyFeeds'])->name("myfeeds.get");
+    Route::post("feed-media", [FeedController::class, 'uploadFeedMedia'])->name("feedmedia.upload");
 
     Route::apiResource("comments", CommentController::class);
+    Route::apiResource("likes", LikeController::class);
 
     Route::put("coverphoto/update", [HomeController::class, 'updateCoverPhoto'])->name("coverphoto.update");
     Route::post('update-profile', [HomeController::class, 'updateProfile'])->name("profile.update");

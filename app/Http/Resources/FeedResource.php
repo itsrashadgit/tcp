@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Auth;
 
 class FeedResource extends JsonResource
 {
@@ -23,6 +24,9 @@ class FeedResource extends JsonResource
             "content" => $this->content,
             "created_at" => $this->created_at->diffForHumans(),
             "total_comments" => $this->comments()->count(),
+            "total_likes" => $this->likes()->count(),
+            "liked" => $this->likes()->where("user_id", Auth::user()->id)->count() > 0,
+            "media_files" => FeedMediaResource::collection($this->media_files),
             "comments" => CommentResource::collection($this->comments()->where("feed_comment_id", null)->get()),
         ];
     }
