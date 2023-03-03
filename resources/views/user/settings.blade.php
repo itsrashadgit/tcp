@@ -7,6 +7,15 @@
     <meta name="keywords" content="employee,employee_create">
 @endsection
 
+@push("head_tags")
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
+<style>
+    .select2-selection__rendered>li{
+        margin: 2px;
+    }
+</style>
+@endpush
+
 
 @section('content')
     <div class="tophive-container">
@@ -175,6 +184,25 @@
                                             </div>
                                         </div>
 
+                                        <h2 class="screen-heading general-settings-screen">Which counties Do You Do Business In</h2>
+
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <form action="{{ route("user.counties") }}" method="POST">
+                                                    @csrf
+                                                    <select name="counties[]" id="counties" class="select2" multiple>
+                                                        <option value="">{{ __("Select Counties") }}</option>
+                                                        @foreach ($counties as $county)
+                                                            <option @if($county->users()->where("user_id", Auth::user()->id)->first() != null) selected @endif value="{{ $county->id }}">{{ $county->name }}</option>
+                                                        @endforeach
+                                                    </select>
+
+                                                    <div class="mb-3">
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
 
                                     </div><!-- #item-body -->
                                 </div><!-- // .bp-wrap -->
@@ -196,6 +224,13 @@
 
 
 @push('body_scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
+
     <script>
         vdata = {
             ...vdata,

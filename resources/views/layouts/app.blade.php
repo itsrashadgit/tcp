@@ -149,6 +149,15 @@
                                                         </a>
                                                     </li>
 
+                                                    <li id="menu-item--main-desktop-953"
+                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-953">
+                                                        <a href="{{ route('welcome') }}"
+                                                            class="d-flex flex-column">
+                                                            <i class='bx bx-search fs-3'></i>
+                                                            <span class="link-before">Search Profiles</span>
+                                                        </a>
+                                                    </li>
+
                                                     {{-- <li id="menu-item--main-desktop-6838" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-6838">
                                                         <a href="https://theconstructionplatform.com/shop/" ><span class="link-before">Shop<span class="nav-icon-angle">&nbsp;</span></span></a>
 
@@ -299,13 +308,13 @@
                                                 <p class="ec-mb-0">Search result</p>
                                             </div>
                                         </div>
-                                        <div class="mx-2"></div>
+                                        {{-- <div class="mx-2"></div>
                                         <div>
                                             <a href="{{ route("trade.list") }}">
                                                 <img src="{{ asset('assets/img/search.png') }}" width="25"
                                                                 height="25" title="Search">
                                             </a>
-                                        </div>
+                                        </div> --}}
 
                                     </div>
 
@@ -719,6 +728,25 @@
                     $(".tophive-bp-messenger-sticky-main").addClass("messenger-open");
                 }
 
+
+            });
+
+
+            $(document).on("click", function(e){
+
+                // e.preventDefault();
+                // e.stopPropagation();
+
+                const elem = document.getElementsByClassName("sharing-options open");
+                let target = e.target;
+                if(target.tagName == "svg"){
+                    target = target.parentElement;
+                }
+                const targetClass = target.className;
+
+                if(!targetClass.includes("share-track")){
+                    if(elem.length > 0) elem[0].classList.remove("open");
+                }
 
             });
 

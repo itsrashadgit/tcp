@@ -5,7 +5,15 @@
     <section class="position-relative py-1 bg-white">
         <div class="container position-relative zindex-5 py-1 py-md-2 py-lg-2">
             <div class="row justify-content-center">
-                <h1 class="mb-4 text-center">The Construction Platform</h1>
+                <div class="text-center">
+                    <a href="{{ route('welcome') }}" class="logo-link" rel="home">
+                        <img class="site-img-logo" src="{{ asset('assets/img/logo.png') }}"
+                            alt="the-construction-platform"
+                            title="The Construction Platform" width="180"/>
+                    </a>
+                    <p>Revolutionizing The Industry, Where All Business Gets Done</p>
+                </div>
+                {{-- <h1 class="mb-4 text-center">The Construction Platform</h1> --}}
                 <div class="col-lg-2 col-md-2">
                 </div>
                 <div class="col-lg-8 col-md-8">
@@ -79,7 +87,45 @@
     <!-- Photos Slider -->
     <section class="position-relative py-1 bg-white">
         <div class="container position-relative zindex-5 py-1 py-md-2 py-lg-2">
-            <div class="row justify-content-center">
+            <h3 class="text-center my-3">Platform Tour To Maximize<br/> Your Site Use And Experience</h3>
+            <div class="d-flex align-items-center gap-2">
+                <div>
+                    <a href="">
+                        <img class="photograph img-fluid" style="border-radius: 10px" src="https://unsplash.it/g/200/300?image=502" alt="">
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <img class="photograph img-fluid" style="border-radius: 10px" src="https://unsplash.it/g/200/300?image=502" alt="">
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <img class="photograph img-fluid" style="border-radius: 10px" src="https://unsplash.it/g/200/300?image=502" alt="">
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <img class="photograph img-fluid" style="border-radius: 10px" src="https://unsplash.it/g/200/300?image=502" alt="">
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <img class="photograph img-fluid" style="border-radius: 10px" src="https://unsplash.it/g/200/300?image=502" alt="">
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <img class="photograph img-fluid" style="border-radius: 10px" src="https://unsplash.it/g/200/300?image=502" alt="">
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <img class="photograph img-fluid" style="border-radius: 10px" src="https://unsplash.it/g/200/300?image=502" alt="">
+                    </a>
+                </div>
+            </div>
+            {{-- <div class="row justify-content-center">
                 <div id="tcpSwiper" class="swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
@@ -142,7 +188,7 @@
                 </div>
                 <div id="tcpPrev" class="swiper-button-prev"></div>
                 <div id="tcpNext" class="swiper-button-next"></div>
-            </div>
+            </div> --}}
         </div>
     </section>
 @endsection

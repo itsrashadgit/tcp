@@ -16,6 +16,8 @@ class CommentResource extends JsonResource
     {
         return [
             "id" => $this->id,
+            "name" => $this->user->name,
+            "username" => $this->user->username,
             "user_avatar" => asset($this->user->avatar ? '/images/user/'. $this->user->avatar : 'images/avatar.png'),
             "comment" => $this->comment,
             "replies" => CommentResource::collection($this->comments),

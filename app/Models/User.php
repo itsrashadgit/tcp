@@ -137,4 +137,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function county(){
         return $this->belongsTo(County::class);
     }
+
+    public function counties()
+    {
+        return $this->belongsToMany(County::class);
+    }
 }

@@ -75,6 +75,7 @@ Route::get("search", [SearchController::class, "search"])->name("search");
 
 Route::post("send-message", [MessageBoardController::class, 'sendMsg'])->name("send.msg");
 Route::post("upload-portfolio", [PortfolioController::class, 'uploadPortfolio'])->name("portfolio.upload");
+Route::post("user-counties", [HomeController::class, 'userCounties'])->name("user.counties");
 
 Route::get("profiles", [PublicPageController::class, "profiles"])->name("profile.list");
 

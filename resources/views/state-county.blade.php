@@ -4,7 +4,7 @@
 
 <!-- Content Main -->
 <section class="position-relative py-1 bg-white">
-    <div class="container position-relative zindex-5 py-1 py-md-2 py-lg-2">
+    <div class="container-fluid position-relative zindex-5 py-1 py-md-2 py-lg-2">
         <div class="row justify-content-center">
             <div class="col-lg-3 col-md-3">
                 <?php $states = DB::select('select * from states'); //return view('stud_view',['states'=>$states]); ?>
@@ -16,8 +16,8 @@
                 </ul>
                 @endforeach
             </div>
-            <div class="col-lg-9 col-md-9">
-                <div class="container position-relative zindex-5 py-1 py-md-2 py-lg-2">
+            <div class="col-lg-9 col-md-9 ps-md-0">
+                {{-- <div class="container position-relative zindex-5 py-1 py-md-2 py-lg-2">
                     <div class="row justify-content-center">
                         <!-- slider main container -->
                         <div id="tcpSwiper" class="swiper-container">
@@ -89,6 +89,17 @@
                         <div id="tcpPrev" class="swiper-button-prev"></div>
                         <div id="tcpNext" class="swiper-button-next"></div>
                     </div>
+                </div> --}}
+                <div class="tabs7">
+                    <ul class="nav m-0">
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('trade.list') }}">Tradesmen</a></li>
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('trade.list') }}">Contractors</a></li>
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list') }}">Architects/Engineers</a></li>
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list') }}">Organizations/Associations</a></li>
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list') }}">Schools/Education</a></li>
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list') }}">Facility/Property Mgmt</a></li>
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list') }}">Vendors</a></li>
+                    </ul>
                 </div>
 
                 @if (count($counties) > 0)

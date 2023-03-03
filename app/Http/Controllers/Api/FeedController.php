@@ -14,7 +14,7 @@ class FeedController extends Controller
 
     public function __construct()
     {
-        $this->middleware("auth:sanctum")->except(["index"]);
+        $this->middleware("auth:sanctum");
     }
 
     public function index(Request $request){
@@ -25,7 +25,7 @@ class FeedController extends Controller
         $feeds = Feed::whereHas("user", function($q) use($state_id, $county_id) {
             $q->where("state_id", $state_id)
                 ->where("county_id", $county_id);
-        })->orderBy("created_at", "desc")->paginate($request->per_page ?? 10);
+        })->orderBy("created_at", "desc")->paginate($request->per_page ?? 2);
 
         return FeedResource::collection($feeds);
 

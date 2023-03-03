@@ -8,7 +8,7 @@ use App\Models\Portfolio;
 use App\Models\Trade;
 use App\Models\User;
 use Auth;
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -56,7 +56,9 @@ class HomeController extends Controller
     public function settings(){
 
         $user = Auth::user();
-        return view('user.settings', compact('user'));
+        $counties = County::all();
+
+        return view('user.settings', compact('user', 'counties'));
     }
 
     public function editProfile()
@@ -72,4 +74,14 @@ class HomeController extends Controller
 
     //     dd($request->all());
     // }
+
+    public function userCounties(Request $request){
+
+        $user = Auth::user();
+
+        $user->counties()->sync($request->counties);
+
+        return redirect()->back()->with("success", "Saved Successfully");
+
+    }
 }
