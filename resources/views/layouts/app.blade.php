@@ -74,6 +74,12 @@
                 right: 350px !important;
             }
         }
+
+        .icon-break{
+            text-align: center;
+            line-height: 22px;
+            margin-top: 15px;
+        }
     </style>
     @stack('head_tags')
 </head>
@@ -117,9 +123,10 @@
                                                     </li>
                                                     <li id="menu-item--main-desktop-953"
                                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-953">
-                                                        <a href="{{ Auth::check() ? route('user.activity', Auth::user()->username) : route('login') }}" class="d-flex flex-column">
+                                                        <a href="{{ Auth::check() ? route('user.activity', Auth::user()->username) : route('login') }}"
+                                                            class="d-flex flex-column">
                                                             <i class="bx bx-news fs-3"></i>
-                                                            <span class="link-before">My News Feed</span>
+                                                            <span class="link-before icon-break">My<br/> News<br/> Feed</span>
                                                         </a>
                                                     </li>
                                                     <li id="menu-item--main-desktop-953"
@@ -127,7 +134,7 @@
                                                         <a href="{{ Auth::check() ? route('message.board', Auth::user()->username) : route('login') }}"
                                                             class="d-flex flex-column">
                                                             <i class="bx bx-message fs-3"></i>
-                                                            <span class="link-before">My Message Board</span>
+                                                            <span class="link-before icon-break">My<br/> Message<br/> Board</span>
                                                         </a>
                                                     </li>
 
@@ -289,7 +296,7 @@
                                     @endauth
 
                                     <div class="item--inner builder-item--social_search_box">
-                                        <div class="header-social_search_box-item item--social_search_box">
+                                        {{-- <div class="header-social_search_box-item item--social_search_box">
                                             <form role="search" class="header-search-form" action="{{ route("profile.list") }}" method="GET">
                                                 <div class="search-form-fields">
                                                     <span class="screen-reader-text">Search for:</span>
@@ -297,8 +304,6 @@
                                                         placeholder="Search" value="" name="q" />
                                                 </div>
                                                 <button type="submit" class="search-submit">
-                                                    {{-- <img src="{{ asset('assets/img/search.png') }}" width="25"
-                                                        height="25" title="Search"> --}}
                                                         <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21">
                                                             <path fill="currentColor" fill-rule="evenodd" d="M12.514 14.906a8.264 8.264 0 0 1-4.322 1.21C3.668 16.116 0 12.513 0 8.07 0 3.626 3.668.023 8.192.023c4.525 0 8.193 3.603 8.193 8.047 0 2.033-.769 3.89-2.035 5.307l4.999 5.552-1.775 1.597-5.06-5.62zm-4.322-.843c3.37 0 6.102-2.684 6.102-5.993 0-3.31-2.732-5.994-6.102-5.994S2.09 4.76 2.09 8.07c0 3.31 2.732 5.993 6.102 5.993z"></path>
                                                         </svg>
@@ -307,7 +312,7 @@
                                             <div class="search-box-result">
                                                 <p class="ec-mb-0">Search result</p>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         {{-- <div class="mx-2"></div>
                                         <div>
                                             <a href="{{ route("trade.list") }}">

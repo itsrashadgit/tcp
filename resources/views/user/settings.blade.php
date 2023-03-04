@@ -198,7 +198,7 @@
                                                     </select>
 
                                                     <div class="mb-3">
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                        <button type="submit" class="btn btn-primary bg-primary text-white mt-3">Submit</button>
                                                     </div>
                                                 </form>
                                             </div>

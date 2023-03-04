@@ -39,6 +39,7 @@ class Kernel extends HttpKernel
             \SalimHosen\Core\Http\Middleware\AssignPermissions::class,
             \SalimHosen\Core\Http\Middleware\CompanyMiddleware::class,
             \App\Http\Middleware\HttpsProtocol::class,
+            \App\Http\Middleware\OnlineStatusMiddleware::class
         ],
 
         'api' => [

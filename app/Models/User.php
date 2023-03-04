@@ -142,4 +142,8 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(County::class);
     }
+
+    public function sendermessages(){
+        return $this->hasMany(ChatMessage::class, 'sender_id');
+    }
 }

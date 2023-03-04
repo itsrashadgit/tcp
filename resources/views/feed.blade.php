@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@push("head_tags")
+@push('head_tags')
     <style>
-        #block-22:hover{
+        #block-22:hover {
             /* background: #fafafa; */
             box-shadow: 0px 0px 8px #ddd;
         }
@@ -16,10 +16,14 @@
             <ul class="nav m-0">
                 <li class="nav-item"><a class="nav-link bg-white" href="{{ route('trade.list') }}">Tradesmen</a></li>
                 <li class="nav-item"><a class="nav-link bg-white" href="{{ route('trade.list') }}">Contractors</a></li>
-                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list') }}">Architects/Engineers</a></li>
-                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list') }}">Trade Organizations/Associations</a></li>
-                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list') }}">Trade Schools/Education</a></li>
-                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list') }}">Facility/Property Mgmt</a></li>
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list') }}">Architects/Engineers</a>
+                </li>
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list') }}">Trade
+                        Organizations/Associations</a></li>
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list') }}">Trade
+                        Schools/Education</a></li>
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list') }}">Facility/Property
+                        Mgmt</a></li>
                 <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list') }}">Vendors</a></li>
             </ul>
         </div>
@@ -88,16 +92,19 @@
                                                 </div>
                                                 <div class="whats-new-previewer">
 
-                                                    <p class="media-uploading done image/jpg" v-for="media in feedform.media" :key="media.id">
+                                                    <p class="media-uploading done image/jpg"
+                                                        v-for="media in feedform.media" :key="media.id">
                                                         <img :src="media.media_url">
-                                                        <span class="remove-media" @click.prevent="() => removeMedia(media.id)">✕</span>
+                                                        <span class="remove-media"
+                                                            @click.prevent="() => removeMedia(media.id)">✕</span>
                                                     </p>
 
                                                     <p v-if="uploading_media" class="media-uploading"></p>
 
                                                     <p class="previewer-uploader">
                                                         <label for="upload-media">+</label>
-                                                        <input type="file" name="upload-media" id="upload-media" @change.prevent="uploadFeedMedia"/>
+                                                        <input type="file" name="upload-media" id="upload-media"
+                                                            @change.prevent="uploadFeedMedia" />
                                                     </p>
                                                 </div>
                                                 <div id="whats-new-attachments">
@@ -107,8 +114,8 @@
                                                             fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path
                                                                 d="M9 14.7059C9 14.3925 9 14.2358 9.01316 14.1038C9.14004 12.8306 10.1531 11.8234 11.4338 11.6973C11.5666 11.6842 11.7327 11.6842 12.065 11.6842C12.1931 11.6842 12.2571 11.6842 12.3114 11.6809C13.0055 11.6391 13.6134 11.2036 13.8727 10.5622C13.893 10.512 13.912 10.4554 13.95 10.3421C13.988 10.2289 14.007 10.1722 14.0273 10.122C14.2866 9.48058 14.8945 9.04506 15.5886 9.00327C15.6429 9 15.7029 9 15.823 9H20.177C20.2971 9 20.3571 9 20.4114 9.00327C21.1055 9.04506 21.7134 9.48058 21.9727 10.122C21.993 10.1722 22.012 10.2289 22.05 10.3421C22.088 10.4554 22.107 10.512 22.1273 10.5622C22.3866 11.2036 22.9944 11.6391 23.6886 11.6809C23.7429 11.6842 23.8069 11.6842 23.935 11.6842C24.2673 11.6842 24.4334 11.6842 24.5662 11.6973C25.8469 11.8234 26.86 12.8306 26.9868 14.1038C27 14.2358 27 14.3925 27 14.7059V21.7053C27 23.2086 27 23.9602 26.7057 24.5344C26.4469 25.0395 26.0338 25.4501 25.5258 25.7074C24.9482 26 24.1921 26 22.68 26H13.32C11.8079 26 11.0518 26 10.4742 25.7074C9.96619 25.4501 9.55314 25.0395 9.29428 24.5344C9 23.9602 9 23.2086 9 21.7053V14.7059Z"
-                                                                stroke="#C4C4C4" stroke-width="1.5" stroke-linecap="round"
-                                                                stroke-linejoin="round" />
+                                                                stroke="#C4C4C4" stroke-width="1.5"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
                                                             <path
                                                                 d="M18 21.9737C19.9882 21.9737 21.6 20.3713 21.6 18.3947C21.6 16.4181 19.9882 14.8158 18 14.8158C16.0118 14.8158 14.4 16.4181 14.4 18.3947C14.4 20.3713 16.0118 21.9737 18 21.9737Z"
                                                                 stroke="#C4C4C4" stroke-width="1.5"
@@ -271,7 +278,9 @@
                                                 <div class="activity-content">
                                                     <div class="activity-header">
                                                         <p>
-                                                            <a :href="`/tcp/profile/${feed.username}`">@{{ feed.name }}</a> posted an update<a
+                                                            <a
+                                                                :href="`/tcp/profile/${feed.username}`">@{{ feed.name }}</a>
+                                                            posted an update<a
                                                                 href="https://theconstructionplatform.com/activity/p/60/"
                                                                 class="view activity-time-since bp-tooltip"
                                                                 data-bp-tooltip="View Discussion"><span
@@ -355,7 +364,8 @@
                                                     <div class="activity-inner">
                                                         <p>@{{ feed.content }}</p>
 
-                                                        <div class="post-media post-media-fours bp-image-previewer" v-for="media in feed.media_files" :key="media.id">
+                                                        <div class="post-media post-media-fours bp-image-previewer"
+                                                            v-for="media in feed.media_files" :key="media.id">
                                                             <div class="bp-image-single post-media-single-image-container">
                                                                 <a class="media-popup-thumbnail" href="">
                                                                     <img :src="media.media_url" alt="gm">
@@ -395,11 +405,14 @@
                                                         <div class="th-bp-footer-meta-actions">
                                                             <div class="th-bp-post-like-button th-bp-activity-like-button">
 
-                                                                <a v-if="feed.liked" href="#" class="text-primary" @click.prevent="() => unlikePost(feed.id)">
-                                                                    <img src="{{ asset("assets/img/like.png") }}"> Like
+                                                                <a v-if="feed.liked" href="#" class="text-primary"
+                                                                    @click.prevent="() => unlikePost(feed.id)">
+                                                                    <img src="{{ asset('assets/img/like.png') }}"> Like
                                                                 </a>
 
-                                                                <a v-else href="#" @click.prevent="() => likePost(feed.id)" class="button">
+                                                                <a v-else href="#"
+                                                                    @click.prevent="() => likePost(feed.id)"
+                                                                    class="button">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                         height="24" viewBox="0 0 24 24" fill="none"
                                                                         stroke="#888" stroke-width="2"
@@ -465,10 +478,10 @@
                                                                 </a>
                                                             </div>
                                                             <div class="th-bp-post-share-button th-ml-auto">
-                                                                <a href="" class="button activity-share share-track">
+                                                                <a href=""
+                                                                    class="button activity-share share-track">
                                                                     <span class="share_icon share-track">
-                                                                        <svg
-                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
                                                                             width="24" height="24"
                                                                             viewBox="0 0 24 24" fill="none"
                                                                             stroke="#888" stroke-width="2"
@@ -549,8 +562,7 @@
                                                             class="avatar avatar-30 photo" height="30" width="30"
                                                             loading="lazy" decoding="async" />
                                                         <form @submit.prevent="() => postComment(feed.id)"
-                                                            class="tophive-bp-comment-form activity-60"
-                                                            data-type="postComment">
+                                                            class="tophive-bp-comment-form activity-60" id="commentform">
                                                             <input type="submit" hidden />
                                                             {{-- <div
                                         class="comments-text editable-div"
@@ -560,6 +572,24 @@
                                                             <div>
                                                                 <input type="text" placeholder="Type a comment..."
                                                                     :id="'comment-' + feed.id" class="post-comment">
+                                                            </div>
+                                                            <div class="comments-media-icons">
+                                                                <p class="comments-image-uploader">
+                                                                    <label for="comment-upload-media-60">
+                                                                        <span class="send--button"
+                                                                            @click.prevent="() => postComment(feed.id)">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                width="20" height="20"
+                                                                                fill="currentColor"
+                                                                                class="bi bi-cursor-fill"
+                                                                                viewBox="0 0 20 20">
+                                                                                <path
+                                                                                    d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z">
+                                                                                </path>
+                                                                            </svg>
+                                                                        </span>
+                                                                    </label>
+                                                                </p>
                                                             </div>
                                                             {{-- <div class="comments-media-icons">
                                                                 <p class="comments-image-uploader">
@@ -599,8 +629,10 @@
                                                                     width="30" loading="lazy"
                                                                     decoding="async" /></span><span
                                                                 class="comment-content"><span class="comment-meta">
-                                                                    <a :href="`/tcp/profile/${comment.username}`">@{{ comment.name }}</a><span
-                                                                        class="comment-date">@{{ comment.created_at }} mins ago</span></span>
+                                                                    <a
+                                                                        :href="`/tcp/profile/${comment.username}`">@{{ comment.name }}</a><span
+                                                                        class="comment-date">@{{ comment.created_at }} mins
+                                                                        ago</span></span>
                                                                 <p>@{{ comment.comment }}</p>
                                                             </span>
                                                             <span class="comment-meta-actions"><a
@@ -622,8 +654,10 @@
                                                                         </span>
                                                                         <span class="comment-content">
                                                                             <span class="comment-meta">
-                                                                                <a :href="`/tcp/profile/${reply.username}`">@{{ reply.name }}</a><span
-                                                                                    class="comment-date"> days ago</span></span>
+                                                                                <a
+                                                                                    :href="`/tcp/profile/${reply.username}`">@{{ reply.name }}</a><span
+                                                                                    class="comment-date"> days
+                                                                                    ago</span></span>
                                                                             <p>@{{ reply.comment }}</p>
                                                                         </span>
                                                                         <span class="comment-meta-actions">
@@ -651,6 +685,24 @@
                                                                             placeholder="Type a comment..."
                                                                             :id="'comment-' + comment.id"
                                                                             class="post-comment">
+                                                                            <div class="comments-media-icons">
+                                                                                <p class="comments-image-uploader">
+                                                                                    <label for="comment-upload-media-60">
+                                                                                        <span class="send--button"
+                                                                                            @click.prevent="() => replyComment(feed.id, comment.id)">
+                                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                                width="20" height="20"
+                                                                                                fill="currentColor"
+                                                                                                class="bi bi-cursor-fill"
+                                                                                                viewBox="0 0 20 20">
+                                                                                                <path
+                                                                                                    d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z">
+                                                                                                </path>
+                                                                                            </svg>
+                                                                                        </span>
+                                                                                    </label>
+                                                                                </p>
+                                                                            </div>
                                                                         {{-- <div class="comments-media-icons">
                                                                             <p class="comments-image-uploader">
                                                                                 <label for="comment-upload-media-60">
@@ -687,9 +739,9 @@
                                                                         </div> --}}
                                                                     </form>
                                                                 </div>
-                                                                <div
+                                                                {{-- <div
                                                                     class="comments-media-previewer comments-media-preview-60">
-                                                                </div>
+                                                                </div> --}}
                                                             </span>
                                                         </li>
                                                     </ul>
@@ -698,7 +750,8 @@
                                             </li>
 
 
-                                            <li class="load-more" v-if="feed_meta && feed_meta.current_page != feed_meta.last_page">
+                                            <li class="load-more"
+                                                v-if="feed_meta && feed_meta.current_page != feed_meta.last_page">
                                                 <a href="" @click.prevent="loadMore">Load More</a>
                                             </li>
                                         </ul>
@@ -738,8 +791,7 @@
                                     </div>
                                     <div class="mx-1"></div>
                                     <div class="item">
-                                        <div class="item-title fn"><a
-                                                href="">Event Name</a></div>
+                                        <div class="item-title fn"><a href="">Event Name</a></div>
                                         <div class="item-meta">
                                             <span class="activity">Event Descriptions</span>
                                         </div>
@@ -766,8 +818,7 @@
                                     </div>
                                     <div class="mx-1"></div>
                                     <div class="item">
-                                        <div class="item-title fn"><a
-                                                href="">Event Name</a></div>
+                                        <div class="item-title fn"><a href="">Event Name</a></div>
                                         <div class="item-meta">
                                             <span class="activity">Event Descriptions</span>
                                         </div>
@@ -806,7 +857,7 @@
                         <div id="item-header" role="complementary" class="users-header single-headers">
                             <div id="cover-image-container">
                                 <div id="item-header-cover-image">
-                                    <a href="{{ route("user.profile", Auth::user()->username) }}">
+                                    <a href="{{ route('user.profile', Auth::user()->username) }}">
                                         <div class="w-100 text-center">
                                             <img loading="lazy"
                                                 src="{{ asset(Auth::user()->avatar ? '/images/user/' . Auth::user()->avatar : 'images/avatar.png') }}"
@@ -820,15 +871,18 @@
                                             <div id="item-meta text-center">
                                                 <p class="profile-header-meta-date"><span
                                                         class="hide-badge">{{ __('@' . Auth::user()->name) }}</span> •
-                                                    <span>Joined : {{ Auth::user()->created_at->format("M d,Y") }} </span></p>
+                                                    <span>Joined : {{ Auth::user()->created_at->format('M d,Y') }} </span>
+                                                </p>
                                                 <div class="d-flex align-items-center">
                                                     <p>
-                                                        <span class="secondary-color followers-count-2">{{ Auth::user()->followers()->count() }}</span>
+                                                        <span
+                                                            class="secondary-color followers-count-2">{{ Auth::user()->followers()->count() }}</span>
                                                         <span>Followers</span>
                                                     </p>
                                                     <span class="mx-1"></span>
                                                     <p>
-                                                        <span class="secondary-color following-count-2">{{ Auth::user()->followings()->count() }}</span>
+                                                        <span
+                                                            class="secondary-color following-count-2">{{ Auth::user()->followings()->count() }}</span>
                                                         <span>Following</span>
                                                     </p>
                                                 </div>
@@ -848,8 +902,11 @@
                                 @foreach ($portfolios as $portfolio)
                                     <div class="col-4 mb-1">
                                         <div>
-                                            <a class="media-popup-thumbnail" href="{{ route("user.portfolio", Auth::user()->username) }}">
-                                                <img src="{{ asset("uploads/portfolio/$portfolio->file_name") }}" alt="gm" style="height: 100px; widht: 100%;" class="img-fluid w-100">
+                                            <a class="media-popup-thumbnail"
+                                                href="{{ route('user.portfolio', Auth::user()->username) }}">
+                                                <img src="{{ asset("uploads/portfolio/$portfolio->file_name") }}"
+                                                    alt="gm" style="height: 100px; widht: 100%;"
+                                                    class="img-fluid w-100">
                                             </a>
                                         </div>
                                     </div>
@@ -890,7 +947,8 @@
                 const state_id = @json($state->id);
                 const county_id = @json($county->id);
                 try {
-                    const response = await axios.get(`{{ route('api.feeds.index') }}?state_id=${state_id}&county_id=${county_id}`);
+                    const response = await axios.get(
+                        `{{ route('api.feeds.index') }}?state_id=${state_id}&county_id=${county_id}`);
                     vdata.feed_meta = response.data.meta;
                     vdata.feeds = response.data.data;
                     vdata.loading_feeds = false;
@@ -908,7 +966,9 @@
                 const page = parseInt(this.feed_meta.current_page) + 1;
                 try {
                     this.loading_more = true;
-                    const response = await axios.get(`{{ route('api.feeds.index') }}?state_id=${state_id}&county_id=${county_id}&page=${page}`);
+                    const response = await axios.get(
+                        `{{ route('api.feeds.index') }}?state_id=${state_id}&county_id=${county_id}&page=${page}`
+                        );
                     this.feed_meta = response.data.meta;
                     this.feeds.push(...response.data.data);
                     this.loading_more = false;
@@ -959,7 +1019,7 @@
                     // this.toast("Something Wen't Wrong!", "error");
                 }
             },
-            async likePost (feed_id) {
+            async likePost(feed_id) {
                 try {
                     const response = await axios.post("{{ route('api.likes.store') }}", {
                         feed_id
@@ -970,9 +1030,9 @@
                     // this.toast("Something Wen't Wrong!", "error");
                 }
             },
-            async unlikePost (feed_id) {
+            async unlikePost(feed_id) {
                 try {
-                    const response = await axios.delete("/tcp/api/v1/likes/"+feed_id);
+                    const response = await axios.delete("/tcp/api/v1/likes/" + feed_id);
                     this.fetchFeeds();
                 } catch (err) {
                     console.log(err);
@@ -1019,7 +1079,7 @@
                     console.log(err);
                 }
             },
-            removeMedia(media_id){
+            removeMedia(media_id) {
 
                 const new_media = this.feedform.media.filter(m => m.id != media_id);
                 this.feedform.media = new_media;

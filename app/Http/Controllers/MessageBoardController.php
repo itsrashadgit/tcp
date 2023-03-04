@@ -19,7 +19,12 @@ class MessageBoardController extends Controller
     public function index($username){
 
         $user = Auth::user();
-        $receivers = User::where("id", "!=", $user->id)->get();
+        // $receivers = User::where("id", "!=", $user->id)
+        //             ->whereHas("chatmessages", function($q){
+        //                 $q->where("sender_id", Auth::user()->id);
+        //             })->get();
+        $receivers = User::all();
+
         $receiver = null;
         if(request("receiver_id")){
             $receiver = User::findOrFail(request("receiver_id"));
