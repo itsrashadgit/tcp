@@ -23,10 +23,10 @@
                             <select name="user_type" id="user_type" class="form-control" v-model="form.user_type">
                                 <option value="tradesmen">Tradesmen</option>
                                 <option value="contractors">Contractors</option>
-                                <option value="architexts/engineers">Architects/Engineers</option>
-                                <option value="trade_organization/associations">Trade Organizations/Associations</option>
-                                <option value="trade_schools/education">Trade Schools/Education</option>
-                                <option value="facility/property_mgmt">Facility/Property Mgmt</option>
+                                <option value="architects_engineers">Architects/Engineers</option>
+                                <option value="organization_associations">Trade Organizations/Associations</option>
+                                <option value="schools_education">Trade Schools/Education</option>
+                                <option value="facility_property_mgmt">Facility/Property Mgmt</option>
                                 <option value="vendors">Vendors</option>
                             </select>
                             {{-- <div>

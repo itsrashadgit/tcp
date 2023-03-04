@@ -77,7 +77,7 @@ Route::post("send-message", [MessageBoardController::class, 'sendMsg'])->name("s
 Route::post("upload-portfolio", [PortfolioController::class, 'uploadPortfolio'])->name("portfolio.upload");
 Route::post("user-counties", [HomeController::class, 'userCounties'])->name("user.counties");
 
-Route::get("profiles", [PublicPageController::class, "profiles"])->name("profile.list");
+Route::get("profiles/{trade}", [PublicPageController::class, "profiles"])->name("profile.list");
 
 // Route::get("add-friend", [FriendController::class, "addFriend"])->name("addfriend");
 // Route::get("unfriend", [FriendController::class, "unFriend"])->name("unfriend");

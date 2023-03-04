@@ -34,13 +34,13 @@
                                                   <div class="single-thread single">
                                                       <img src="{{ asset($rc->avatar ? 'images/user/' . $rc->avatar : 'images/avatar.png') }}" alt="" class="avatar avatar-40 photo" height="40" width="40" loading="lazy" decoding="async">
                                                         <div class="item-content"><span class="name">{{ $rc->name }}</span>
-                                                            @php
+                                                            {{-- @php
                                                                 $lastmsg = \App\Models\ChatMessage::whereIn("sender_id", [Auth::user()->id, $rc->id ?? ""])
                                                                 ->whereIn("receiver_id", [Auth::user()->id, $rc->id ?? ""])->first();
                                                             @endphp
                                                             @if ($lastmsg)
                                                                 <span class="last-thread">{{ $lastmsg->sender_id == Auth::user()->id ? "You" : $lastmsg->user->name }}: {{ $lastmsg->message }}</span>
-                                                            @endif
+                                                            @endif --}}
                                                         </div>
                                                   </div>
                                               </a>

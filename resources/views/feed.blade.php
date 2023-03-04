@@ -14,17 +14,17 @@
 
         <div class="tabs7 mt-4">
             <ul class="nav m-0">
-                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('trade.list') }}">Tradesmen</a></li>
-                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('trade.list') }}">Contractors</a></li>
-                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list') }}">Architects/Engineers</a>
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('trade.list', 'tradesmen') }}">Tradesmen</a></li>
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('trade.list', 'contractors') }}">Contractors</a></li>
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list', 'architects_engineers') }}">Architects/Engineers</a>
                 </li>
-                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list') }}">Trade
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list', 'organization_associations') }}">Trade
                         Organizations/Associations</a></li>
-                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list') }}">Trade
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list', 'schools_education') }}">Trade
                         Schools/Education</a></li>
-                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list') }}">Facility/Property
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list', 'facility_property_mgmt') }}">Facility/Property
                         Mgmt</a></li>
-                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list') }}">Vendors</a></li>
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list', 'vendors') }}">Vendors</a></li>
             </ul>
         </div>
 

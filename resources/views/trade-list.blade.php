@@ -13,7 +13,7 @@
         <div class="row my-4 gx-1">
             @foreach ($trades as $trade)
                 <div class="col-md-2">
-                    <a class="nav-link bg-white text-center m-1 text-dark rounded d-block" href="{{ route("profile.list") }}">
+                    <a class="nav-link bg-white text-center m-1 text-dark rounded d-block" href="{{ route("profile.list", $trade->id) }}">
                         <div>
                             {{-- <i class="fas fa-toolbox"></i> --}}
                             <img src="{{ asset("uploads/trades/$trade->image") }}" alt="{{ $trade->name }}" class="img-fluid" width="40">

@@ -92,13 +92,13 @@
                 </div> --}}
                 <div class="tabs7">
                     <ul class="nav m-0">
-                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('trade.list') }}">Tradesmen</a></li>
-                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('trade.list') }}">Contractors</a></li>
-                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list') }}">Architects/Engineers</a></li>
-                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list') }}">Organizations/Associations</a></li>
-                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list') }}">Schools/Education</a></li>
-                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list') }}">Facility/Property Mgmt</a></li>
-                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list') }}">Vendors</a></li>
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('trade.list', 'tradesmen') }}">Tradesmen</a></li>
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('trade.list', 'contractors') }}">Contractors</a></li>
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list', 'architects_engineers') }}">Architects/Engineers</a></li>
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list', 'organization_associations') }}">Organizations/Associations</a></li>
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list', 'schools_education') }}">Schools/Education</a></li>
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list', 'facility_property_mgmt') }}">Facility/Property Mgmt</a></li>
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list', 'vendors') }}">Vendors</a></li>
                     </ul>
                 </div>
 

@@ -32,14 +32,10 @@ class PublicPageController extends Controller
 
     }
 
-    public function profiles(Request $request){
+    public function profiles(Request $request, $trade){
 
         $query = $request->q;
 
-        $profiles = User::whereHas("roles", function($q){
-            $q->where("title", "!=", "admin");
-        })->where("name", "like", "%$query%")
-            ->paginate(20);
 
 
             $user = Auth::user();
@@ -47,7 +43,16 @@ class PublicPageController extends Controller
         //             ->whereHas("chatmessages", function($q){
         //                 $q->where("sender_id", Auth::user()->id);
         //             })->get();
-        $receivers = User::all();
+
+
+        if(is_numeric($trade)){
+            $receivers = User::where("trade_id", $trade)
+                ->where("id", "!=", $user->id)->get();
+        }else{
+            $receivers = User::where("user_type", $trade)
+            ->where("id", "!=", $user->id)->get();
+        }
+
 
         $receiver = null;
         if(request("receiver_id")){
@@ -58,7 +63,7 @@ class PublicPageController extends Controller
                             ->whereIn("receiver_id", [$user->id, $receiver->id ?? ""])
                             ->paginate(request()->per_page);
 
-        return view("profile-list", compact("user", "receivers", "receiver", "messages", "profiles"));
+        return view("profile-list", compact("user", "receivers", "receiver", "messages"));
 
     }
 }
