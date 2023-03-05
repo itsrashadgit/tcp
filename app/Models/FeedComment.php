@@ -17,4 +17,7 @@ class FeedComment extends Model
         return $this->hasMany(FeedComment::class, 'feed_comment_id');
     }
 
+    public function feed(){
+        return $this->belongsTo(Feed::class);
+    }
 }

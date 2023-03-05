@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\FeedLike;
 use Illuminate\Http\Request;
 use Auth;
+use App\Http\Resources\FeedResource;
+use App\Models\Feed;
 
 class LikeController extends Controller
 {
@@ -19,6 +21,8 @@ class LikeController extends Controller
 
         $user = Auth::user();
 
+        $feed = Feed::findOrFail($request->feed_id);
+
         $like = new FeedLike();
         $like->user_id = $user->id;
         $like->type = "like";
@@ -28,7 +32,8 @@ class LikeController extends Controller
 
         return response()->json([
             "success" => true,
-            "message" => "Liked Successfully"
+            "message" => "Liked Successfully",
+            "data" => new FeedResource($feed)
         ]);
 
     }
@@ -38,10 +43,13 @@ class LikeController extends Controller
 
         $like = FeedLike::where("feed_id", $feed_id)->where("user_id", Auth::user()->id)->first();
 
+        $feed = Feed::findOrFail($feed_id);
+
         if($like->delete()){
             return response()->json([
                 "success" => true,
-                "message" => "Delete Successfully"
+                "message" => "Delete Successfully",
+                "data" => new FeedResource($feed)
             ]);
         }else{
             return response()->json([

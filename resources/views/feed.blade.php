@@ -16,15 +16,15 @@
             <ul class="nav m-0">
                 <li class="nav-item"><a class="nav-link bg-white" href="{{ route('trade.list', 'tradesmen') }}">Tradesmen</a></li>
                 <li class="nav-item"><a class="nav-link bg-white" href="{{ route('trade.list', 'contractors') }}">Contractors</a></li>
-                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list', 'architects_engineers') }}">Architects/Engineers</a>
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('message.board', 'architects_engineers') }}">Architects/Engineers</a>
                 </li>
-                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list', 'organization_associations') }}">Trade
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('message.board', 'organization_associations') }}">Trade
                         Organizations/Associations</a></li>
-                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list', 'schools_education') }}">Trade
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('message.board', 'schools_education') }}">Trade
                         Schools/Education</a></li>
-                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list', 'facility_property_mgmt') }}">Facility/Property
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('message.board', 'facility_property_mgmt') }}">Facility/Property
                         Mgmt</a></li>
-                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('profile.list', 'vendors') }}">Vendors</a></li>
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('message.board', 'vendors') }}">Vendors</a></li>
             </ul>
         </div>
 
@@ -296,7 +296,7 @@
                                                                             </path>
                                                                         </svg></span></span></a>
                                                         </p>
-                                                        <div class="activity-extension-links">
+                                                        <div class="activity-extension-links" v-if="feed.user_id == feed.auth_user_id">
                                                             <span class="open-button">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                                     height="16" fill="currentColor"
@@ -311,8 +311,7 @@
                                                             </span>
                                                             <ul>
                                                                 <li>
-                                                                    <a class="button bp-secondary-action bp-tooltip activity-make-favourite"
-                                                                        href="">
+                                                                    <a class="button bp-secondary-action bp-tooltip activity-make-favourite" @click.prevent="() => moveToPipeline(feed.id)">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             width="24" height="24"
                                                                             viewBox="0 0 24 24" fill="none"
@@ -324,9 +323,9 @@
                                                                             </path>
                                                                         </svg>
                                                                         <div>
-                                                                            <h4>Save</h4>
+                                                                            <h4>@{{ feed.is_on_pipeline == true ? "Remove" : "Save" }}</h4>
                                                                             <p>
-                                                                                Save to Pipeline
+                                                                                @{{ feed.is_on_pipeline == true ? "Remove from Pipeline" : "Save to Pipeline" }}
                                                                             </p>
                                                                         </div>
                                                                     </a>
@@ -405,7 +404,7 @@
                                                         <div class="th-bp-footer-meta-actions">
                                                             <div class="th-bp-post-like-button th-bp-activity-like-button">
 
-                                                                <a v-if="feed.liked" href="#" class="text-primary"
+                                                                <a v-if="feed.liked == true" href="#" class="text-primary"
                                                                     @click.prevent="() => unlikePost(feed.id)">
                                                                     <img src="{{ asset('assets/img/like.png') }}"> Like
                                                                 </a>
@@ -999,7 +998,7 @@
 
                 try {
                     const response = await axios.delete("/tcp/api/v1/feeds/" + feed_id);
-                    this.fetchFeeds();
+                    this.mutateFeeds(response.data.data);
                 } catch (err) {
                     console.log(err);
                     // this.toast("Something Wen't Wrong!", "error");
@@ -1013,7 +1012,7 @@
                         feed_id,
                         comment: comment,
                     });
-                    this.fetchFeeds();
+                    this.mutateFeeds(response.data.data);
                 } catch (err) {
                     console.log(err);
                     // this.toast("Something Wen't Wrong!", "error");
@@ -1024,7 +1023,7 @@
                     const response = await axios.post("{{ route('api.likes.store') }}", {
                         feed_id
                     });
-                    this.fetchFeeds();
+                    this.mutateFeeds(response.data.data);
                 } catch (err) {
                     console.log(err);
                     // this.toast("Something Wen't Wrong!", "error");
@@ -1033,7 +1032,7 @@
             async unlikePost(feed_id) {
                 try {
                     const response = await axios.delete("/tcp/api/v1/likes/" + feed_id);
-                    this.fetchFeeds();
+                    this.mutateFeeds(response.data.data);
                 } catch (err) {
                     console.log(err);
                     // this.toast("Something Wen't Wrong!", "error");
@@ -1048,7 +1047,7 @@
                         comment: comment,
                         feed_comment_id: comment_id
                     });
-                    this.fetchFeeds();
+                    this.mutateFeeds(response.data.data);
                 } catch (err) {
                     console.log(err);
                     // this.toast("Something Wen't Wrong!", "error");
@@ -1058,7 +1057,7 @@
 
                 try {
                     const response = await axios.delete("/tcp/api/v1/comments/" + comment_id);
-                    this.fetchFeeds();
+                    this.mutateFeeds(response.data.data);
                 } catch (err) {
                     console.log(err);
                     // this.toast("Something Wen't Wrong!", "error");
@@ -1083,6 +1082,28 @@
 
                 const new_media = this.feedform.media.filter(m => m.id != media_id);
                 this.feedform.media = new_media;
+            },
+            async moveToPipeline(feed_id){
+                try {
+                    const response = await axios.put("/tcp/api/v1/to-pipeline/" + feed_id);
+                    // console.log(response.data);
+                    this.mutateFeeds(response.data.data);
+                } catch (err) {
+                    console.log(err);
+                    // this.toast("Something Wen't Wrong!", "error");
+                }
+            },
+            mutateFeeds(feed){
+
+                const newfeeds = this.feeds.map(fd => {
+                    if(fd.id == feed.id){
+                        return feed;
+                    }
+                    return fd;
+                });
+
+                this.feeds = newfeeds;
+
             }
         }
 

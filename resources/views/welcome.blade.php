@@ -9,7 +9,7 @@
                     <a href="{{ route('welcome') }}" class="logo-link" rel="home">
                         <img class="site-img-logo" src="{{ asset('assets/img/logo.png') }}"
                             alt="the-construction-platform"
-                            title="The Construction Platform" width="180"/>
+                            title="The Construction Platform" width="300"/>
                     </a>
                     <p>Revolutionizing The Industry, Where All Business Gets Done</p>
                 </div>

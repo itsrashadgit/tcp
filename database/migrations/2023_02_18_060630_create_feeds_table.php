@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string("visibility")->default("public");
             $table->text("content");
             $table->integer("likes")->default(0);
+            $table->boolean("is_on_pipeline")->default(false);
             $table->timestamps();
         });
     }

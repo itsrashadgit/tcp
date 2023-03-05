@@ -22,70 +22,21 @@
 
     {{-- Font --}}
     <link rel="stylesheet"
-        href="//fonts.googleapis.com/css?family=Inter%3A400%2Cmedium%2Csemi-bold%2Cbold%7COpen+Sans%3A300%2C300i%2C400%2C400i%2C600%2C600i%2C700%2C700i%2C800%2C800i&#038;ver=3.3.1"
-        media="all" />
+    href="//fonts.googleapis.com/css?family=Inter%3A400%2Cmedium%2Csemi-bold%2Cbold%7COpen+Sans%3A300%2C300i%2C400%2C400i%2C600%2C600i%2C700%2C700i%2C800%2C800i&#038;ver=3.3.1"
+    media="all" />
 
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css" />
-
-    <script src="{{ asset('tcp/js/bud.js') }}" id="th-bud-js"></script>
-
-    <link rel="stylesheet" id="bp-nouveau-css" href="{{ asset('tcp/css/bud.min.css') }}" media="screen" />
-    <link rel="stylesheet" id="th-bud-css" href="{{ asset('tcp/css/budcomp.css') }}" media="all" />
-    <link rel="stylesheet" href="{{ asset('assets/css/tcp.css') }}">
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
-    {{-- <link rel="stylesheet" media="screen" href="{{ asset('vendor/boxicons/css/boxicons.min.css') }}" /> --}}
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css" /> --}}
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/tcp.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css">
 
-    <style>
-        .required:after {
-            content:" *";
-            color: red;
-        }
-        .profile-img-uploader {
-            position: absolute;
-            right: 10px;
-            bottom: 5px;
-            font-size: 25px;
-            background: #D8DADF;
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 5px;
-        }
-        .cover-photo-uploader label {
-            background: #fff;
-            padding: 5px 20px;
-            border-radius: 8px;
-            position: absolute;
-            right: 15px;
-            bottom: 15px;
-        }
-
-        @media only screen and (min-width: 1020px) {
-            .loggedin-user-links{
-                right: 350px !important;
-            }
-        }
-
-        .icon-break{
-            text-align: center;
-            line-height: 22px;
-            margin-top: 15px;
-        }
-    </style>
     @stack('head_tags')
+
 </head>
 
-<body
-    class="home-page directory activity buddypress bp-nouveau home page-template-default page page-id-6 logged-in admin-bar no-customize-support wp-custom-logo pmpro-body-has-access sidebar-content-sidebar main-layout-sidebar-content-sidebar site-full-width menu_sidebar_slide_left v-nav-active elementor-default elementor-kit-29 no-js directorist-content-active directorist-preload">
+<body class="home-page directory activity buddypress bp-nouveau home page-template-default page page-id-6 logged-in admin-bar no-customize-support wp-custom-logo pmpro-body-has-access sidebar-content-sidebar main-layout-sidebar-content-sidebar site-full-width menu_sidebar_slide_left v-nav-active elementor-default elementor-kit-29 no-js directorist-content-active directorist-preload">
     <div id="app" class="site box-shadow footer-relative">
         <header id="masthead" class="site-header header-v2">
             <div id="masthead-inner" class="site-header-inner">
@@ -149,19 +100,19 @@
 
                                                     <li id="menu-item--main-desktop-953"
                                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-953">
-                                                        <a href="{{ route('welcome') }}"
+                                                        <a href="{{ Auth::check() ? route('message.board', Auth::user()->username) : route('login') }}"
                                                             class="d-flex flex-column">
                                                             <i class='bx bx-dollar-circle fs-3'></i>
-                                                            <span class="link-before">Exchange Calculator</span>
+                                                            <span class="link-before icon-break">Exchange<br/> Calculator</span>
                                                         </a>
                                                     </li>
 
                                                     <li id="menu-item--main-desktop-953"
                                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-953">
-                                                        <a href="{{ route('welcome') }}"
+                                                        <a href="{{ Auth::check() ? route('message.board', Auth::user()->username) : route('login') }}"
                                                             class="d-flex flex-column">
                                                             <i class='bx bx-search fs-3'></i>
-                                                            <span class="link-before">Search Profiles</span>
+                                                            <span class="link-before icon-break">Search<br/> Profiles</span>
                                                         </a>
                                                     </li>
 
@@ -297,7 +248,7 @@
 
                                     <div class="item--inner builder-item--social_search_box">
                                         {{-- <div class="header-social_search_box-item item--social_search_box">
-                                            <form role="search" class="header-search-form" action="{{ route("profile.list") }}" method="GET">
+                                            <form role="search" class="header-search-form" action="{{ route("message.board") }}" method="GET">
                                                 <div class="search-form-fields">
                                                     <span class="screen-reader-text">Search for:</span>
                                                     <input autocomplete="off" type="search" class="search-field"
@@ -587,7 +538,7 @@
         @include('partials.login-modal')
     </div>
 
-    <div class="tophive-bp-messenger-sticky-main">
+    {{-- <div class="tophive-bp-messenger-sticky-main">
         <div class="messenger-toggler">Messenger<span class="live-indicator"></span><span class="new-message-count hidden">0</span>
             <span class="open-arrow">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -700,69 +651,28 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- #page -->
 
 
 
 
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('assets/js/bud.js') }}" id="th-bud-js"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/jquery1.10.2.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/jquery.tcpImageMaps.min.js') }}" type="text/javascript"></script>
-    <!-- <script src="{{ asset('assets/js/imageMapResizer.min.js') }}" type="text/javascript"></script> -->
+    {{-- <script src="{{ asset('assets/js/imageMapResizer.min.js') }}" type="text/javascript"></script> --}}
+    <!-- Swiper JS -->
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script> --}}
+    <script src="{{ asset('assets/js/custom.js') }}" type="text/javascript"></script>
 
     @include('core::partials.toastr')
 
-    <script type="text/javascript">
-        $(document).ready(function(e) {
-            $('img[usemap]').tcpImageMaps();
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-
-            $(".messenger-toggler").on("click", function() {
-
-                const cls = $(".tophive-bp-messenger-sticky-main").attr("class");
-
-                if (cls.includes("messenger-open")) {
-                    $(".tophive-bp-messenger-sticky-main").removeClass("messenger-open");
-                } else {
-                    $(".tophive-bp-messenger-sticky-main").addClass("messenger-open");
-                }
-
-
-            });
-
-
-            $(document).on("click", function(e){
-
-                // e.preventDefault();
-                // e.stopPropagation();
-
-                const elem = document.getElementsByClassName("sharing-options open");
-                let target = e.target;
-                if(target.tagName == "svg"){
-                    target = target.parentElement;
-                }
-                const targetClass = target.className;
-
-                if(!targetClass.includes("share-track")){
-                    if(elem.length > 0) elem[0].classList.remove("open");
-                }
-
-            });
-
-        });
-    </script>
-
     {{-- ---------------------------------- VUE SCRIPTS --------------------------------------- --}}
     <script>
-        let vdata = {
-            cartCount: 0
-        };
+        let vdata = {};
         let vcreated = {};
         let vmounted = {};
         let vmethods = {};
@@ -801,9 +711,7 @@
     </script>
     {{-- ---------------------------------- End of VUE SCRIPTS --------------------------------------- --}}
 
-    <!-- Swiper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
-    <script src="{{ asset('assets/js/custom.js') }}" type="text/javascript"></script>
+
 </body>
 
 </html>

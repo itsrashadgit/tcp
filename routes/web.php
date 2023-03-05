@@ -1,19 +1,15 @@
 <?php
 
-use App\Http\Controllers\Admin\CountyController;
-use App\Http\Controllers\Admin\StateController;
+use App\Http\Controllers\CountyController;
+use App\Http\Controllers\StateController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\FollowController;
-use App\Http\Controllers\FriendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageBoardController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\PublicPageController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TradeController;
-use App\Models\City;
-use App\Models\State;
-use App\Models\Trade;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,61 +23,53 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/usa', [PublicPageController::class, 'usa'])->name("usa");
+//
+//
+// All Public Routes
+//
+//
 Route::get('/', [PublicPageController::class, 'index'])->name("welcome");
-
-
-Route::get('register', function(){
-
-    $trades = Trade::all();
-    return view("auth.register", compact("trades"));
-
-})->name("register")->middleware("guest");
-
-Route::get('/login', function(){
-    return view("auth.login");
-})->name("login")->middleware("guest");
-
-
+Route::get('register', [PublicPageController::class, 'register'])->name("register")->middleware("guest");
+Route::get('/login', [PublicPageController::class, 'login'])->name("login")->middleware("guest");
+Route::get('/usa', [PublicPageController::class, 'usa'])->name("usa");
 Route::get("/state/{slug}", [PublicPageController::class, 'stateCounties'])->name("state.counties");
 
 
-// dashboard routes
+
+//
+//
+// All User Routes
+//
+//
 Route::get('/home/user', [HomeController::class, 'index'])->name("home.user");
+Route::get("portfolio/{username}", [HomeController::class, 'portfolio'])->name("user.portfolio");
+Route::get("profile/{username}", [HomeController::class, 'profile'])->name("user.profile");
+Route::get("activity/{username}", [HomeController::class, 'activity'])->name("user.activity");
+Route::get("settings", [HomeController::class, 'settings'])->name("user.settings");
+Route::get("edit-profile", [HomeController::class, 'editProfile'])->name("profile.edit");
 
-
+Route::post("edit-profile", [HomeController::class, 'updateProfile'])->name("profile.update");
+Route::post("user-counties", [HomeController::class, 'userCounties'])->name("user.counties");
 
 Route::get("feeds/{state}/{county}", [FeedController::class, 'showFeed'])->name("feeds");
 
 Route::get("trades", [TradeController::class, 'index'])->name("trade.list");
-
-
-
-Route::get("messages/{username}", [MessageBoardController::class, 'index'])->name("message.board");
-Route::get("portfolio/{username}", [HomeController::class, 'portfolio'])->name("user.portfolio");
-Route::get("profile/{username}", [HomeController::class, 'profile'])->name("user.profile");
-Route::get("activity/{username}", [HomeController::class, 'activity'])->name("user.activity");
-
-Route::get("settings", [HomeController::class, 'settings'])->name("user.settings");
-Route::get("edit-profile", [HomeController::class, 'editProfile'])->name("profile.edit");
-Route::post("edit-profile", [HomeController::class, 'updateProfile'])->name("profile.update");
-
 Route::get("follow", [FollowController::class, "follow"])->name("follow");
 Route::get("unfollow", [FollowController::class, "unfollow"])->name("unfollow");
-
-
 Route::get("search", [SearchController::class, "search"])->name("search");
 
-Route::post("send-message", [MessageBoardController::class, 'sendMsg'])->name("send.msg");
 Route::post("upload-portfolio", [PortfolioController::class, 'uploadPortfolio'])->name("portfolio.upload");
-Route::post("user-counties", [HomeController::class, 'userCounties'])->name("user.counties");
+Route::post("send-message", [MessageBoardController::class, 'sendMsg'])->name("send.msg");
 
-Route::get("profiles/{trade}", [PublicPageController::class, "profiles"])->name("profile.list");
+Route::get("messenger/{trade}", [MessageBoardController::class, "index"])->name("message.board");
 
-// Route::get("add-friend", [FriendController::class, "addFriend"])->name("addfriend");
-// Route::get("unfriend", [FriendController::class, "unFriend"])->name("unfriend");
 
+
+//
+//
+// All Admin Routes
+//
+//
 Route::group(['middleware' => ['auth'], "as" => "admin."], function() {
 
 
@@ -91,9 +79,6 @@ Route::group(['middleware' => ['auth'], "as" => "admin."], function() {
 });
 
 
-Route::get("clear", function(){
 
-    \Artisan::call("optimize:clear");
-    dd("done");
 
-});
+// alter table feeds add column is_on_pipeline tinyint(1) default 0;

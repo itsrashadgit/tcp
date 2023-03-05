@@ -6,6 +6,22 @@
 
     <div class="tophive-container">
 
+        <div class="tabs7 mt-4">
+            <ul class="nav m-0">
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('trade.list', 'tradesmen') }}">Tradesmen</a></li>
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('trade.list', 'contractors') }}">Contractors</a></li>
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('message.board', 'architects_engineers') }}">Architects/Engineers</a>
+                </li>
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('message.board', 'organization_associations') }}">Trade
+                        Organizations/Associations</a></li>
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('message.board', 'schools_education') }}">Trade
+                        Schools/Education</a></li>
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('message.board', 'facility_property_mgmt') }}">Facility/Property
+                        Mgmt</a></li>
+                <li class="nav-item"><a class="nav-link bg-white" href="{{ route('message.board', 'vendors') }}">Vendors</a></li>
+            </ul>
+        </div>
+
         <div class="tophive-grid">
             <main id="main" class="content-area tophive-col-9_md-9_sm-12">
                 <div class="content-inner">

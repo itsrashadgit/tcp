@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2023 at 07:25 PM
+-- Generation Time: Mar 05, 2023 at 01:53 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -48,7 +48,9 @@ INSERT INTO `chat_messages` (`id`, `sender_id`, `receiver_id`, `conversation_typ
 (1, 3, 4, 0, 'Hello, How are you?', 0, 0, NULL, '2023-02-27 02:15:33', '2023-02-27 02:15:33'),
 (2, 4, 5, 0, 'hlw', 0, 0, NULL, '2023-02-28 06:57:20', '2023-02-28 06:57:20'),
 (3, 5, 4, 0, 'hi', 0, 0, NULL, '2023-02-28 06:58:09', '2023-02-28 06:58:09'),
-(4, 7, 4, 0, 'hello', 0, 0, NULL, '2023-03-01 12:47:10', '2023-03-01 12:47:10');
+(4, 7, 4, 0, 'hello', 0, 0, NULL, '2023-03-01 12:47:10', '2023-03-01 12:47:10'),
+(5, 9, 9, 0, 'hello', 0, 0, NULL, '2023-03-04 08:24:08', '2023-03-04 08:24:08'),
+(6, 3, 9, 0, 'Hlw', 0, 0, NULL, '2023-03-04 08:27:06', '2023-03-04 08:27:06');
 
 -- --------------------------------------------------------
 
@@ -299,18 +301,20 @@ CREATE TABLE `feeds` (
   `content` text NOT NULL,
   `likes` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `is_on_pipeline` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `feeds`
 --
 
-INSERT INTO `feeds` (`id`, `user_id`, `visibility`, `content`, `likes`, `created_at`, `updated_at`) VALUES
-(7, 3, 'Public', 'Hello how are you?', 0, '2023-03-02 12:41:36', '2023-03-02 12:41:36'),
-(8, 3, 'Public', 'I want to sell my new shoes', 0, '2023-03-02 12:43:05', '2023-03-02 12:43:05'),
-(9, 3, 'Public', 'Why This is ?', 0, '2023-03-02 12:43:17', '2023-03-02 12:43:17'),
-(10, 3, 'Public', 'hello', 0, '2023-03-03 08:19:46', '2023-03-03 08:19:46');
+INSERT INTO `feeds` (`id`, `user_id`, `visibility`, `content`, `likes`, `created_at`, `updated_at`, `is_on_pipeline`) VALUES
+(7, 3, 'Public', 'Hello how are you?', 0, '2023-03-02 12:41:36', '2023-03-02 12:41:36', 0),
+(8, 3, 'Public', 'I want to sell my new shoes', 0, '2023-03-02 12:43:05', '2023-03-02 12:43:05', 0),
+(9, 3, 'Public', 'Why This is ?', 0, '2023-03-02 12:43:17', '2023-03-02 12:43:17', 0),
+(10, 3, 'Public', 'hello', 0, '2023-03-03 08:19:46', '2023-03-03 08:19:46', 0),
+(11, 9, 'Public', 'This is a post from mohammed', 0, '2023-03-04 04:13:10', '2023-03-04 04:13:10', 0);
 
 -- --------------------------------------------------------
 
@@ -334,7 +338,13 @@ CREATE TABLE `feed_comments` (
 
 INSERT INTO `feed_comments` (`id`, `feed_id`, `user_id`, `feed_comment_id`, `comment`, `created_at`, `updated_at`) VALUES
 (6, 10, 3, NULL, 'commen', '2023-03-03 08:19:55', '2023-03-03 08:19:55'),
-(7, 10, 3, 6, 'hello', '2023-03-03 08:20:00', '2023-03-03 08:20:00');
+(7, 10, 3, 6, 'hello', '2023-03-03 08:20:00', '2023-03-03 08:20:00'),
+(8, 10, 9, NULL, 'hello i am mohammad', '2023-03-04 04:13:23', '2023-03-04 04:13:23'),
+(9, 11, 3, NULL, 'thanks mohammed', '2023-03-04 04:14:16', '2023-03-04 04:14:16'),
+(10, 11, 3, NULL, 'hello', '2023-03-04 04:22:21', '2023-03-04 04:22:21'),
+(11, 11, 9, 9, 'This is a reply', '2023-03-04 04:24:33', '2023-03-04 04:24:33'),
+(12, 11, 9, 9, 'again', '2023-03-04 04:24:39', '2023-03-04 04:24:39'),
+(13, 11, 3, NULL, 'here is a comment', '2023-03-04 08:43:38', '2023-03-04 08:43:38');
 
 -- --------------------------------------------------------
 
@@ -357,7 +367,8 @@ CREATE TABLE `feed_files` (
 
 INSERT INTO `feed_files` (`id`, `feed_id`, `file_name`, `file_type`, `created_at`, `updated_at`) VALUES
 (2, 8, 'yqSzx91citw8OVV5Tv5ka7fObcZnRo8ONhdiAx5Z.png', 'image', '2023-03-02 12:42:55', '2023-03-02 12:43:05'),
-(3, 10, '3zXcO3XbWBc1PJ9ymHvl5Z0cuLoMjBsEWeD43lmX.png', 'image', '2023-03-03 08:19:41', '2023-03-03 08:19:46');
+(3, 10, '3zXcO3XbWBc1PJ9ymHvl5Z0cuLoMjBsEWeD43lmX.png', 'image', '2023-03-03 08:19:41', '2023-03-03 08:19:46'),
+(4, NULL, 'SIRWaVyHjnnIskIsH7euekD62SdC4gyQFZTt1pEl.png', 'image', '2023-03-04 04:36:25', '2023-03-04 04:36:25');
 
 -- --------------------------------------------------------
 
@@ -380,7 +391,9 @@ CREATE TABLE `feed_likes` (
 
 INSERT INTO `feed_likes` (`id`, `feed_id`, `user_id`, `type`, `created_at`, `updated_at`) VALUES
 (3, 7, 3, 'like', '2023-03-02 12:45:29', '2023-03-02 12:45:29'),
-(4, 10, 3, 'like', '2023-03-03 08:19:51', '2023-03-03 08:19:51');
+(4, 10, 3, 'like', '2023-03-03 08:19:51', '2023-03-03 08:19:51'),
+(6, 10, 9, 'like', '2023-03-04 08:43:23', '2023-03-04 08:43:23'),
+(8, 11, 3, 'like', '2023-03-05 06:44:27', '2023-03-05 06:44:27');
 
 -- --------------------------------------------------------
 
@@ -401,7 +414,8 @@ CREATE TABLE `followers` (
 --
 
 INSERT INTO `followers` (`id`, `user_id`, `follower_id`, `created_at`, `updated_at`) VALUES
-(8, 4, 3, '2023-02-27 12:23:40', '2023-02-27 12:23:40');
+(8, 4, 3, '2023-02-27 12:23:40', '2023-02-27 12:23:40'),
+(9, 3, 9, '2023-03-04 04:42:51', '2023-03-04 04:42:51');
 
 -- --------------------------------------------------------
 
@@ -1039,7 +1053,8 @@ INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
 (5, 4),
 (6, 4),
 (7, 4),
-(8, 4);
+(8, 4),
+(9, 4);
 
 -- --------------------------------------------------------
 
@@ -1200,8 +1215,8 @@ CREATE TABLE `subroles` (
 
 CREATE TABLE `trades` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `user_type` varchar(100) DEFAULT NULL,
   `name` varchar(100) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `slug` varchar(100) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
@@ -1211,33 +1226,33 @@ CREATE TABLE `trades` (
 -- Dumping data for table `trades`
 --
 
-INSERT INTO `trades` (`id`, `user_type`, `name`, `slug`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'Electricians', 'electricians', '2023-02-21 10:29:03', '2023-02-21 10:29:03'),
-(2, NULL, 'Plumbers', 'plumbers', '2023-02-21 10:29:16', '2023-02-21 10:29:16'),
-(3, NULL, 'HVAC', 'hvac', '2023-02-21 10:29:26', '2023-02-21 10:29:26'),
-(4, NULL, 'Telecommunications', 'telecommunications', '2023-02-21 10:29:36', '2023-02-21 10:29:36'),
-(5, NULL, 'Low Voltage', 'low-voltage', '2023-02-21 10:30:46', '2023-02-21 10:30:46'),
-(6, NULL, 'Fire Alarm', 'fire-alarm', '2023-02-21 10:30:46', '2023-02-21 10:30:46'),
-(7, NULL, 'House Flippers', 'house-flippers', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(8, NULL, 'Drywall', 'drywall', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(9, NULL, 'Audio/Visual', 'audio/visual', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(10, NULL, 'Masonry', 'masonry', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(11, NULL, 'Roofing', 'roofing', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(12, NULL, 'Tile Marble', 'tile-marble', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(13, NULL, 'Flooring', 'flooring', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(14, NULL, 'Painting', 'painting', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(15, NULL, 'Glass', 'glass', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(16, NULL, 'Welding', 'welding', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(17, NULL, 'Excavation', 'excavation', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(18, NULL, 'Demolition', 'demolition', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(19, NULL, 'Structural Steel', 'structural-steel', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(20, NULL, 'Paving', 'paving', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(21, NULL, 'Landscape', 'landscape', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(22, NULL, 'Pools', 'pools', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(23, NULL, 'Fencing', 'fencing', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(24, NULL, 'Laborers', 'laborers', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(25, NULL, 'Acoustics Ceilings', 'acoustics-ceilings', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
-(26, NULL, 'Tree Service', 'tree-service', '2023-02-21 10:30:50', '2023-02-21 10:30:50');
+INSERT INTO `trades` (`id`, `name`, `image`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 'Electricians', 'electrician.png', 'electricians', '2023-02-21 10:29:03', '2023-02-21 10:29:03'),
+(2, 'Plumbers', 'plumber.png', 'plumbers', '2023-02-21 10:29:16', '2023-02-21 10:29:16'),
+(3, 'HVAC', 'air-conditioner.png', 'hvac', '2023-02-21 10:29:26', '2023-02-21 10:29:26'),
+(4, 'Telecommunications', 'cell-tower.png', 'telecommunications', '2023-02-21 10:29:36', '2023-02-21 10:29:36'),
+(5, 'Low Voltage', 'voltage.png', 'low-voltage', '2023-02-21 10:30:46', '2023-02-21 10:30:46'),
+(6, 'Fire Alarm', 'fire-sensor.png', 'fire-alarm', '2023-02-21 10:30:46', '2023-02-21 10:30:46'),
+(7, 'House Flippers', 'house.png', 'house-flippers', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(8, 'Drywall', 'drywall.png', 'drywall', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(9, 'Audio/Visual', 'multimedia.png', 'audio/visual', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(10, 'Masonry', 'brickwork.png', 'masonry', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(11, 'Roofing', 'roof.png', 'roofing', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(12, 'Tile Marble', 'marble.png', 'tile-marble', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(13, 'Flooring', 'parquet.png', 'flooring', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(14, 'Painting', 'paint-roller.png', 'painting', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(15, 'Glass', 'glass.png', 'glass', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(16, 'Welding', 'welding.png', 'welding', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(17, 'Excavation', 'excavator.png', 'excavation', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(18, 'Demolition', 'demolition.png', 'demolition', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(19, 'Structural Steel', 'structure.png', 'structural-steel', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(20, 'Paving', 'paving.png', 'paving', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(21, 'Landscape', 'field.png', 'landscape', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(22, 'Pools', 'swimming-pool.png', 'pools', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(23, 'Fencing', 'fence.png', 'fencing', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(24, 'Laborers', 'worker.png', 'laborers', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(25, 'Acoustics Ceilings', 'ceiling.png', 'acoustics-ceilings', '2023-02-21 10:30:50', '2023-02-21 10:30:50'),
+(26, 'Tree Service', 'christmas.png', 'tree-service', '2023-02-21 10:30:50', '2023-02-21 10:30:50');
 
 -- --------------------------------------------------------
 
@@ -1279,22 +1294,25 @@ CREATE TABLE `users` (
   `phone` varchar(255) DEFAULT NULL,
   `avatar` varchar(255) DEFAULT NULL,
   `cover_photo` varchar(255) DEFAULT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `is_online` tinyint(1) NOT NULL DEFAULT 0,
+  `last_online_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `user_type`, `email`, `email_verified_at`, `password`, `address`, `state_id`, `county_id`, `zip_code`, `business_description`, `company_mission`, `company_vision`, `products`, `services`, `trade_id`, `profession_title`, `years_of_experience`, `education`, `institution`, `work_history`, `license`, `certificates`, `achievements`, `ability_skills`, `about_you`, `remember_token`, `created_at`, `updated_at`, `phone`, `avatar`, `cover_photo`, `is_active`) VALUES
-(1, 'Admin', 'admin', '', 'itsrashad@gmail.com', '2023-02-14 01:58:31', '$2y$10$zW9J0vmVF6Kf12f7z9SX0utoinDgXzCV/yht/qMqXodNpXH0ZrXqe', NULL, 31, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-02-01 16:03:30', NULL, NULL, NULL, NULL, 1),
-(2, 'salim', 'salim', '', 'salimhosen19@gmail.com', '2023-03-01 05:31:23', '$2a$12$ez79e3WAiNaQi8B7gDD/kO.JE3EGkneeG1oh0Q/4hYQjrfIE8OV3S', 'konabari', 31, 0, '1700', 'i am a businessman', 'mission', 'vision', 'apple, mango', 'work.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-02-14 05:11:07', '2023-02-14 05:11:07', '01762473884', NULL, NULL, 1),
-(3, 'salim', 'mohammad', 'tradesmen', 'salim7cse@gmail.com', '2023-02-28 20:37:43', '$2y$10$.hdiI1MpJQB8F4ZxmcK/1ePR0rHVnn793OapkMn1Ig89DrjwxByxi', 'konabari', 31, 1, '1700', NULL, NULL, NULL, NULL, NULL, NULL, 'Trading', '2 years', 'Graduate', 'Daffodil', '2 years', 'bsc.', 'html', NULL, 'js', 'profile updated', 'kFqMSfcxoXnxMJc1TC6roh6YttPbKiE89mgjll79YwB5AqvwLbKdJuSNr5H2', '2023-02-18 02:16:19', '2023-03-02 12:28:22', '+8801762473884', 'Nb7aAhwSreb2ljsyqLXmdGUi724xAwJxrIYbYScb.png', 'bSHgrzKFgkx6D9Y3lVqqI4Qrt3yF9cBTQdMB4U4t.jpg', 1),
-(4, 'Md Rashadul Islam', 'mdrashad', 'tradesmen', 'inrashad@gmail.com', '2023-02-28 12:56:36', '$2y$10$zW9J0vmVF6Kf12f7z9SX0utoinDgXzCV/yht/qMqXodNpXH0ZrXqe', 'Sussex', 31, 1, '1000', NULL, NULL, NULL, NULL, NULL, 0, 'Tradesmen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-02-18 20:40:34', '2023-02-18 20:40:34', '+8801717643014', NULL, NULL, 1),
-(5, 'trade', 'trade', 'tradesmen', 'trade@gmail.com', '2023-02-28 03:52:01', '$2y$10$175NVh.SKaZQZcYkCGwCROYhGF1q1AS/qMSpBOM/nq0QDcedUnqnO', 'konabari, gazipur', 31, 1, '1400', NULL, NULL, NULL, NULL, NULL, NULL, 'Trade', '4 years', 'Graduate', 'Daffodil', '2 years in jon', 'mx-5832424', 'hsc,ssc', 'some achievements', 'programmer', 'Its my life', NULL, '2023-02-28 03:50:06', '2023-02-28 05:50:27', '01762473884', NULL, NULL, 1),
-(6, 'mytrade', 'salim7', 'tradesmen', 'salim@gmail.com', NULL, '$2y$10$MVjcDLPXbXEKfFBcaSe6e.COTZYRqrsRyW3t3WaM/j5QyRx3qHMy.', 'Gazipur', 31, 5, '1700', NULL, NULL, NULL, NULL, NULL, NULL, 'my trade', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-02-28 23:36:32', '2023-02-28 23:36:32', '01762473884', NULL, NULL, 1),
-(7, 'Md Rashad Hasan', 'm.rashad', 'contractors', 'm.rashad@curetechbd.com', '2023-03-01 12:45:49', '$2y$10$AkW8xsgjBLhIR4kH1D1en.w.ehHSFLckciwdbJ0CDmFOHVipt9Xoq', 'Dhaka', 31, 1, '1000', 'Electricians', 'Electricians', 'Electricians', 'Electricians', 'Electricians', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-03-01 11:55:43', '2023-03-01 12:45:49', '+8801717643014', NULL, NULL, 1),
-(8, 'salim', 'salimhosen', 'tradesmen', 'rafayo8059@v2ssr.com', '2023-03-01 19:19:41', '$2y$10$ps0.1SgL/Ca3cZt6aTzQJu/av0lAIwwaT/J91hnoQB1KZShwZC2j2', 'konabari', 31, 1, '1700', NULL, NULL, NULL, NULL, NULL, NULL, 'software engineer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-03-01 19:12:02', '2023-03-01 19:19:41', '01762473884', NULL, NULL, 1);
+INSERT INTO `users` (`id`, `name`, `username`, `user_type`, `email`, `email_verified_at`, `password`, `address`, `state_id`, `county_id`, `zip_code`, `business_description`, `company_mission`, `company_vision`, `products`, `services`, `trade_id`, `profession_title`, `years_of_experience`, `education`, `institution`, `work_history`, `license`, `certificates`, `achievements`, `ability_skills`, `about_you`, `remember_token`, `created_at`, `updated_at`, `phone`, `avatar`, `cover_photo`, `is_active`, `is_online`, `last_online_at`) VALUES
+(1, 'Admin', 'admin', '', 'itsrashad@gmail.com', '2023-02-14 01:58:31', '$2y$10$zW9J0vmVF6Kf12f7z9SX0utoinDgXzCV/yht/qMqXodNpXH0ZrXqe', NULL, 31, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-02-01 16:03:30', NULL, NULL, NULL, NULL, 1, 0, NULL),
+(2, 'salim', 'salim', '', 'salimhosen19@gmail.com', '2023-03-01 05:31:23', '$2a$12$ez79e3WAiNaQi8B7gDD/kO.JE3EGkneeG1oh0Q/4hYQjrfIE8OV3S', 'konabari', 31, 0, '1700', 'i am a businessman', 'mission', 'vision', 'apple, mango', 'work.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-02-14 05:11:07', '2023-02-14 05:11:07', '01762473884', NULL, NULL, 1, 0, NULL),
+(3, 'salim', 'mohammad', 'architects_engineers', 'salim7cse@gmail.com', '2023-02-28 20:37:43', '$2y$10$.hdiI1MpJQB8F4ZxmcK/1ePR0rHVnn793OapkMn1Ig89DrjwxByxi', 'konabari', 31, 1, '1700', NULL, NULL, NULL, NULL, NULL, NULL, 'Trading', '2 years', 'Graduate', 'Daffodil', '2 years', 'bsc.', 'html', NULL, 'js', 'profile updated', 'kFqMSfcxoXnxMJc1TC6roh6YttPbKiE89mgjll79YwB5AqvwLbKdJuSNr5H2', '2023-02-18 02:16:19', '2023-03-04 07:52:46', '+8801762473884', 'Nb7aAhwSreb2ljsyqLXmdGUi724xAwJxrIYbYScb.png', 'bSHgrzKFgkx6D9Y3lVqqI4Qrt3yF9cBTQdMB4U4t.jpg', 1, 1, NULL),
+(4, 'Md Rashadul Islam', 'mdrashad', 'tradesmen', 'inrashad@gmail.com', '2023-02-28 12:56:36', '$2y$10$zW9J0vmVF6Kf12f7z9SX0utoinDgXzCV/yht/qMqXodNpXH0ZrXqe', 'Sussex', 31, 1, '1000', NULL, NULL, NULL, NULL, NULL, 0, 'Tradesmen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-02-18 20:40:34', '2023-02-18 20:40:34', '+8801717643014', NULL, NULL, 1, 0, NULL),
+(5, 'trade', 'trade', 'tradesmen', 'trade@gmail.com', '2023-02-28 03:52:01', '$2y$10$175NVh.SKaZQZcYkCGwCROYhGF1q1AS/qMSpBOM/nq0QDcedUnqnO', 'konabari, gazipur', 31, 1, '1400', NULL, NULL, NULL, NULL, NULL, NULL, 'Trade', '4 years', 'Graduate', 'Daffodil', '2 years in jon', 'mx-5832424', 'hsc,ssc', 'some achievements', 'programmer', 'Its my life', NULL, '2023-02-28 03:50:06', '2023-02-28 05:50:27', '01762473884', NULL, NULL, 1, 0, NULL),
+(6, 'mytrade', 'salim7', 'tradesmen', 'salim@gmail.com', NULL, '$2y$10$MVjcDLPXbXEKfFBcaSe6e.COTZYRqrsRyW3t3WaM/j5QyRx3qHMy.', 'Gazipur', 31, 5, '1700', NULL, NULL, NULL, NULL, NULL, NULL, 'my trade', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-02-28 23:36:32', '2023-02-28 23:36:32', '01762473884', NULL, NULL, 1, 0, NULL),
+(7, 'Md Rashad Hasan', 'm.rashad', 'contractors', 'm.rashad@curetechbd.com', '2023-03-01 12:45:49', '$2y$10$AkW8xsgjBLhIR4kH1D1en.w.ehHSFLckciwdbJ0CDmFOHVipt9Xoq', 'Dhaka', 31, 1, '1000', 'Electricians', 'Electricians', 'Electricians', 'Electricians', 'Electricians', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-03-01 11:55:43', '2023-03-01 12:45:49', '+8801717643014', NULL, NULL, 1, 0, NULL),
+(8, 'salim', 'salimhosen', 'tradesmen', 'rafayo8059@v2ssr.com', '2023-03-01 19:19:41', '$2y$10$ps0.1SgL/Ca3cZt6aTzQJu/av0lAIwwaT/J91hnoQB1KZShwZC2j2', 'konabari', 31, 1, '1700', NULL, NULL, NULL, NULL, NULL, NULL, 'software engineer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-03-01 19:12:02', '2023-03-01 19:19:41', '01762473884', NULL, NULL, 1, 0, NULL),
+(9, 'mohammad', 'mohammad2', 'architects_engineers', 'mohammad15-1044@diu.edu.bd', '2023-03-04 04:12:36', '$2y$10$ibpFCxT9qqMS19N5tDWEsueZAqblzqjYHaHQM/YT2WOZIjSUlxciK', 'konabari\ngazipur', 31, 1, '1700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-03-04 04:11:43', '2023-03-04 07:48:50', '01981743331', NULL, 'fBrIM3PkvpCog31nL9xuIq0JHg2AlpNtfQ7098li.png', 1, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -1576,7 +1594,7 @@ ALTER TABLE `user_user`
 -- AUTO_INCREMENT for table `chat_messages`
 --
 ALTER TABLE `chat_messages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `companies`
@@ -1618,31 +1636,31 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `feeds`
 --
 ALTER TABLE `feeds`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `feed_comments`
 --
 ALTER TABLE `feed_comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `feed_files`
 --
 ALTER TABLE `feed_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `feed_likes`
 --
 ALTER TABLE `feed_likes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `followers`
 --
 ALTER TABLE `followers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1738,7 +1756,7 @@ ALTER TABLE `trades`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables

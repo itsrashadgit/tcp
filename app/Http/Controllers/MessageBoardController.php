@@ -2,28 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Chat\StoreChatRequest;
 use App\Models\ChatMessage;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 
-
 class MessageBoardController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware("auth:sanctum");
-    }
+    public function index(Request $request, $trade){
 
-    public function index($username){
+        $query = $request->q;
 
-        $user = Auth::user();
+
+
+            $user = Auth::user();
         // $receivers = User::where("id", "!=", $user->id)
         //             ->whereHas("chatmessages", function($q){
         //                 $q->where("sender_id", Auth::user()->id);
         //             })->get();
-        $receivers = User::all();
+
+
+        if(is_numeric($trade)){
+            $receivers = User::where("trade_id", $trade)
+                ->where("id", "!=", $user->id)->get();
+        }else{
+            $receivers = User::where("user_type", $trade)
+            ->where("id", "!=", $user->id)->get();
+        }
+
 
         $receiver = null;
         if(request("receiver_id")){
@@ -34,29 +40,7 @@ class MessageBoardController extends Controller
                             ->whereIn("receiver_id", [$user->id, $receiver->id ?? ""])
                             ->paginate(request()->per_page);
 
-        return view("user.messenger", compact("user", "receivers", "receiver", "messages"));
-    }
-
-    public function sendMsg(StoreChatRequest $request){
-
-        $user = Auth::user();
-
-        $message_type = 0;
-        // $fileName = null;
-        // if($request->hasFile("file")){
-        //     $fileName = uploadFile($request, "file", "chats/user-$request->receiver_id");
-        //     $message_type = 1;
-        // }
-
-        ChatMessage::create([
-            "sender_id" => $user->id,
-            "receiver_id" => $request->receiver,
-            "message" => $request->message,
-            "message_type" => $message_type,
-            // "file_name" => $fileName
-        ]);
-
-        return redirect()->back();
+        return view("profile-list", compact("user", "receivers", "receiver", "messages"));
 
     }
 }

@@ -94,11 +94,11 @@
                     <ul class="nav m-0">
                         <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('trade.list', 'tradesmen') }}">Tradesmen</a></li>
                         <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('trade.list', 'contractors') }}">Contractors</a></li>
-                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list', 'architects_engineers') }}">Architects/Engineers</a></li>
-                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list', 'organization_associations') }}">Organizations/Associations</a></li>
-                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list', 'schools_education') }}">Schools/Education</a></li>
-                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list', 'facility_property_mgmt') }}">Facility/Property Mgmt</a></li>
-                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('profile.list', 'vendors') }}">Vendors</a></li>
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('message.board', 'architects_engineers') }}">Architects/Engineers</a></li>
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('message.board', 'organization_associations') }}">Organizations/Associations</a></li>
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('message.board', 'schools_education') }}">Schools/Education</a></li>
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('message.board', 'facility_property_mgmt') }}">Facility/Property Mgmt</a></li>
+                        <li class="nav-item"><a class="nav-link bg-white" style="font-size: 14px; padding: 10px 12px" href="{{ route('message.board', 'vendors') }}">Vendors</a></li>
                     </ul>
                 </div>
 

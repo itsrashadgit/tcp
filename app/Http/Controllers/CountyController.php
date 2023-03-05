@@ -1,22 +1,44 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\County;
-use App\Models\State;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class CountyController extends Controller
 {
+    // public function index()
+    // {
+    //     $state = request("state");
+    //     if($state){
+    //         $counties = County::where("state_id", $state)->get();
+    //     }else{
+    //         $counties = County::all();
+    //     }
+
+    //     return response()->json([
+    //         "success" => true,
+    //         "data" => $counties
+    //     ], 200);
+    // }
+
+
     public function index(){
+
 
         $state = request("state");
         if($state){
-            $counties = County::where("state_id", $state)->paginate(20)->appends(request()->query());
+            $counties = County::where("state_id", $state)->get();
         }else{
-            $counties = County::paginate(20);
+            $counties = County::all();
+        }
+
+        if(request()->wantsJson()){
+            return response()->json([
+                "success" => true,
+                "data" => $counties
+            ], 200);
         }
 
         return view("admin.counties.index",  compact("counties"));

@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\FeedResource;
+use App\Models\Feed;
 use App\Models\FeedComment;
 use Illuminate\Http\Request;
 use Auth;
@@ -17,6 +19,8 @@ class CommentController extends Controller
 
     public function store(Request $request){
 
+        $feed = Feed::findOrFail($request->feed_id);
+
         $comment = new FeedComment();
         $comment->feed_id = $request->feed_id;
         $comment->user_id = Auth::user()->id;
@@ -26,7 +30,8 @@ class CommentController extends Controller
 
         return response()->json([
             "success" => true,
-            "message" => "Commented Successfully"
+            "message" => "Commented Successfully",
+            "data" => new FeedResource($feed)
         ]);
     }
 
@@ -35,10 +40,13 @@ class CommentController extends Controller
 
         $comment = FeedComment::where("id", $id)->where("user_id", Auth::user()->id)->first();
 
+        $feed = $comment->feed;
+
         if($comment->delete()){
             return response()->json([
                 "success" => true,
-                "message" => "Delete Successfully"
+                "message" => "Delete Successfully",
+                "data" => new FeedResource($feed)
             ]);
         }else{
             return response()->json([
