@@ -79,6 +79,3 @@ Route::group(['middleware' => ['auth'], "as" => "admin."], function() {
 });
 
 
-
-
-// alter table feeds add column is_on_pipeline tinyint(1) default 0;
