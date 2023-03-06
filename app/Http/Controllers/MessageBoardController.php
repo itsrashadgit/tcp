@@ -25,7 +25,13 @@ class MessageBoardController extends Controller
 
         $message_board = $trade;
 
-        return view("message-board", compact("user", "messages", "trades", "trade_events", "pipelines", "message_board"));
+        $can_message = false;
+        $tradeobj = Trade::where("slug", $trade)->first();
+        if($user->user_type == $trade) $can_message = true;
+        if($tradeobj && $tradeobj->id == $user->trade_id) $can_message = true;
+
+
+        return view("message-board", compact("user", "messages", "trades", "trade_events", "pipelines", "message_board", "can_message"));
 
     }
 

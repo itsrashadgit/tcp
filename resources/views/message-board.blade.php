@@ -169,26 +169,28 @@
 
 
 
-                                                <div class="conversion-form">
-                                                    <form action="{{ route('message.send') }}" method="POST" id="chat-form">
-                                                        @csrf
-                                                        <textarea class="conv-text" placeholder="Aa" name="message"></textarea>
-                                                        <input type="hidden" name="receiver"
-                                                            value="{{ request('receiver_id') }}">
-                                                        <input type="hidden" name="message_board" value="{{ $message_board }}">
-                                                        <span class="attachemnt"></span><span class="emoji"></span>
-                                                        <span class="send--button"
-                                                            onclick="event.preventDefault(); document.getElementById('chat-form').submit();">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                                height="20" fill="currentColor" class="bi bi-cursor-fill"
-                                                                viewBox="0 0 20 20">
-                                                                <path
-                                                                    d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z">
-                                                                </path>
-                                                            </svg>
-                                                        </span>
-                                                    </form>
-                                                </div>
+                                                @if ($can_message)
+                                                    <div class="conversion-form">
+                                                        <form action="{{ route('message.send') }}" method="POST" id="chat-form">
+                                                            @csrf
+                                                            <textarea class="conv-text" placeholder="Aa" name="message"></textarea>
+                                                            <input type="hidden" name="receiver"
+                                                                value="{{ request('receiver_id') }}">
+                                                            <input type="hidden" name="message_board" value="{{ $message_board }}">
+                                                            <span class="attachemnt"></span><span class="emoji"></span>
+                                                            <span class="send--button"
+                                                                onclick="event.preventDefault(); document.getElementById('chat-form').submit();">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                    height="20" fill="currentColor" class="bi bi-cursor-fill"
+                                                                    viewBox="0 0 20 20">
+                                                                    <path
+                                                                        d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z">
+                                                                    </path>
+                                                                </svg>
+                                                            </span>
+                                                        </form>
+                                                    </div>
+                                                @endif
                                             </div>
 
                                         </div>

@@ -87,7 +87,7 @@
 
                                                 <div class="mb-3" v-if=" form.user_type == 'tradesmen' || form.user_type == 'contractors' ">
                                                     <label class="required" for="trade">{{ __('Trade') }}</label>
-                                                        <select name="trade" id="trade" class="form-control">
+                                                        <select name="trade" id="trade" class="form-control" v-model="form.trade">
                                                             @foreach ($trades as $trade)
                                                                 <option value="{{ $trade->id }}">{{ $trade->name }}</option>
                                                             @endforeach
