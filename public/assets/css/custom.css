@@ -41,3 +41,12 @@
 .site-header .site-branding img {
     max-width: 230px;
 }
+
+
+
+@media only screen and (min-width: 1600px) {
+    .layout-contained, .tophive-container {
+        max-width: 1500px;
+        margin: 0 auto;
+    }
+}

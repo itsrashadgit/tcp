@@ -59,9 +59,9 @@ Route::get("unfollow", [FollowController::class, "unfollow"])->name("unfollow");
 Route::get("search", [SearchController::class, "search"])->name("search");
 
 Route::post("upload-portfolio", [PortfolioController::class, 'uploadPortfolio'])->name("portfolio.upload");
-Route::post("send-message", [MessageBoardController::class, 'sendMsg'])->name("send.msg");
 
 Route::get("messenger/{trade}", [MessageBoardController::class, "index"])->name("message.board");
+Route::post("send-message", [MessageBoardController::class, 'store'])->name("message.send");
 
 
 

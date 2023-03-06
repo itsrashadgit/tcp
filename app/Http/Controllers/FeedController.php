@@ -11,6 +11,7 @@ use Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\FeedResource;
 use App\Models\FeedFile;
+use App\Models\TradeEvent;
 
 class FeedController extends Controller
 {
@@ -28,7 +29,10 @@ class FeedController extends Controller
         $user = Auth::user();
         $portfolios = Portfolio::where("user_id", $user->id)->get()->take(6);
 
-        return view("feed", compact("state", "county", "portfolios"));
+        $trade_events = TradeEvent::all();
+        $pipelines = Feed::where("is_on_pipeline", true)->get();
+
+        return view("feed", compact("state", "county", "portfolios", "trade_events", "pipelines"));
 
     }
 

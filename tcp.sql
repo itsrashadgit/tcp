@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2023 at 01:53 PM
+-- Generation Time: Mar 06, 2023 at 10:28 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -36,6 +36,7 @@ CREATE TABLE `chat_messages` (
   `is_seen` tinyint(1) NOT NULL DEFAULT 0,
   `message_type` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0- text message, 1- image, 2- pdf, 3- doc, 4- voice',
   `file_name` varchar(255) DEFAULT NULL,
+  `message_board` varchar(100) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -44,13 +45,15 @@ CREATE TABLE `chat_messages` (
 -- Dumping data for table `chat_messages`
 --
 
-INSERT INTO `chat_messages` (`id`, `sender_id`, `receiver_id`, `conversation_type`, `message`, `is_seen`, `message_type`, `file_name`, `created_at`, `updated_at`) VALUES
-(1, 3, 4, 0, 'Hello, How are you?', 0, 0, NULL, '2023-02-27 02:15:33', '2023-02-27 02:15:33'),
-(2, 4, 5, 0, 'hlw', 0, 0, NULL, '2023-02-28 06:57:20', '2023-02-28 06:57:20'),
-(3, 5, 4, 0, 'hi', 0, 0, NULL, '2023-02-28 06:58:09', '2023-02-28 06:58:09'),
-(4, 7, 4, 0, 'hello', 0, 0, NULL, '2023-03-01 12:47:10', '2023-03-01 12:47:10'),
-(5, 9, 9, 0, 'hello', 0, 0, NULL, '2023-03-04 08:24:08', '2023-03-04 08:24:08'),
-(6, 3, 9, 0, 'Hlw', 0, 0, NULL, '2023-03-04 08:27:06', '2023-03-04 08:27:06');
+INSERT INTO `chat_messages` (`id`, `sender_id`, `receiver_id`, `conversation_type`, `message`, `is_seen`, `message_type`, `file_name`, `message_board`, `created_at`, `updated_at`) VALUES
+(1, 3, 4, 0, 'Hello, How are you?', 0, 0, NULL, '', '2023-02-27 02:15:33', '2023-02-27 02:15:33'),
+(2, 4, 5, 0, 'hlw', 0, 0, NULL, '', '2023-02-28 06:57:20', '2023-02-28 06:57:20'),
+(3, 5, 4, 0, 'hi', 0, 0, NULL, '', '2023-02-28 06:58:09', '2023-02-28 06:58:09'),
+(4, 7, 4, 0, 'hello', 0, 0, NULL, '', '2023-03-01 12:47:10', '2023-03-01 12:47:10'),
+(5, 9, 9, 0, 'hello', 0, 0, NULL, '', '2023-03-04 08:24:08', '2023-03-04 08:24:08'),
+(6, 3, 9, 0, 'Hlw', 0, 0, NULL, '', '2023-03-04 08:27:06', '2023-03-04 08:27:06'),
+(7, 3, NULL, 0, 'hellow', 0, 0, NULL, 'fire-alarm', '2023-03-06 03:24:27', '2023-03-06 03:24:27'),
+(8, 9, NULL, 0, 'Thanks everyone', 0, 0, NULL, 'fire-alarm', '2023-03-06 03:28:20', '2023-03-06 03:28:20');
 
 -- --------------------------------------------------------
 
@@ -313,8 +316,8 @@ INSERT INTO `feeds` (`id`, `user_id`, `visibility`, `content`, `likes`, `created
 (7, 3, 'Public', 'Hello how are you?', 0, '2023-03-02 12:41:36', '2023-03-02 12:41:36', 0),
 (8, 3, 'Public', 'I want to sell my new shoes', 0, '2023-03-02 12:43:05', '2023-03-02 12:43:05', 0),
 (9, 3, 'Public', 'Why This is ?', 0, '2023-03-02 12:43:17', '2023-03-02 12:43:17', 0),
-(10, 3, 'Public', 'hello', 0, '2023-03-03 08:19:46', '2023-03-03 08:19:46', 0),
-(11, 9, 'Public', 'This is a post from mohammed', 0, '2023-03-04 04:13:10', '2023-03-04 04:13:10', 0);
+(10, 3, 'Public', 'hello', 0, '2023-03-03 08:19:46', '2023-03-06 01:33:34', 1),
+(11, 9, 'Public', 'This is a post from mohammed', 0, '2023-03-04 04:13:10', '2023-03-06 03:26:03', 1);
 
 -- --------------------------------------------------------
 
@@ -469,7 +472,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (39, '2023_02_27_183635_create_portfolios_table', 7),
 (40, '2023_03_02_115047_create_feed_likes_table', 8),
 (41, '2023_03_03_173805_create_user_county_table', 9),
-(42, '2023_03_03_173805_create_county_user_table', 10);
+(42, '2023_03_03_173805_create_county_user_table', 10),
+(44, '2023_03_06_065637_create_trade_events_table', 11);
 
 -- --------------------------------------------------------
 
@@ -1257,6 +1261,31 @@ INSERT INTO `trades` (`id`, `name`, `image`, `slug`, `created_at`, `updated_at`)
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `trade_events`
+--
+
+CREATE TABLE `trade_events` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `start_time` timestamp NULL DEFAULT NULL,
+  `end_time` timestamp NULL DEFAULT NULL,
+  `event_details` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `trade_events`
+--
+
+INSERT INTO `trade_events` (`id`, `user_id`, `name`, `start_time`, `end_time`, `event_details`, `created_at`, `updated_at`) VALUES
+(1, 3, 'New Event', '2023-03-06 07:20:00', '2023-03-16 07:20:00', 'Good Event. Everyone come.', '2023-03-06 01:20:47', '2023-03-06 01:20:47'),
+(2, 9, 'Another event', '2023-03-07 09:25:00', '2023-03-23 09:25:00', 'long long detais', '2023-03-06 03:25:50', '2023-03-06 03:25:50');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -1573,6 +1602,13 @@ ALTER TABLE `trades`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indexes for table `trade_events`
+--
+ALTER TABLE `trade_events`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `trade_events_user_id_foreign` (`user_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -1594,7 +1630,7 @@ ALTER TABLE `user_user`
 -- AUTO_INCREMENT for table `chat_messages`
 --
 ALTER TABLE `chat_messages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `companies`
@@ -1666,7 +1702,7 @@ ALTER TABLE `followers`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -1751,6 +1787,12 @@ ALTER TABLE `subroles`
 --
 ALTER TABLE `trades`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `trade_events`
+--
+ALTER TABLE `trade_events`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -1893,6 +1935,12 @@ ALTER TABLE `states`
 --
 ALTER TABLE `subroles`
   ADD CONSTRAINT `subroles_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `trade_events`
+--
+ALTER TABLE `trade_events`
+  ADD CONSTRAINT `trade_events_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `user_user`

@@ -6,6 +6,7 @@ use App\Http\Controllers\FeedController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TradeEventController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -48,5 +49,6 @@ Route::group(["as" => "api.", "prefix" => "v1"], function(){
     Route::put("coverphoto/update", [HomeController::class, 'updateCoverPhoto'])->name("coverphoto.update");
     Route::post('update-profile', [HomeController::class, 'updateProfile'])->name("profile.update");
 
+    Route::apiResource("trade-events", TradeEventController::class);
 
 });

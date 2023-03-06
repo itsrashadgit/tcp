@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChatMessage;
+use App\Models\Feed;
+use App\Models\Trade;
+use App\Models\TradeEvent;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
@@ -11,36 +14,33 @@ class MessageBoardController extends Controller
 {
     public function index(Request $request, $trade){
 
-        $query = $request->q;
+        $user = Auth::user();
 
+        $messages = ChatMessage::where("message_board", $trade)->paginate(20);
 
+        $trades = Trade::all();
 
-            $user = Auth::user();
-        // $receivers = User::where("id", "!=", $user->id)
-        //             ->whereHas("chatmessages", function($q){
-        //                 $q->where("sender_id", Auth::user()->id);
-        //             })->get();
+        $trade_events = TradeEvent::all();
+        $pipelines = Feed::where("is_on_pipeline", true)->get();
 
+        $message_board = $trade;
 
-        if(is_numeric($trade)){
-            $receivers = User::where("trade_id", $trade)
-                ->where("id", "!=", $user->id)->get();
-        }else{
-            $receivers = User::where("user_type", $trade)
-            ->where("id", "!=", $user->id)->get();
-        }
-
-
-        $receiver = null;
-        if(request("receiver_id")){
-            $receiver = User::findOrFail(request("receiver_id"));
-        }
-
-        $messages = ChatMessage::whereIn("sender_id", [$user->id, $receiver->id ?? ""])
-                            ->whereIn("receiver_id", [$user->id, $receiver->id ?? ""])
-                            ->paginate(request()->per_page);
-
-        return view("profile-list", compact("user", "receivers", "receiver", "messages"));
+        return view("message-board", compact("user", "messages", "trades", "trade_events", "pipelines", "message_board"));
 
     }
+
+
+    public function store(Request $request){
+
+        $msg = new ChatMessage();
+        $msg->sender_id = Auth::user()->id;
+        $msg->receiver_id = $request->receiver_id;
+        $msg->message = $request->message;
+        $msg->message_board = $request->message_board;
+        $msg->save();
+
+        return redirect()->back()->with("success", "Sent Successfully");
+
+    }
+
 }
