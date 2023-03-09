@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@push("head_tags")
+    <style>
+        .trade-box:hover{
+            box-shadow: 0px 0px 8px #ddd;
+        }
+    </style>
+@endpush
 
 @section('content')
     <div class="tophive-container">
@@ -13,7 +20,7 @@
         <div class="row my-4 gx-1">
             @foreach ($trades as $trade)
                 <div class="col-md-2">
-                    <a class="nav-link bg-white text-center m-1 text-dark rounded d-block" href="{{ route("message.board", $trade->slug) }}">
+                    <a class="nav-link bg-white text-center m-1 text-dark rounded d-block trade-box" href="{{ route("message.board", $trade->slug) }}">
                         <div>
                             {{-- <i class="fas fa-toolbox"></i> --}}
                             <img src="{{ asset("uploads/trades/$trade->image") }}" alt="{{ $trade->name }}" class="img-fluid" width="40">

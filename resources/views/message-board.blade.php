@@ -163,7 +163,7 @@
                                                             </g>
                                                         </svg>
                                                         <h4>You have not yet started a chat yet</h4>
-                                                        <p>Start a new conversation by finding a member</p>
+                                                        <p>Start a new conversation by clicking a trade</p>
                                                     </div>
                                                 @endif
 

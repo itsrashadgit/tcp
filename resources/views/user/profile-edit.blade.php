@@ -35,13 +35,13 @@
                                                 aria-label="Profile menu">
                                                 <ul class="subnav">
                                                     <li id="public-personal-li" class="bp-personal-sub-tab">
-                                                        <a href="{{ route('user.profile', $user->username) }}" id="public">
+                                                        <a href="{{ route('user.profile', $user->username) }}" id="public" class="text-dark">
                                                             View
                                                         </a>
                                                     </li>
 
                                                     <li id="edit-personal-li" class="bp-personal-sub-tab current selected">
-                                                        <a href="{{ route('profile.edit') }}" id="edit">
+                                                        <a href="{{ route('profile.edit') }}" id="edit" class="text-primary">
                                                             Edit
                                                         </a>
                                                     </li>

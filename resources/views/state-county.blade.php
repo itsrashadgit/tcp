@@ -104,7 +104,7 @@
 
                 @if (count($counties) > 0)
                     <div class="usamap">
-                        <img src="{{ asset('assets/img/states/new-jersey.jpg') }}" usemap="#newjersey" class="mx-auto d-block" alt="united-state-map" style="width: 1200px; max-width: 100%; height: auto;" alt="new-jersey" />
+                        <img src="{{ asset('assets/img/states/new-jersey.jpg') }}" usemap="#newjersey" class="mx-auto d-block" alt="united-state-map" style="width: 50%; height: auto;" alt="new-jersey" />
                         <map name="newjersey">
                             @foreach ($counties as $county)
                                 <area target="" alt="{{ $county->slug }}" title="{{ $county->name }}" href="{{ route('feeds', ['state' => strtolower($county->state->code), 'county' => $county->slug]) }}" coords="{{ $county->coords }}" shape="{{ $county->shape }}">

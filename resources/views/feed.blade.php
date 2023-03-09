@@ -6,6 +6,14 @@
             /* background: #fafafa; */
             box-shadow: 0px 0px 8px #ddd;
         }
+
+        /* .load-more{
+            background: #0466c8 !important;
+        }
+
+        .load-more a:hover{
+            background: #0466c8 !important;
+        } */
     </style>
 @endpush
 
@@ -560,23 +568,20 @@
                                                             src="{{ asset(Auth::user()->avatar ? '/images/user/' . Auth::user()->avatar : 'images/avatar.png') }}"
                                                             class="avatar avatar-30 photo" height="30" width="30"
                                                             loading="lazy" decoding="async" />
-                                                        <form @submit.prevent="() => postComment(feed.id)"
+
+                                                            {{-- Main post comment --}}
+                                                        <form @submit.prevent="() => postComment(feed)"
                                                             class="tophive-bp-comment-form activity-60" id="commentform">
                                                             <input type="submit" hidden />
-                                                            {{-- <div
-                                        class="comments-text editable-div"
-                                        contenteditable=""
-                                        data-placeholder="Type a comment..."
-                                    ></div> --}}
                                                             <div>
                                                                 <input type="text" placeholder="Type a comment..."
-                                                                    :id="'comment-' + feed.id" class="post-comment">
+                                                                    :id="'comment-' + feed.id" class="post-comment" v-model="feed.comment">
                                                             </div>
                                                             <div class="comments-media-icons">
                                                                 <p class="comments-image-uploader">
                                                                     <label for="comment-upload-media-60">
                                                                         <span class="send--button"
-                                                                            @click.prevent="() => postComment(feed.id)">
+                                                                            @click.prevent="() => postComment(feed)">
                                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                                 width="20" height="20"
                                                                                 fill="currentColor"
@@ -590,32 +595,7 @@
                                                                     </label>
                                                                 </p>
                                                             </div>
-                                                            {{-- <div class="comments-media-icons">
-                                                                <p class="comments-image-uploader">
-                                                                    <label for="comment-upload-media-60">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="32" height="32"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="#999999" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                            <rect x="3" y="3"
-                                                                                width="18" height="18"
-                                                                                rx="2"></rect>
-                                                                            <circle cx="8.5" cy="8.5"
-                                                                                r="1.5"></circle>
-                                                                            <path d="M20.4 14.5L16 10 4 20"></path>
-                                                                        </svg>
-                                                                    </label>
-                                                                    <input type="file" name="comment-upload-media"
-                                                                        data-id="60" class="comment-upload-media"
-                                                                        id="comment-upload-media-60" />
-                                                                </p>
-                                                            </div>
-                                                            <div>
-                                                                <input type="hidden" class="comment-media-url"
-                                                                    id="comment-media-url-60" value="" />
-                                                            </div> --}}
+
                                                         </form>
                                                     </div>
                                                     <div class="comments-media-previewer comments-media-preview-60"></div>
@@ -634,13 +614,13 @@
                                                                         ago</span></span>
                                                                 <p>@{{ comment.comment }}</p>
                                                             </span>
-                                                            <span class="comment-meta-actions"><a
-                                                                    class="comment-reply-form-toggle"
-                                                                    href="#comment-reply-form-3HNL0QTICG">Reply</a>
+                                                            <span class="comment-meta-actions" v-if="comment.user_id == comment.auth_user_id">
+                                                                <a href="#" @click.prevent="() => openCommentBox(comment)">Reply</a>
                                                                 <a class="comment-delete" href="#"
                                                                     @click.prevent="() => deleteComment(comment.id)">Delete</a>
                                                             </span>
 
+                                                            {{-- main comments --}}
                                                             <span class="comment-replies">
                                                                 <ul>
                                                                     <li v-for="reply in comment.replies"
@@ -659,9 +639,8 @@
                                                                                     ago</span></span>
                                                                             <p>@{{ reply.comment }}</p>
                                                                         </span>
-                                                                        <span class="comment-meta-actions">
-                                                                            <a class="comment-reply-form-toggle"
-                                                                                href="#comment-reply-form-3HNL0QTICG">Reply</a>
+                                                                        <span class="comment-meta-actions" v-if="reply.user_id == reply.auth_user_id">
+                                                                            <a href="#" @click.prevent="() => openCommentBox(comment)">Reply</a>
                                                                             <a class="comment-delete" href="#"
                                                                                 @click.prevent="() => deleteComment(reply.id)">Delete</a>
                                                                         </span>
@@ -669,21 +648,23 @@
                                                                 </ul>
                                                             </span>
 
-                                                            <span class="comment-reply comment-reply-form-3HNL0QTICG"
-                                                                id="comment-reply-form-3HNL0QTICG">
+                                                            {{-- comments reply --}}
+                                                            <span class="comment-replies" v-if="comment.id == open_reply_box">
                                                                 <div class="activity-comments-form">
                                                                     <img alt="" :src="comment.user_avatar"
                                                                         class="avatar avatar-30 photo" height="30"
                                                                         width="30" loading="lazy" decoding="async" />
+
+
+                                                                        {{-- Comment Reply --}}
                                                                     <form class="tophive-bp-comment-form activity-60"
                                                                         @submit.prevent="() => replyComment(feed.id, comment.id)">
-                                                                        {{-- <div
-                                                    class="comments-text editable-div"
-                                                    ></div> --}}
+
                                                                         <input type="text"
                                                                             placeholder="Type a comment..."
                                                                             :id="'comment-' + comment.id"
-                                                                            class="post-comment">
+                                                                            class="post-comment" v-model="reply_msg">
+
                                                                             <div class="comments-media-icons">
                                                                                 <p class="comments-image-uploader">
                                                                                     <label for="comment-upload-media-60">
@@ -702,40 +683,6 @@
                                                                                     </label>
                                                                                 </p>
                                                                             </div>
-                                                                        {{-- <div class="comments-media-icons">
-                                                                            <p class="comments-image-uploader">
-                                                                                <label for="comment-upload-media-60">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                        width="32" height="32"
-                                                                                        viewBox="0 0 24 24" fill="none"
-                                                                                        stroke="#999999"
-                                                                                        stroke-width="1.8"
-                                                                                        stroke-linecap="round"
-                                                                                        stroke-linejoin="round">
-                                                                                        <rect x="3"
-                                                                                            y="3" width="18"
-                                                                                            height="18" rx="2">
-                                                                                        </rect>
-                                                                                        <circle cx="8.5"
-                                                                                            cy="8.5" r="1.5">
-                                                                                        </circle>
-                                                                                        <path d="M20.4 14.5L16 10 4 20">
-                                                                                        </path>
-                                                                                    </svg>
-                                                                                </label>
-                                                                                <input type="file"
-                                                                                    name="comment-upload-media"
-                                                                                    data-id="60"
-                                                                                    class="comment-upload-media"
-                                                                                    id="comment-upload-media-60" />
-                                                                            </p>
-                                                                        </div>
-                                                                        <div>
-                                                                            <input type="hidden"
-                                                                                class="comment-media-url"
-                                                                                id="comment-media-url-60"
-                                                                                value="" />
-                                                                        </div> --}}
                                                                     </form>
                                                                 </div>
                                                                 {{-- <div
@@ -749,9 +696,8 @@
                                             </li>
 
 
-                                            <li class="load-more"
-                                                v-if="feed_meta && feed_meta.current_page != feed_meta.last_page">
-                                                <a href="" @click.prevent="loadMore">Load More</a>
+                                            <li class="load-more" v-if="feed_meta && feed_meta.current_page != feed_meta.last_page">
+                                                <a href="" @click.prevent="loadMore" >Load More</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -985,6 +931,7 @@
         <!-- #.tophive-grid -->
     </div>
     <!-- #.tophive-container -->
+    <p v-if="trigger_change" class="d-none">.</p>
 @endsection
 
 
@@ -1009,6 +956,10 @@
                 event_details: ''
             },
             creating_event: false,
+            open_comment_box: null,
+            open_reply_box: null,
+            trigger_change: false,
+            reply_msg: ''
         }
 
         vmethods = {
@@ -1076,14 +1027,17 @@
                     // this.toast("Something Wen't Wrong!", "error");
                 }
             },
-            async postComment(feed_id, comment_id) {
+            async postComment(feed, comment_id) {
 
-                const comment = $("#comment-" + feed_id).val();
+                // const comment = $("#comment-" + feed_id).val();
                 try {
                     const response = await axios.post("{{ route('api.comments.store') }}", {
-                        feed_id,
-                        comment: comment,
+                        feed_id: feed.id,
+                        comment: feed.comment,
                     });
+                    // console.log(comment);
+                    // $("#comment-" + feed_id).val("");
+                    feed.comment = "";
                     this.mutateFeeds(response.data.data);
                 } catch (err) {
                     console.log(err);
@@ -1120,6 +1074,7 @@
                         feed_comment_id: comment_id
                     });
                     this.mutateFeeds(response.data.data);
+                    $("#comment-" + comment_id).val("")
                 } catch (err) {
                     console.log(err);
                     // this.toast("Something Wen't Wrong!", "error");
@@ -1196,7 +1151,11 @@
                     this.creating_event = false;
                     // this.toast("Something Wen't Wrong!", "error");
                 }
-            }
+            },
+            openCommentBox(comment){
+                this.open_reply_box = this.open_reply_box != null ? null : comment.id;
+                this.trigger_change = !this.trigger_change;
+            },
         }
 
         vcreated = {
