@@ -210,35 +210,37 @@
                 </div>
             </main>
             <!-- #main -->
+
             <aside id="sidebar-primary" class="sidebar-primary tophive-col-3_sm-12">
                 <div class="sidebar-primary-inner sidebar-inner widget-area">
                     <section id="block-25" class="widget widget_block widget_bp_core_members_widget buddypress">
                         <div class="bp-dynamic-block-container">
                             <h2 class="widget-title">Pipeline</h2>
 
-                            <ul class="item-list">
-                                @foreach ($pipelines as $pipeline)
-                                    <li class="vcard d-flex align-items-center">
-                                        <div class="item-avatar">
-                                            <a href="" class="bp-tooltip">
-                                                <img loading="lazy"
-                                                    src="{{ asset($pipeline->user->avatar ? 'images/user/' . $pipeline->user->avatar : 'images/avatar.png') }}"
-                                                    class="avatar user-1-avatar avatar-50 photo" width="50"
-                                                    height="50" alt="Profile picture of admin">
-                                            </a>
-                                        </div>
-                                        <div class="mx-1"></div>
-                                        <div class="item">
-                                            <div class="item-title fn"><a
-                                                    href="">{{ $pipeline->user->name ?? '' }}</a></div>
-                                            <div class="item-meta">
-                                                <span
-                                                    class="activity">{{ Str::limit($pipeline->content, 50, '...') }}</span>
+                            <div class="pipeline-ticker">
+                                <ul class="item-list">
+                                    @foreach ($pipelines as $pipeline)
+                                        <li class="vcard d-flex align-items-center">
+                                            <div class="item-avatar">
+                                                <a href="" class="bp-tooltip">
+                                                    <img loading="lazy"
+                                                        src="{{ asset($pipeline->user->avatar ? 'images/user/' . $pipeline->user->avatar : 'images/avatar.png') }}"
+                                                        class="avatar user-1-avatar avatar-50 photo" width="50"
+                                                        height="50" alt="Profile picture of admin">
+                                                </a>
                                             </div>
-                                        </div>
-                                    </li>
-                                @endforeach
-                            </ul>
+                                            <div class="mx-1"></div>
+                                            <div class="item">
+                                                <div class="item-title fn"><a href="">{{ $pipeline->user->name ?? "" }}</a></div>
+                                                <div class="item-meta">
+                                                    <span class="activity">{{ Str::limit($pipeline->content, 50, '...') }}</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
                         </div>
                     </section>
 
@@ -247,101 +249,85 @@
 
                             <div class="d-flex align-items-center justify-content-between">
                                 <h2 class="widget-title mb-0">Upcoming Events</h2>
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#eventModal">
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#eventModal">
                                     <i class="fas fa-plus"></i>
                                     Create
                                 </button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="eventModal" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <form @submit.prevent="createEvent" action="">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Create Event</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="mb-3">
-                                                        <label for="event_name" class="form-label">Event Name</label>
-                                                        <input type="text" class="form-control" id="event_name"
-                                                            aria-describedby="event_name" name="event_name"
-                                                            v-model="eventform.name"
-                                                            :class="{ 'is-invalid': errors.name }">
-                                                        <div class="invalid-feedback">@{{ errors.name }}</div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <form @submit.prevent="createEvent" action="">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Create Event</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
                                                             <div class="mb-3">
-                                                                <label for="start_time" class="form-label">Start
-                                                                    Time</label>
-                                                                <input type="datetime-local" class="form-control"
-                                                                    id="start_time" aria-describedby="start_time"
-                                                                    name="start_time" v-model="eventform.start_time"
-                                                                    :class="{ 'is-invalid': errors.start_time }">
-                                                                <div class="invalid-feedback">@{{ errors.start_time }}</div>
+                                                                <label for="event_name" class="form-label">Event Name</label>
+                                                                <input type="text" class="form-control" id="event_name" aria-describedby="event_name" name="event_name" v-model="eventform.name" :class="{ 'is-invalid': errors.name }">
+                                                                <div class="invalid-feedback">@{{ errors.name }}</div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="mb-3">
+                                                                        <label for="start_time" class="form-label">Start Time</label>
+                                                                        <input type="datetime-local" class="form-control" id="start_time" aria-describedby="start_time" name="start_time" v-model="eventform.start_time" :class="{ 'is-invalid': errors.start_time }">
+                                                                        <div class="invalid-feedback">@{{ errors.start_time }}</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="mb-3">
+                                                                        <label for="end_time" class="form-label">End Time</label>
+                                                                        <input type="datetime-local" class="form-control" id="end_time" aria-describedby="end_time" name="end_time" v-model="eventform.end_time" :class="{ 'is-invalid': errors.end_time }">
+                                                                        <div class="invalid-feedback">@{{ errors.end_time }}</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="event_details" class="form-label">Event Details</label>
+                                                                <textarea name="event_details" id="event_details" cols="30" rows="10" v-model="eventform.event_details" :class="{ 'is-invalid': errors.event_details }"></textarea>
+                                                                <div class="invalid-feedback">@{{ errors.event_details }}</div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            <div class="mb-3">
-                                                                <label for="end_time" class="form-label">End Time</label>
-                                                                <input type="datetime-local" class="form-control"
-                                                                    id="end_time" aria-describedby="end_time"
-                                                                    name="end_time" v-model="eventform.end_time"
-                                                                    :class="{ 'is-invalid': errors.end_time }">
-                                                                <div class="invalid-feedback">@{{ errors.end_time }}</div>
-                                                            </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary" :disabled="creating_event">
+                                                                <i v-if="creating_event" class="fas fa-spinner fa-spin"></i>
+                                                                <span>{{ __('Create') }}</span>
+                                                            </button>
                                                         </div>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="event_details" class="form-label">Event
-                                                            Details</label>
-                                                        <textarea name="event_details" id="event_details" cols="30" rows="10" v-model="eventform.event_details"
-                                                            :class="{ 'is-invalid': errors.event_details }"></textarea>
-                                                        <div class="invalid-feedback">@{{ errors.event_details }}</div>
-                                                    </div>
+                                                    </form>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary"
-                                                        :disabled="creating_event">
-                                                        <i v-if="creating_event" class="fas fa-spinner fa-spin"></i>
-                                                        <span>{{ __('Create') }}</span>
-                                                    </button>
-                                                </div>
-                                            </form>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
                             </div>
 
 
 
-                            <ul class="item-list">
-                                @foreach ($trade_events as $tevent)
-                                    <li class="vcard d-flex align-items-center">
-                                        <div class="item-avatar">
-                                            <a href="" class="bp-tooltip">
-                                                <img loading="lazy"
-                                                    src="{{ asset($tevent->user->avatar ? 'images/user/' . $tevent->user->avatar : 'images/avatar.png') }}"
-                                                    class="avatar user-1-avatar avatar-50 photo" width="50"
-                                                    height="50" alt="Profile picture of admin">
-                                            </a>
-                                        </div>
-                                        <div class="mx-1"></div>
-                                        <div class="item">
-                                            <div class="item-title fn"><a href="">{{ $tevent->name }}</a></div>
-                                            <div class="item-meta">
-                                                <span
-                                                    class="activity">{{ Str::limit($tevent->event_details, 50, '...') }}</span>
+                            <div class="event-ticker">
+                                <ul class="item-list">
+                                    @foreach ($trade_events as $tevent)
+                                        <li class="vcard d-flex align-items-center">
+                                            <div class="item-avatar">
+                                                <a href="" class="bp-tooltip">
+                                                    <img loading="lazy"
+                                                        src="{{ asset($tevent->user->avatar ? 'images/user/' . $tevent->user->avatar : 'images/avatar.png') }}"
+                                                        class="avatar user-1-avatar avatar-50 photo" width="50"
+                                                        height="50" alt="Profile picture of admin">
+                                                </a>
                                             </div>
-                                        </div>
-                                    </li>
-                                @endforeach
-                            </ul>
+                                            <div class="mx-1"></div>
+                                            <div class="item">
+                                                <div class="item-title fn"><a href="">{{ $tevent->name }}</a></div>
+                                                <div class="item-meta">
+                                                    <span class="activity">{{ Str::limit($tevent->event_details, 50, '...') }}</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -418,4 +404,53 @@
             // function key: function(){}
         }
     </script>
+
+<script src="{{ asset("assets/js/jquery.easy-ticker.min.js") }}"></script>
+<script>
+    $(document).ready(function(){
+
+        $('.pipeline-ticker').easyTicker({
+            direction: 'up',
+            easing: 'swing',
+            speed: 'slow',
+            interval: 2000,
+            height: 'auto',
+            visible: 0,
+            mousePause: true,
+            controls: {
+                up: '',
+                down: '',
+                toggle: '',
+                playText: 'Play',
+                stopText: 'Stop'
+            },
+            callbacks: {
+                before: false,
+                after: false
+            }
+        });
+
+        $('.event-ticker').easyTicker({
+            direction: 'up',
+            easing: 'swing',
+            speed: 'slow',
+            interval: 2000,
+            height: 'auto',
+            visible: 0,
+            mousePause: true,
+            controls: {
+                up: '',
+                down: '',
+                toggle: '',
+                playText: 'Play',
+                stopText: 'Stop'
+            },
+            callbacks: {
+                before: false,
+                after: false
+            }
+        });
+
+    });
+</script>
 @endpush

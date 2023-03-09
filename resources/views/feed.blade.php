@@ -777,27 +777,30 @@
                         <div class="bp-dynamic-block-container">
                             <h2 class="widget-title">Pipeline</h2>
 
-                            <ul class="item-list">
-                                @foreach ($pipelines as $pipeline)
-                                    <li class="vcard d-flex align-items-center">
-                                        <div class="item-avatar">
-                                            <a href="" class="bp-tooltip">
-                                                <img loading="lazy"
-                                                    src="{{ asset($pipeline->user->avatar ? 'images/user/' . $pipeline->user->avatar : 'images/avatar.png') }}"
-                                                    class="avatar user-1-avatar avatar-50 photo" width="50"
-                                                    height="50" alt="Profile picture of admin">
-                                            </a>
-                                        </div>
-                                        <div class="mx-1"></div>
-                                        <div class="item">
-                                            <div class="item-title fn"><a href="">{{ $pipeline->user->name ?? "" }}</a></div>
-                                            <div class="item-meta">
-                                                <span class="activity">{{ Str::limit($pipeline->content, 50, '...') }}</span>
+                            <div class="pipeline-ticker">
+                                <ul class="item-list">
+                                    @foreach ($pipelines as $pipeline)
+                                        <li class="vcard d-flex align-items-center">
+                                            <div class="item-avatar">
+                                                <a href="" class="bp-tooltip">
+                                                    <img loading="lazy"
+                                                        src="{{ asset($pipeline->user->avatar ? 'images/user/' . $pipeline->user->avatar : 'images/avatar.png') }}"
+                                                        class="avatar user-1-avatar avatar-50 photo" width="50"
+                                                        height="50" alt="Profile picture of admin">
+                                                </a>
                                             </div>
-                                        </div>
-                                    </li>
-                                @endforeach
-                            </ul>
+                                            <div class="mx-1"></div>
+                                            <div class="item">
+                                                <div class="item-title fn"><a href="">{{ $pipeline->user->name ?? "" }}</a></div>
+                                                <div class="item-meta">
+                                                    <span class="activity">{{ Str::limit($pipeline->content, 50, '...') }}</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
                         </div>
                     </section>
 
@@ -862,27 +865,29 @@
 
 
 
-                            <ul class="item-list">
-                                @foreach ($trade_events as $tevent)
-                                    <li class="vcard d-flex align-items-center">
-                                        <div class="item-avatar">
-                                            <a href="" class="bp-tooltip">
-                                                <img loading="lazy"
-                                                    src="{{ asset($tevent->user->avatar ? 'images/user/' . $tevent->user->avatar : 'images/avatar.png') }}"
-                                                    class="avatar user-1-avatar avatar-50 photo" width="50"
-                                                    height="50" alt="Profile picture of admin">
-                                            </a>
-                                        </div>
-                                        <div class="mx-1"></div>
-                                        <div class="item">
-                                            <div class="item-title fn"><a href="">{{ $tevent->name }}</a></div>
-                                            <div class="item-meta">
-                                                <span class="activity">{{ Str::limit($tevent->event_details, 50, '...') }}</span>
+                            <div class="event-ticker">
+                                <ul class="item-list">
+                                    @foreach ($trade_events as $tevent)
+                                        <li class="vcard d-flex align-items-center">
+                                            <div class="item-avatar">
+                                                <a href="" class="bp-tooltip">
+                                                    <img loading="lazy"
+                                                        src="{{ asset($tevent->user->avatar ? 'images/user/' . $tevent->user->avatar : 'images/avatar.png') }}"
+                                                        class="avatar user-1-avatar avatar-50 photo" width="50"
+                                                        height="50" alt="Profile picture of admin">
+                                                </a>
                                             </div>
-                                        </div>
-                                    </li>
-                                @endforeach
-                            </ul>
+                                            <div class="mx-1"></div>
+                                            <div class="item">
+                                                <div class="item-title fn"><a href="">{{ $tevent->name }}</a></div>
+                                                <div class="item-meta">
+                                                    <span class="activity">{{ Str::limit($tevent->event_details, 50, '...') }}</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -1206,5 +1211,54 @@
             ...vmounted,
             // function key: function(){}
         }
+    </script>
+
+    <script src="{{ asset("assets/js/jquery.easy-ticker.min.js") }}"></script>
+    <script>
+        $(document).ready(function(){
+
+            $('.pipeline-ticker').easyTicker({
+                direction: 'up',
+                easing: 'swing',
+                speed: 'slow',
+                interval: 2000,
+                height: 'auto',
+                visible: 0,
+                mousePause: true,
+                controls: {
+                    up: '',
+                    down: '',
+                    toggle: '',
+                    playText: 'Play',
+                    stopText: 'Stop'
+                },
+                callbacks: {
+                    before: false,
+                    after: false
+                }
+            });
+
+            $('.event-ticker').easyTicker({
+                direction: 'up',
+                easing: 'swing',
+                speed: 'slow',
+                interval: 2000,
+                height: 'auto',
+                visible: 0,
+                mousePause: true,
+                controls: {
+                    up: '',
+                    down: '',
+                    toggle: '',
+                    playText: 'Play',
+                    stopText: 'Stop'
+                },
+                callbacks: {
+                    before: false,
+                    after: false
+                }
+            });
+
+        });
     </script>
 @endpush
